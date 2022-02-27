@@ -1,0 +1,12 @@
+.search-bar {
+  background: $dark-gray;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  color: $light;
+  border: none;
+  outline: none;
+
+  &::placeholder {
+    font-style: italic;
+  }
+}
