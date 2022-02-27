@@ -1,0 +1,25 @@
+.btn {
+  color: $light;
+  transition: all $transition-duration $transition-timing;
+
+  &:hover {
+    color: $light;
+  }
+
+/* ----------------------------- Gradient Colors ---------------------------- */
+  &.btn-gradient {
+    background: $primary-gradient;
+  }
+
+  &.btn-gradient-secondary {
+    background: $secondary-gradient;
+  }
+
+  &.btn-gradient-dark {
+    background: $dark-gradient;
+  }
+
+  &.btn-gradient-danger {
+    background: $danger-gradient;
+  }
+}
