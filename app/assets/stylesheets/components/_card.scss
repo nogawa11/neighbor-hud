@@ -1,0 +1,15 @@
+.card {
+  background: $dark-gray;
+  color: $light;
+  border-radius: 1rem;
+  box-shadow: $box-shadow;
+  overflow: hidden;
+
+  &__body {
+    padding: 1rem 1.5rem;
+  }
+
+  &.card--dark {
+    background: $dark;
+  }
+}
