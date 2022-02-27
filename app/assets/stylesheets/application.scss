@@ -1,13 +1,27 @@
-// Graphical variables
+/* --------------------------- Graphical variables -------------------------- */
 @import "config/fonts";
 @import "config/colors";
 @import "config/bootstrap_variables";
 
-// External libraries
+/* ----------------------------- External libraries ------------------------- */
 @import "bootstrap/scss/bootstrap";
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
-// Your CSS partials
-@import "components/index";
+
+/* -------------------------------------------------------------------------- */
+/*                              Your CSS partials                             */
+/* -------------------------------------------------------------------------- */
+
+/* --------------------------------- Config --------------------------------- */
+@import "config/variables";
+@import "config/reset";
+
+/* ---------------------------------- Pages --------------------------------- */
 @import "pages/index";
+
+/* ------------------------------- Components ------------------------------- */
+@import "components/index";
+@import "components/button";
+@import "components/card";
+@import "components/search_bar";
