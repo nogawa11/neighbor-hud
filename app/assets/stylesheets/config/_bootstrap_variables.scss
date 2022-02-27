@@ -9,13 +9,16 @@ $headings-font-family:    $headers-font;
 $body-bg:                 $light-gray;
 $font-size-base: 1rem;
 
-// Colors
-$body-color: $gray;
-$primary:    $blue;
-$success:    $green;
-$info:       $yellow;
-$danger:     $red;
-$warning:    $orange;
+// Solid Colors
+$primary: #238BEB;
+$secondary: #8D67FF;
+$success: #1edd48;
+$danger: #D32525;
+$warning: #FF7E20;
+$dark: #1A1919;
+$dark-gray: #333333;
+$light-gray: #8E9398;
+$light: #FBFBFB;
 
 // Buttons & inputs' radius
 $border-radius:    2px;
