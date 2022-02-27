@@ -1,25 +1,46 @@
 .btn {
+  background: $primary;
   color: $light;
   transition: all $transition-duration $transition-timing;
+  position: relative;
 
   &:hover {
     color: $light;
   }
 
+  // Font Awesome icons
+  i {
+    position: relative;
+    left: -8px;
+    transition: transform 0.25s ease;
+  }
+
+  &.btn--close:hover {
+    i {
+      transform: scale(1.25);
+    }
+  }
+
+  &.btn--back:hover {
+    i {
+      transform: translateX(-8px);
+    }
+  }
+
 /* ----------------------------- Gradient Colors ---------------------------- */
-  &.btn-gradient {
+  &.btn--gradient {
     background: $primary-gradient;
   }
 
-  &.btn-gradient-secondary {
+  &.btn--gradient-secondary {
     background: $secondary-gradient;
   }
 
-  &.btn-gradient-dark {
+  &.btn--gradient-dark {
     background: $dark-gradient;
   }
 
-  &.btn-gradient-danger {
+  &.btn--gradient-danger {
     background: $danger-gradient;
   }
 }
