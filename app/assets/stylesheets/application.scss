@@ -8,6 +8,7 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 @import "mapbox-gl/dist/mapbox-gl";
+@import "@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder";
 
 
 /* -------------------------------------------------------------------------- */
@@ -26,3 +27,4 @@
 @import "components/button";
 @import "components/card";
 @import "components/search_bar";
+@import "components/map"
