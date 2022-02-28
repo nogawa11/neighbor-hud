@@ -1,7 +1,7 @@
 .btn {
   background: $primary;
   color: $light;
-  transition: all $transition-duration $transition-timing;
+  transition: $transition;
   position: relative;
 
   &:hover {
