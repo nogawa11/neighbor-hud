@@ -81,3 +81,46 @@ incident_5 = Incident.new(
 incident_5.save!
 
 puts "#{Incident.count} Incidents created"
+
+puts "Destroying old comments..."
+Comment.destroy_all
+puts "Creating new comments..."
+
+20.times do
+  quote = rand(0..3)
+  loc_quote = quote
+  zero_or_one = rand(0..1)
+  amount = ""
+
+  case quote
+  when 0
+    Faker::TvShows::TwinPeaks.quote
+  when 1
+    Faker::Games::WarhammerFantasy.quote
+  when 2
+    Faker::Games::Overwatch.quote
+  when 3
+    Faker::Games::HeroesOfTheStorm.quote
+  end
+
+  case loc_quote
+  when 0
+    Faker::TvShows::TwinPeaks.location
+  when 1
+    Faker::Games::WarhammerFantasy.location
+  when 2
+    Faker::Games::Overwatch.location
+  when 3
+    Faker::Games::HeroesOfTheStorm.battleground
+  end
+
+  zero_or_one.zero? ? amount = "always" : amount = "never"
+
+  @comment = Comment.create!(
+    content: "#{quote} This would #{amount} happen in #{loc_quote}. Complete #{Faker::Emotion.noun}.",
+    user: User.all.sample,
+    incident: Incident.all.sample
+  )
+end
+
+puts "#{Comment.count} comments created"
