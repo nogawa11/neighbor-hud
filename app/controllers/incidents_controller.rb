@@ -4,6 +4,12 @@ class IncidentsController < ApplicationController
 
   def index
     @incidents = policy_scope(Incident)
+    @markers = @incidents.geocoded.map do |incident|
+      {
+        lat: incident.latitude,
+        lng: incident.longitude
+      }
+    end
   end
 
   def new
@@ -23,6 +29,11 @@ class IncidentsController < ApplicationController
   end
 
   def show
+    # raise
+    @comment = Comment.new
+    authorize @comment
+    @incident = Incident.find(params[:incident_id]) if params[:incident_id].present?
+    @original_comment = Comment.find(params[:comment_id]) if params[:comment_id].present?
   end
 
   def destroy
