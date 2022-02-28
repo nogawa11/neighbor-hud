@@ -10,10 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_27_101316) do
+ActiveRecord::Schema.define(version: 2022_02_28_074254) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "comments", force: :cascade do |t|
+    t.string "content"
+    t.bigint "user_id", null: false
+    t.bigint "incident_id", null: false
+    t.bigint "comment_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["comment_id"], name: "index_comments_on_comment_id"
+    t.index ["incident_id"], name: "index_comments_on_incident_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "incidents", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+    t.date "incident_date"
+    t.string "location"
+    t.float "latitude"
+    t.float "longitude"
+    t.bigint "user_id", null: false
+    t.boolean "can_receive_comments"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_incidents_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -23,8 +49,13 @@ ActiveRecord::Schema.define(version: 2022_02_27_101316) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "name"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "comments", "comments"
+  add_foreign_key "comments", "incidents"
+  add_foreign_key "comments", "users"
+  add_foreign_key "incidents", "users"
 end
