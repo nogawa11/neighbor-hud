@@ -8,6 +8,10 @@
     color: $light;
   }
 
+  &:focus {
+    box-shadow: none;
+  }
+
   // Font Awesome icons
   i {
     position: relative;
