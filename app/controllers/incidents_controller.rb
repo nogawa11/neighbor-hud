@@ -2,7 +2,7 @@ class IncidentsController < ApplicationController
   before_action :set_incident, only: [:show, :destroy]
 
   def index
-    @incident = policy_scope(Incident)
+    @incidents = policy_scope(Incident)
   end
 
   def new
