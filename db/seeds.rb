@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 puts "Removing Old Users, Incidents..."
+User.destroy_all
 Incident.destroy_all
 
 puts "Creating New Users..."
@@ -27,7 +28,7 @@ incident_1 = Incident.new(
   location:"YuKabuki-cho, Shinjuku, Tokyo, Japan",
   latitude: 35.695379,
   longitude: 139.702881,
-  can_receive_comments: Faker::Boolean.boolean,
+  can_receive_comments: true,
   user: user
 )
 incident_1.save!
@@ -35,11 +36,11 @@ incident_1.save!
 incident_2 = Incident.new(
   title: "I was attacked by a homeless man.",
   description: Faker::Lorem.paragraph(sentence_count: 3),
-  date: Faker::Date.forward(days: rand(1..30)),
+  incident_date: Faker::Date.forward(days: rand(1..30)),
   location: "Kamiyama-cho, Shibuya, Tokyo, Japan",
   latitude: "35.66443563179996",
   longitude: "139.69044280054845",
-  can_receive_comments: Faker::Boolean.boolean,
+  can_receive_comments: false,
   user: user
 )
 incident_2.save!
@@ -51,7 +52,7 @@ incident_3 = Incident.new(
   location: "Nishi-araisakae-cho, Adachi, Tokyo, Japan",
   latitude: 35.774569,
   longitude: 139.791914,
-  can_receive_comments: Faker::Boolean.boolean,
+  can_receive_comments: true,
   user: user
 )
 incident_3.save!
@@ -63,7 +64,7 @@ incident_4 = Incident.new(
   location: "Petoskey-Otsego, Detroit, MI, USA",
   latitude: Faker::Address.latitude,
   longitude: Faker::Address.longitude,
-  can_receive_comments: Faker::Boolean.boolean,
+  can_receive_comments: true,
   user: user
 )
 incident_4.save!
@@ -75,7 +76,7 @@ incident_5 = Incident.new(
   location:"Ferry Park Ave, Detroit, MI, USA",
   latitude: 42.35871933091293,
   longitude: -83.10033841230707,
-  can_receive_comments: Faker::Boolean.boolean,
+  can_receive_comments: false,
   user: user
 )
 incident_5.save!
@@ -86,7 +87,7 @@ puts "Destroying old comments..."
 Comment.destroy_all
 puts "Creating new comments..."
 
-20.times do
+5.times do
   quote = rand(0..3)
   loc_quote = quote
   zero_or_one = rand(0..1)
@@ -119,7 +120,81 @@ puts "Creating new comments..."
   @comment = Comment.create!(
     content: "#{quote} This would #{amount} happen in #{loc_quote}. Complete #{Faker::Emotion.noun}.",
     user: User.all.sample,
-    incident: Incident.all.sample
+    incident: incident_1
+  )
+end
+
+5.times do
+  quote = rand(0..3)
+  loc_quote = quote
+  zero_or_one = rand(0..1)
+  amount = ""
+
+  case quote
+  when 0
+    Faker::TvShows::TwinPeaks.quote
+  when 1
+    Faker::Games::WarhammerFantasy.quote
+  when 2
+    Faker::Games::Overwatch.quote
+  when 3
+    Faker::Games::HeroesOfTheStorm.quote
+  end
+
+  case loc_quote
+  when 0
+    Faker::TvShows::TwinPeaks.location
+  when 1
+    Faker::Games::WarhammerFantasy.location
+  when 2
+    Faker::Games::Overwatch.location
+  when 3
+    Faker::Games::HeroesOfTheStorm.battleground
+  end
+
+  zero_or_one.zero? ? amount = "always" : amount = "never"
+
+  @comment = Comment.create!(
+    content: "#{quote} This would #{amount} happen in #{loc_quote}. Complete #{Faker::Emotion.noun}.",
+    user: User.all.sample,
+    incident: incident_3
+  )
+end
+
+5.times do
+  quote = rand(0..3)
+  loc_quote = quote
+  zero_or_one = rand(0..1)
+  amount = ""
+
+  case quote
+  when 0
+    Faker::TvShows::TwinPeaks.quote
+  when 1
+    Faker::Games::WarhammerFantasy.quote
+  when 2
+    Faker::Games::Overwatch.quote
+  when 3
+    Faker::Games::HeroesOfTheStorm.quote
+  end
+
+  case loc_quote
+  when 0
+    Faker::TvShows::TwinPeaks.location
+  when 1
+    Faker::Games::WarhammerFantasy.location
+  when 2
+    Faker::Games::Overwatch.location
+  when 3
+    Faker::Games::HeroesOfTheStorm.battleground
+  end
+
+  zero_or_one.zero? ? amount = "always" : amount = "never"
+
+  @comment = Comment.create!(
+    content: "#{quote} This would #{amount} happen in #{loc_quote}. Complete #{Faker::Emotion.noun}.",
+    user: User.all.sample,
+    incident: incident_4
   )
 end
 
