@@ -1,12 +1,31 @@
-.navbar-lewagon {
-  justify-content: space-between;
-  background: white;
-}
+.nav {
+  background: $dark-gradient;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  width: 100%;
 
-.navbar-lewagon .navbar-collapse {
-  flex-grow: 0;
-}
+  &__links {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    align-items: center;
+    justify-items: center;
+    width: 100%;
+    margin-block: 0.5rem;
+    padding-inline: 5%;
+  }
 
-.navbar-lewagon .navbar-brand img {
-  width: 40px;
+  li {
+    color: $light-gray;
+
+    &.active {
+      color: $primary;
+    }
+  }
+
+  &__link {
+    font-size: 1.5rem;
+    color: inherit;
+  }
 }
