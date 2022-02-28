@@ -1,0 +1,38 @@
+.mapbox {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top:0;
+  left:0;
+
+  &gl-ctrl-top-right {
+    top: 2.5rem;
+    width: 90%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: $box-shadow;
+  }
+
+  .mapboxgl-ctrl.mapboxgl-ctrl-geocoder {
+    margin: 0;
+    background: transparent;
+  }
+
+  .mapboxgl-ctrl-geocoder--icon {
+    z-index: 1;
+  }
+
+  &gl-ctrl-geocoder--input {
+    background: $dark;
+    color: $light;
+    border: none;
+    outline: none;
+
+    &::placeholder {
+      font-style: italic;
+      font-weight: 400;
+    }
+  }
+}

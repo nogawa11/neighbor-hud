@@ -1,0 +1,36 @@
+.top_container {
+  text-align: center;
+  margin-top: 0.875rem;
+  font-size: 0.875rem;
+
+  &__heading {
+    font-size: inherit;
+    position: relative;
+    letter-spacing: 0.75px;
+    text-shadow: 0 0 15px 10px #000;
+  }
+
+  &__buttons-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 4.5rem;
+  }
+
+  &__button {
+    font-size: 0.75rem;
+    border-radius: 20px;
+    padding-block: 0.25rem;
+    border: none;
+    @include centralize;
+    background: $light-gray;
+    color: $dark-gray;
+    letter-spacing: 0.5px;
+    box-shadow: $box-shadow;
+
+    &.active {
+      background: $primary;
+      color: $light;
+    }
+  }
+}
