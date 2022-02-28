@@ -12,10 +12,12 @@
     transform: translateX(-50%);
     border-radius: 10px;
     overflow: hidden;
+    box-shadow: $box-shadow;
   }
 
   .mapboxgl-ctrl.mapboxgl-ctrl-geocoder {
     margin: 0;
+    background: transparent;
   }
 
   .mapboxgl-ctrl-geocoder--icon {
