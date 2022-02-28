@@ -6,6 +6,8 @@
   &__heading {
     font-size: inherit;
     position: relative;
+    letter-spacing: 0.75px;
+    text-shadow: 0 0 15px 10px #000;
   }
 
   &__buttons-container {
@@ -24,6 +26,7 @@
     background: $light-gray;
     color: $dark-gray;
     letter-spacing: 0.5px;
+    box-shadow: $box-shadow;
 
     &.active {
       background: $primary;
