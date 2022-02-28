@@ -13,13 +13,13 @@
   <body>
     <%= render 'shared/flashes' %>
     <!-- ---------------------------  Map ---------------------------------- -->
-    <!--<div
+    <div
       id="mapbox"
       class="mapbox"
       data-controller="mapbox"
       data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
       >
-    </div>-->
+    </div>
     <!-- ---------------------------  Map ---------------------------------- -->
     <%= yield %>
     <%= render "shared/navbar" %>
