@@ -8,7 +8,10 @@ Rails.application.routes.draw do
   get '/route', to: 'route#show', as: 'route'
 
   resources :incidents
+
   resources :incidents do
-    resources :comments
+    resources :comments do
+      resources :comments
+    end
   end
 end

@@ -1,4 +1,20 @@
-<%= incident.title %>
-<%= incident.content %>
-<%= incident.location %>
-<%= incident.incident_date %>
+<div class="container">
+  <%= @incident.title %>
+  <%= @incident.description %>
+  <%= @incident.location %>
+  <%= @incident.latitude %>
+  <%= @incident.longitude %>
+  <%= @incident.incident_date %>
+  <% if @incident.can_receive_comments? %>
+    <%= render 'comments/form', incident: @incident, original_comment: @original_comment, comment: @comment %>
+    <ul>
+      <% @incident.comments.each do |comment| %>
+        <li class="ps-3">
+          <% if !comment.comment.present? %>
+            <%= link_to comment.content, incident_comment_path(@incident, comment) %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
