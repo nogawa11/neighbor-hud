@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 2022_02_28_075817) do
     t.string "content"
     t.bigint "user_id", null: false
     t.bigint "incident_id", null: false
-    t.bigint "comment_id", null: false
+    t.bigint "comment_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["comment_id"], name: "index_comments_on_comment_id"
@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 2022_02_28_075817) do
     t.string "location"
     t.float "latitude"
     t.float "longitude"
-    t.bigint "user_id", null: false
+    t.bigint "user_id"
     t.boolean "can_receive_comments"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
