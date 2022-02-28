@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 2022_02_28_075817) do
     t.string "location"
     t.float "latitude"
     t.float "longitude"
-    t.bigint "user_id"
+    t.bigint "user_id", null: false
     t.boolean "can_receive_comments"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
