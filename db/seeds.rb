@@ -10,7 +10,7 @@ User.destroy_all
 puts "Creating new Users..."
 
 20.times do
-  User.new(
+  User.create(
     name: Faker::FunnyName.unique.name,
     email: Faker::Internet.unique.email,
     password: "password"
@@ -52,7 +52,7 @@ puts "Creating new comments..."
 
   zero_or_one.zero? ? amount = "always" : amount = "never"
 
-  Comment.new(
+  Comment.create(
     content: "#{quote} This would #{amount} happen in #{loc_quote}. Complete #{Faker::Emotion.noun}.",
     user_id: User.all.sample,
     incident_id: Incident.all.sample
