@@ -24,6 +24,7 @@
     z-index: 1;
   }
 
+  // Search input
   &gl-ctrl-geocoder--input {
     background: $dark;
     color: $light;
@@ -34,5 +35,18 @@
       font-style: italic;
       font-weight: 400;
     }
+
+    &:focus {
+      color: inherit;
+    }
+  }
+
+  // Search clear button
+  .mapboxgl-ctrl-geocoder--button {
+    background: transparent;
+  }
+
+  .suggestions {
+    position: relative;
   }
 }
