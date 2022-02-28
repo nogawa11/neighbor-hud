@@ -3,5 +3,5 @@ class Incident < ApplicationRecord
   has_many :comments
   validates :title, presence: true
   validates :location, presence: true
-  validates :receive_comments, presence: true
+  validates :incident_date, presence: true
 end

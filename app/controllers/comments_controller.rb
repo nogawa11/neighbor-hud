@@ -1,5 +1,7 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :destroy]
+  skip_before_action :authenticate_user!, only: [ :index, :show ]
+
   def index
     @comments = policy_scope(Comment).where
   end
