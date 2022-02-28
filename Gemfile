@@ -38,6 +38,7 @@ gem 'simple_form'
 #                                 Added Gems                                   /
 # ---------------------------------------------------------------------------  /
 gem 'geocoder'
+gem 'pundit'
 
 group :development, :test do  gem 'pry-byebug'
   gem 'pry-rails'
