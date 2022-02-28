@@ -86,7 +86,7 @@ puts "Destroying old comments..."
 Comment.destroy_all
 puts "Creating new comments..."
 
-100.times do
+20.times do
   quote = rand(0..3)
   loc_quote = quote
   zero_or_one = rand(0..1)
@@ -116,9 +116,11 @@ puts "Creating new comments..."
 
   zero_or_one.zero? ? amount = "always" : amount = "never"
 
-  Comment.new(
+  @comment = Comment.create!(
     content: "#{quote} This would #{amount} happen in #{loc_quote}. Complete #{Faker::Emotion.noun}.",
-    user_id: User.all.sample,
-    incident_id: Incident.all.sample
+    user: User.all.sample,
+    incident: Incident.all.sample
   )
 end
+
+puts "#{Comment.count} comments created"
