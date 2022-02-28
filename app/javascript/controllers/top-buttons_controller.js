@@ -7,6 +7,7 @@ export default class extends Controller {
     const buttons = Array.from(this.element.children);
     buttons.forEach((button) => {
       button.addEventListener("click", (e) => {
+        buttons.forEach((b) => b.classList.remove("active"));
         e.preventDefault();
         e.currentTarget.classList.add("active");
       });
