@@ -115,12 +115,21 @@ puts "Creating new comments..."
       loc_quote = Faker::Games::HeroesOfTheStorm.battleground
     end
 
+    case i
+    when 0
+      incident_obj = incident_array[0]
+    when 1
+      incident_obj = incident_array[2]
+    when 2
+      incident_obj = incident_array[3]
+    end
+
     rand(0..1).zero? ? amount = "always" : amount = "never"
 
     @comment = Comment.create!(
       content: "#{quote} This would #{amount} happen in #{loc_quote}. Complete #{Faker::Emotion.noun}.",
       user: User.all.sample,
-      incident: incident_array[i]
+      incident: incident_obj
     )
   end
 end
