@@ -1,0 +1,19 @@
+.date_picker {
+  @include centralize;
+  letter-spacing: 0.5px;
+
+  label {
+    color: $light-gray;
+    font-size: 14px;
+  }
+}
+
+.flatpickr-input {
+  background: transparent;
+  color: $light;
+  font-weight: 700;
+  border: none;
+  outline: none;
+  width: 85px;
+  margin-left: 0.25rem;
+}
