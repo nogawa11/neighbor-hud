@@ -7,21 +7,6 @@
   gap: 0.5rem;
   position: relative;
 
-/* --------------------------------- Buttons -------------------------------- */
-  //TODO: Remove buttons styles
-  &__button {
-    font-size: 1.5rem;
-  }
-
-  &__button--left {
-    grid-area: button-left;
-  }
-
-  &__button--right {
-    grid-area: button-right;
-  }
-/* --------------------------------- Buttons -------------------------------- */
-
 /* ----------------------------- Categories List ---------------------------- */
   &__list {
     display: flex;
