@@ -9,7 +9,7 @@
       <%= f.input :description %>
       <%# <%= f.input :category_list, label: "Add categories", as: :check_boxes, collection: [ "Violence", "Theft", "Arson", "Drugs", "Harrasment/SA", "Disturbing the Peace", "Traffic" ] %>
       <%= render "components/report_details" %>
-      <%= f.submit %>
+      <%= f.button :submit, "Report", class: "btn btn--report" %>
     </div>
   <% end %>
 </div>
