@@ -3,12 +3,12 @@ require "nokogiri"
 
 class ScrapeJapantodayService < ApplicationRecord
 
-  VIOLENCE = ["violent", "hit", "kill", "murder", "stabbed", "knife", "killed", "punched", "kicked", "killing", "attacked", "abuse", "assaulting", "dead", "stabbing", "attacks", "shoot", "shoots", "shot"]
+  VIOLENCE = ["violent", "hit", "kill", "murder", "stabbed", "knife", "killed", "punched", "kicked", "killing", "attacked", "abuse", "assaulting", "dead", "stabbing", "attacks", "shoot", "shoots", "shot", "assault", "gun", "knife"]
   THEFT = ["stolen", "stole", "theft", "robbery", "robbed", "steals"]
   ARSON = ["burn", "fire", "burned", "arson"]
-  HARASSMENT = ["sexual assault", "grope", "groped", "sexual abuse", "harassed", "harass", "harassment", "exposing"]
-  TRAFFIC = ["motorcyclist", "crash", "red light"]
-  DRUGS = ["stimulants", "weed", "marijuana", "cocaine", "heroine", "methamphetamine", "methamphetamines"]
+  HARASSMENT = ["sexual assault", "grope", "groped", "sexual abuse", "harassed", "harass", "harassment", "exposing", "indecent", "raped", "sexual"]
+  TRAFFIC = ["motorcyclist", "crash", "red light", "car accident"]
+  DRUGS = ["stimulants", "weed", "marijuana", "cocaine", "heroine", "methamphetamine", "methamphetamines", "drugs"]
 
   def self.scrape_japantoday
     base_url = "https://japantoday.com/category/crime"
