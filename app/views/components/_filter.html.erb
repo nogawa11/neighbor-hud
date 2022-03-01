@@ -1,0 +1,10 @@
+<div class="card card--dark filter" data-controller="filter">
+  <button class="filter__button" data-action="click->filter#openCard" data-filter-target="button">
+    <i class="fas fa-chevron-up"></i>
+    Filter by category or date
+  </button>
+  <div class="card__body" data-filter-target="card">
+    <%= render "components/categories" %>
+    <%= render "components/date_picker" %>
+  </div>
+</div>
