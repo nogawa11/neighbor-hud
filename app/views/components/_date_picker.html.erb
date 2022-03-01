@@ -1,6 +1,22 @@
-<!-- TODO: Use simple form -->
+<!-- TODO: Fix form -->
+<!-- TODO: Set the controller -->
 <div>
-  <label >Incidents from: </label>
-  <input type="date" id="filter-date-start">
-  <input type="date" id="filter-date-end">
+  <%= form_with url: "/incidents", method: :get, class:"date_picker" do |f| %>
+    <%= f.label :start_date, "Incidents from: " %>
+    <%= f.text_field :start_date,
+      data: {
+        controller: "flatpickr",
+        flatpickr_date_format: "Y-m-d",
+        flatpickr_disable_mobile: "true", # Prevents native picker on mobile
+        flatpickr_default_date: "today",
+      }%>
+    <%= f.label :end_date, "to: " %>
+    <%= f.text_field :end_date,
+      data: {
+        controller: "flatpickr",
+        flatpickr_date_format: "Y-m-d",
+        flatpickr_disable_mobile: "true", # Prevents native picker on mobile
+        flatpickr_default_date: "today",
+      }%>
+  <% end %>
 </div>

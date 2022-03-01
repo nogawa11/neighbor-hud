@@ -1,0 +1,40 @@
+.report_details {
+  background: $dark-gradient;
+  position: fixed;
+  bottom: 4.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  padding-block: 0.7rem;
+  z-index: 2;
+
+  .card__body {
+    padding: 0;
+    transition: all 0.3s ease-in-out;
+    max-height: 0px;
+
+    &.open {
+      max-height: 200px;
+    }
+  }
+
+  &__button {
+    background: transparent;
+    font-weight: 600;
+    letter-spacing: 1px;
+
+    i {
+      transition: $transition;
+      font-size: 1.25rem;
+      margin-right: 0.3rem;
+      position: relative;
+      top: 2px;
+    }
+
+    &.open {
+      i {
+        transform: rotate(180deg);
+      }
+    }
+  }
+}

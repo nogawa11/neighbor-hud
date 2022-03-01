@@ -14,4 +14,10 @@ Rails.application.routes.draw do
       resources :comments
     end
   end
+
+  # Sidekiq Web UI, only for admins.
+  # require "sidekiq/web"
+  # authenticate :user, ->(user) { user.admin? } do
+  #   mount Sidekiq::Web => '/sidekiq'
+  # end
 end
