@@ -11,7 +11,6 @@
     left: 50%;
     transform: translateX(-50%);
     border-radius: 10px;
-    overflow: hidden;
     box-shadow: $box-shadow;
   }
 
@@ -35,7 +34,16 @@
   }
 /* ------------------------------- Marker Icon ------------------------------ */
 
-  .mapboxgl-ctrl.mapboxgl-ctrl-geocoder {
+/* ------------------------- Current Position Button ------------------------ */
+  &gl-ctrl.mapboxgl-ctrl-group {
+    position: absolute;
+    z-index: 1;
+    top: 100px;
+    right: -1rem;
+  }
+/* ------------------------- Current Position Button ------------------------ */
+
+.mapboxgl-ctrl.mapboxgl-ctrl-geocoder {
     margin: 0;
     background: transparent;
   }
