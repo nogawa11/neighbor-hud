@@ -1,5 +1,6 @@
-@mixin centralize {
+@mixin centralize($direction: row) {
   display: flex;
+  flex-direction: $direction;
   align-items: center;
   justify-content: center;
 }
@@ -12,5 +13,3 @@
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
 }
-
-

@@ -17,6 +17,7 @@
   }
 
   li {
+    transition: $transition;
     color: $light-gray;
 
     &.active {

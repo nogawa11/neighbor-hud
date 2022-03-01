@@ -35,3 +35,11 @@ ul, ol {
 li, ol {
   list-style: none;
 }
+
+button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  outline: none;
+  color: $light;
+}

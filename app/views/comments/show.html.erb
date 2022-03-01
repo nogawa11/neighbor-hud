@@ -1,0 +1,28 @@
+<div class="container">
+  <%= @original_comment.content %>
+  <%= link_to "Reply to a comment", new_incident_comment_comment_path(@original_comment.incident, @original_comment, @comment) %>
+  <ul>
+    <% @original_comment.comments.each do |comment| %>
+      <li>
+        <%= comment.content %>
+        <%= link_to "Reply to a comment", new_incident_comment_comment_path(comment.incident, comment, @comment) %>
+        <ul>
+          <% comment.comments.each do |nest| %>
+            <li class="ps-3">
+                  <%= nest.content %>
+                  <%= link_to "Reply to a comment", new_incident_comment_comment_path(nest.incident, nest, @comment) %>
+              <ul>
+                <% nest.comments.each do |nest_two| %>
+                  <li class="ps-3">
+                    <%= nest_two.content %>
+                    <%= link_to "Reply to a comment", new_incident_comment_comment_path(nest.incident, nest_two, @comment) %>
+                  </li>
+                <% end %>
+              </ul>
+            </li>
+          <% end %>
+        <ul>
+      </li>
+    <% end %>
+  <ul>
+</div>
