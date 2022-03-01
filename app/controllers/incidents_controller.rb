@@ -29,7 +29,6 @@ class IncidentsController < ApplicationController
   end
 
   def show
-    # raise
     @comment = Comment.new
     authorize @comment
     @incident = Incident.find(params[:incident_id]) if params[:incident_id].present?
@@ -49,6 +48,6 @@ class IncidentsController < ApplicationController
   end
 
   def incident_params
-    params.require(:incident).permit(:id, :title, :description, :incident_date, :location, :latitude, :longitude, :user_id, :can_receive_comments)
+    params.require(:incident).permit(:id, :title, :description, :incident_date, :location, :latitude, :longitude, :user_id, :can_receive_comments, category_list: [])
   end
 end
