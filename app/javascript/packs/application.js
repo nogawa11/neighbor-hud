@@ -7,25 +7,12 @@ import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
-import { Application } from 'stimulus'
-import { definitionsFromContext } from 'stimulus/webpack-helpers'
 
-const application = Application.start()
-const context = require.context('../controllers', true, /\.js$/)
-application.load(definitionsFromContext(context))
-
-// import Flatpickr
-import Flatpickr from 'stimulus-flatpickr'
-
-// Import style for flatpickr
-require("flatpickr/dist/flatpickr.css")
-
-// Manually register Flatpickr as a stimulus controller
-application.register('flatpickr', Flatpickr)
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
-// ? For some reason, after I installed Flatpickr, the following line of code breaks the collapsible filter button.
-// import "controllers"
+import "controllers"
 import "bootstrap"
+
+// require("flatpickr/dist/flatpickr.css")
