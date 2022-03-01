@@ -2,7 +2,6 @@ require "open-uri"
 require "nokogiri"
 
 class ScrapeJapantodayService < ApplicationRecord
-
   VIOLENCE = ["violent", "hit", "kill", "murder", "stabbed", "knife", "killed", "punched", "kicked", "killing", "attacked", "abuse", "assaulting", "dead", "stabbing", "attacks", "shoot", "shoots", "shot", "assault", "gun", "knife"]
   THEFT = ["stolen", "stole", "theft", "robbery", "robbed", "steals"]
   ARSON = ["burn", "fire", "burned", "arson"]
@@ -37,7 +36,6 @@ class ScrapeJapantodayService < ApplicationRecord
         keywords << "Traffic" if TRAFFIC.any? { |keyword| @article[:description].downcase.include? keyword }
         keywords << "Drugs" if DRUGS.any? { |keyword| @article[:description].downcase.include? keyword }
         keywords << "Disturbing the Peace" if keywords.empty?
-        keywords
         keywords.each do |keyword|
           @incident.category_list.add(keyword)
         end
