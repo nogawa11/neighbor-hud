@@ -26,5 +26,6 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
-import "controllers"
+// ? For some reason, after I installed Flatpickr, the following line of code breaks the collapsible filter button.
+// import "controllers"
 import "bootstrap"
