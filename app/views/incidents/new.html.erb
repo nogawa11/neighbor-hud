@@ -6,5 +6,6 @@
   <%= f.input :title %>
   <%= f.input :description %>
   <%= f.input :can_receive_comments %>
+  <%= f.input :category_list, label: "Add categories", as: :check_boxes, collection: [ "Violence", "Theft", "Arson", "Drugs", "Harrasment/SA", "Disturbing the Peace" ] %>
   <%= f.submit %>
 <% end %>
