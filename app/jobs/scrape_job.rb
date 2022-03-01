@@ -3,5 +3,6 @@ class ScrapeJob < ApplicationJob
 
   def perform
     ScrapeJapantodayService.scrape_japantoday
+    ScrapeMainichinewsService.scrape_mainichinews
   end
 end

@@ -1,7 +1,7 @@
 require "open-uri"
 require "nokogiri"
 
-class ScrapeJapantodayService < ApplicationRecord
+class ScrapeMainichinewsService < ApplicationRecord
   VIOLENCE = ["violent", "hit", "kill", "murder", "stabbed", "knife", "killed", "punched", "kicked", "killing", "attacked", "abuse", "assaulting", "dead", "stabbing", "attacks", "shoot", "shoots", "shot", "assault", "gun", "knife"]
   THEFT = ["stolen", "stole", "theft", "robbery", "robbed", "steals"]
   ARSON = ["burn", "fire", "burned", "arson"]
@@ -9,14 +9,16 @@ class ScrapeJapantodayService < ApplicationRecord
   TRAFFIC = ["motorcyclist", "crash", "red light", "car accident"]
   DRUGS = ["stimulants", "weed", "marijuana", "cocaine", "heroine", "methamphetamine", "methamphetamines", "drugs"]
 
-  def self.scrape_japantoday
-    base_url = "https://japantoday.com/category/crime"
+  def self.scrape_mainichinews
+    base_url = "https://mainichi.jp/english/japan/crime-accidents/"
     html_file = URI.open(base_url).read
     html_doc = Nokogiri::HTML(html_file)
     @urls = []
-    html_doc.search(".media-heading").each do |element|
-      url = "https://japantoday.com#{element.css('a').attribute('href')}"
-      @urls << url unless url == "https://japantoday.com"
+    html_doc.search('.newslist').css('li').each do |li|
+      url = "https:#{li.css('a').attribute('href').value}"
+      if url != "https:" && url.include?("https://mainichi.jp/english/articles/")
+        @urls << url
+      end
     end
     @urls.each do |url|
       file = URI.open(url).read
@@ -24,9 +26,9 @@ class ScrapeJapantodayService < ApplicationRecord
       @article = {}
       @article[:title] = doc.css('h1').text
       if !Incident.where(title: @article[:title]).present?
-        @article[:location] = doc.search('.dateline').text
-        @article[:incident_date] = doc.css('time').attribute('datetime').value
-        @article[:description] = doc.at("[@itemprop = 'articleBody']").text
+        @article[:incident_date] = DateTime.parse(doc.search('.post').css('time').text).to_date
+        @article[:location] = doc.search('.main-text').css('p').text.split.first
+        @article[:description] = doc.search('.main-text').css('p').text
         @incident = Incident.new(@article)
         keywords = []
         keywords << "Violence" if VIOLENCE.any? { |keyword| @article[:description].downcase.include? keyword }
