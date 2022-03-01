@@ -24,23 +24,25 @@ class ScrapeJapantodayService < ApplicationRecord
       doc = Nokogiri::HTML(file)
       @article = {}
       @article[:title] = doc.css('h1').text
-      @article[:location] = doc.search('.dateline').text
-      @article[:incident_date] = doc.css('time').attribute('datetime').value
-      @article[:description] = doc.at("[@itemprop = 'articleBody']").text
-      @incident = Incident.new(@article)
-      keywords = []
-      keywords << "Violence" if VIOLENCE.any? { |keyword| @article[:description].downcase.include? keyword }
-      keywords << "Theft" if THEFT.any? { |keyword| @article[:description].downcase.include? keyword }
-      keywords << "Arson" if ARSON.any? { |keyword| @article[:description].downcase.include? keyword }
-      keywords << "Harrassment/SA" if HARASSMENT.any? { |keyword| @article[:description].downcase.include? keyword }
-      keywords << "Traffic" if TRAFFIC.any? { |keyword| @article[:description].downcase.include? keyword }
-      keywords << "Drugs" if DRUGS.any? { |keyword| @article[:description].downcase.include? keyword }
-      keywords << "Disturbing the Peace" if keywords.empty?
-      keywords
-      keywords.each do |keyword|
-        @incident.category_list.add(keyword)
+      if !Incident.where(title: @article[:title]).present?
+        @article[:location] = doc.search('.dateline').text
+        @article[:incident_date] = doc.css('time').attribute('datetime').value
+        @article[:description] = doc.at("[@itemprop = 'articleBody']").text
+        @incident = Incident.new(@article)
+        keywords = []
+        keywords << "Violence" if VIOLENCE.any? { |keyword| @article[:description].downcase.include? keyword }
+        keywords << "Theft" if THEFT.any? { |keyword| @article[:description].downcase.include? keyword }
+        keywords << "Arson" if ARSON.any? { |keyword| @article[:description].downcase.include? keyword }
+        keywords << "Harrassment/SA" if HARASSMENT.any? { |keyword| @article[:description].downcase.include? keyword }
+        keywords << "Traffic" if TRAFFIC.any? { |keyword| @article[:description].downcase.include? keyword }
+        keywords << "Drugs" if DRUGS.any? { |keyword| @article[:description].downcase.include? keyword }
+        keywords << "Disturbing the Peace" if keywords.empty?
+        keywords
+        keywords.each do |keyword|
+          @incident.category_list.add(keyword)
+        end
+        @incident.save
       end
-      @incident.save if !Incident.where(title: @incident.title).present?
     end
   end
 end
