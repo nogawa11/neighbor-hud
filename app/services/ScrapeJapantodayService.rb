@@ -7,7 +7,7 @@ class ScrapeJapantodayService < ApplicationRecord
   THEFT = ["stolen", "stole", "theft", "robbery", "robbed", "steals"]
   ARSON = ["burn", "fire", "burned", "arson"]
   HARASSMENT = ["sexual assault", "grope", "groped", "sexual abuse", "harassed", "harass", "harassment", "exposing"]
-  TRAFFIC = ["motorcyclist", "crash", "red light" ]
+  TRAFFIC = ["motorcyclist", "crash", "red light"]
   DRUGS = ["stimulants", "weed", "marijuana", "cocaine", "heroine", "methamphetamine", "methamphetamines"]
 
   def self.scrape_japantoday
