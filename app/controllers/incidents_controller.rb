@@ -7,7 +7,8 @@ class IncidentsController < ApplicationController
     @markers = @incidents.geocoded.map do |incident|
       {
         lat: incident.latitude,
-        lng: incident.longitude
+        lng: incident.longitude,
+        id: incident.id
       }
     end
   end

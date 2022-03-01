@@ -15,6 +15,26 @@
     box-shadow: $box-shadow;
   }
 
+/* ------------------------------- Marker Icon ------------------------------ */
+  &gl-popup-anchor-bottom .mapboxgl-popup-tip {
+    border-top-color: $primary;
+  }
+
+  &gl-popup-content {
+    background: $primary;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  // TODO: Add icon
+  &-icon {
+    background: $primary;
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+  }
+/* ------------------------------- Marker Icon ------------------------------ */
+
   .mapboxgl-ctrl.mapboxgl-ctrl-geocoder {
     margin: 0;
     background: transparent;

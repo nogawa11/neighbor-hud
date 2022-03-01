@@ -1,3 +1,6 @@
+<%= render "components/home/top_container" %>
+<%= render "components/filter" %>
+
 <ul>
   <% @incidents.each do |incident| %>
     <li><%= link_to incident.title, incident_path(incident) %></li>
