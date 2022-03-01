@@ -1,3 +1,4 @@
+<%= render "components/home/top_container" %>
 <% @incidents.each do |incident| %>
   <%= link_to incident.title, incident_path(incident) %>
 <% end %>
