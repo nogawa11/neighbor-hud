@@ -1,12 +1,14 @@
 <div class="incident-show">
-  <div class="container ps-3 pe-3 mt-4">
+  <div class="container ps-3 pe-3 mt-5">
     <%= render "incidents/incident_back_button" %>
     <div class="pb-1">
       <%= render 'tags', incident: @incident %>
     </div>
-    <div class="incident-show__details card--incident-details">
+    <div class="incident-show__details card--incident-details"     data-controller="read-more">
       <%= render 'incident_card', incident: @incident %>
-      <%= render 'map' %>
+      <%= render 'map', data: {
+        read_more_target: "map"
+      } %>
     </div>
   </div>
   <div class="incident-show__comments">
