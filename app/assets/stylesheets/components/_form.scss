@@ -1,0 +1,17 @@
+.form--comments {
+  position: fixed;
+  bottom: 50px;
+  width: 100%;
+
+  form {
+    width: 90%;
+  }
+
+  .form-control {
+    background-color: #4D4E55;
+    border-radius: 56px;
+    border: 0px;
+    height: 42px;
+    color: rgb(226, 226, 226);
+  }
+}

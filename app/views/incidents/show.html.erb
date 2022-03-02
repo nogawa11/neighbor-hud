@@ -1,5 +1,5 @@
 <div class="container p-3">
-<div class="d-flex justify-content-start">
+<div class="d-flex justify-content-start link--incident-details">
   <%= link_to "<p><i class='fas fa-chevron-left me-2'></i>Back</p>".html_safe, "#" %>
 </div>
 <div class="card--incident-details mb-3">
@@ -57,22 +57,24 @@
       </p>
     </div>
   </div>
-  <div style="width: 100%; height: 200px; border-radius: 0 0 16px 16px"
+  <div style="width: 100%; height: 154px; border-radius: 0 0 16px 16px"
     data-controller="mapbox"
     data-mapbox-markers-value="<%= @marker.to_json %>"
     data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
   </div>
 </div>
-<% if @incident.can_receive_comments? || !@incident.user.present?%>
-  <%= render 'comments/form', incident: @incident, original_comment: @original_comment, comment: @comment %>
-  <ul>
+<ul>
     <% @incident.comments.each do |comment| %>
       <li class="ps-3">
         <% if !comment.comment.present? %>
-          <%= link_to comment.content, incident_comment_path(@incident, comment) %>
+          <%= link_to comment.content, incident_comment_path(@incident, comment), class: "link--incident-details" %>
         <% end %>
       </li>
     <% end %>
   </ul>
-<% end %>
+</div>
+<div class="form--comments d-flex justify-content-center">
+  <% if @incident.can_receive_comments? || !@incident.user.present?%>
+    <%= render 'comments/form', incident: @incident, original_comment: @original_comment, comment: @comment %>
+  <% end %>
 </div>
