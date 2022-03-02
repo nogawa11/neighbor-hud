@@ -16,17 +16,13 @@
     padding-inline: 5%;
   }
 
-  li {
+  &__link {
     transition: $transition;
     color: $light-gray;
+    font-size: 1.5rem;
 
     &.active {
       color: $primary;
     }
-  }
-
-  &__link {
-    font-size: 1.5rem;
-    color: inherit;
   }
 }
