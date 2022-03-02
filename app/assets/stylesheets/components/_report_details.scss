@@ -14,7 +14,7 @@
   .card__body {
     padding: 0;
     transition: all 0.3s ease-in-out;
-    max-height: 0px;
+    max-height: 8px;
 
     &.open {
       max-height: 600px;
