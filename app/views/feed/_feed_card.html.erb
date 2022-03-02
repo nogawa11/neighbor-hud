@@ -1,0 +1,27 @@
+<div class="card--feed me-1 ms-1 p-3">
+  <div class="row d-flex justify-content-between">
+    <div class="col-10">
+      <h1><%= incident.title %></h1>
+    </div>
+    <div class="col-2">
+      <%= render 'icon', category: incident.category_list.first %>
+    </div>
+  </div>
+  <p class="card--description"><%= incident.description.first(100)... %></p>
+  <div class="card--bottom d-flex justify-content-between mt-2">
+    <% meguro_lat = 35.6415 %>
+    <% meguro_long = 139.6981 %>
+    <% distance = (Geocoder::Calculations.distance_between([meguro_lat, meguro_long], [incident.latitude, incident.longitude])).round(0) %>
+    <p>
+      <%= render 'incidents/distance_icon', distance: distance %>
+      <%= distance %>
+      km away from you
+    </p>
+    <p class="card--category">
+      <i class="fas fa-comment me-1" style="font-size: 16px;"></i>
+      comments
+      (<%= incident.comments.count %>)
+    </p>
+  </div>
+  <%= link_to "", incident_path(incident), class: "card--link" %>
+</div>
