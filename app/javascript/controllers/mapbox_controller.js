@@ -17,7 +17,7 @@ export default class extends Controller {
     })
 
     this.#addMarkersToMap()
-    // this.#fitMapToMarkers()
+    this.#fitMapToMarkers()
 
     this.map.addControl(new MapboxGeocoder({
       accessToken: mapboxgl.accessToken,
@@ -46,8 +46,8 @@ export default class extends Controller {
 
       new mapboxgl.Marker()
         .setLngLat([marker.lng, marker.lat])
-        .setPopup(popup)
         .addTo(this.map)
+        .setPopup(popup)
         .togglePopup();
     });
   }
