@@ -2,18 +2,40 @@
 <div class="d-flex justify-content-start">
   <%= link_to "<p><i class='fas fa-chevron-left me-2'></i>Back</p>".html_safe, "#" %>
 </div>
-<div class="incident-details-card">
-  <div class="d-flex justify-content-end">
-    <%= @incident.title %>
-    <div>
-      <%= @incident.category_list.first %>
-      <i class="fas fa-fist-raised"></i>
+<div class="card--incident-details p-3">
+  <div class="row">
+    <div class="col-9">
+      <h1><%= @incident.title %></h1>
+    </div>
+    <div class="col-3">
+      <div class="d-flex justify-content-end align-items-center card--category">
+        <%= @incident.category_list.first %>
+        <%= image_tag 'violence.png', style: "width: 25px; height: 25px;", class: "ms-1" %>
+      </div>
     </div>
   </div>
+  <div
+    data-controller="read-more"
+    data-read-more-more-text-value="Read more"
+    data-read-more-less-text-value="Read less"
+    class="mt-1"
+  >
+    <p data-read-more-target="content">
+      <%= @incident.description.first(600) %>...
+    </p>
+    <div class="d-flex justify-content-end">
+      <button data-action="read-more#toggle">
+        See more
+      </button>
+    </div>
+    <template data-read-more-target="full">
+      <p><%= @incident.description %></p>
+    </template>
+  </div>
 </div>
+ <%= request.location.coordinates %>
 
 
-  <%= @incident.description %>
   <%= @incident.location %>
   <%= @incident.latitude %>
   <%= @incident.longitude %>
