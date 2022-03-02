@@ -11,16 +11,13 @@
     </div>
   </div>
   <div
-    data-controller="read-more"
-    data-read-more-more-text-value="Read more"
-    data-read-more-less-text-value="Read less"
     class="mt-1"
   >
     <p data-read-more-target="content">
       <%= @incident.description.first(500) %>...
     </p>
     <div class="d-flex justify-content-end">
-      <button data-action="read-more#toggle">
+      <button data-action="click->read-more#open">
         See more
       </button>
     </div>
