@@ -4,12 +4,27 @@ export default class extends Controller {
 
   connect() {
     console.log("Hello, Stimulus!");
-    const buttons = Array.from(this.element.children);
-    buttons.forEach((button) => {
-      button.addEventListener("click", (e) => {
-        buttons.forEach((b) => b.classList.remove("active"));
-        e.currentTarget.classList.add("active");
-      });
+    const links = document.querySelectorAll(".nav__link");
+    links.forEach((link) => {
+      if (this.#checkPathname(link)) {
+        link.classList.add("active");
+      }
     })
+  }
+
+/* --------------------------------- Private -------------------------------- */
+
+  #checkPathname(link) {
+    const path = link.pathname;
+    const currentPath = window.location.pathname;
+
+    const linkPath = this.#getSlicedPath(path);
+    const windowPath = this.#getSlicedPath(currentPath);
+
+    return linkPath === windowPath;
+  }
+
+  #getSlicedPath(path) {
+    return path.slice(1).split("/")[0];
   }
 }
