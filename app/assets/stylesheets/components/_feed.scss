@@ -1,7 +1,3 @@
-* + * {
-  margin-top: 1em;
-}
-
 .remove {
   transform: translatex(500px);
   transition: transform 2s;
@@ -26,4 +22,5 @@
   background: linear-gradient(135deg, rgb(20,20,20), rgb(44, 36, 80));
   padding: 0.2em 1em;
   font-size: 0.8em;
+  margin-top: 1em;
 }
