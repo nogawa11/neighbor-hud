@@ -6,7 +6,6 @@
               wrapper_html: { data: { controller: "geocoder", geocoder_api_key_value: ENV['MAPBOX_API_KEY'] } } %>
     <%= f.input :can_receive_comments, label:"Comments On" %>
     <div>
-      <%# <%= f.input :description, required: false %>
       <%# <%= f.input :category_list, label: "Add categories", as: :check_boxes, collection: [ "Violence", "Theft", "Arson", "Drugs", "Harrasment/SA", "Disturbing the Peace", "Traffic" ] %>
       <%= render "components/report_details", f: f %>
       <%= f.button :submit, "Report", class: "btn btn--report" %>
