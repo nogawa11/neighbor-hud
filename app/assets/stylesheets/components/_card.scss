@@ -63,3 +63,23 @@
     height: 100%;
   }
 }
+
+.card--comment-main {
+  color: rgb(228, 228, 228);
+
+  .card--name {
+    color: gray;
+    font-size: 24px;
+  }
+
+  .card--date {
+    color: gray;
+    font-size: 16px;
+  }
+
+  .card--comment-comment {
+    font-size: 13px;
+    color: #8E9398;
+    font-family: $roboto;
+  }
+}

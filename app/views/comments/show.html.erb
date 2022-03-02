@@ -1,28 +1,33 @@
-<div class="container">
-  <%= @original_comment.content %>
-  <%= link_to "Reply to a comment", new_incident_comment_comment_path(@original_comment.incident, @original_comment, @comment) %>
-  <ul>
-    <% @original_comment.comments.each do |comment| %>
-      <li>
-        <%= comment.content %>
-        <%= link_to "Reply to a comment", new_incident_comment_comment_path(comment.incident, comment, @comment) %>
-        <ul>
-          <% comment.comments.each do |nest| %>
-            <li class="ps-3">
-                  <%= nest.content %>
-                  <%= link_to "Reply to a comment", new_incident_comment_comment_path(nest.incident, nest, @comment) %>
-              <ul>
-                <% nest.comments.each do |nest_two| %>
-                  <li class="ps-3">
-                    <%= nest_two.content %>
-                    <%= link_to "Reply to a comment", new_incident_comment_comment_path(nest.incident, nest_two, @comment) %>
-                  </li>
-                <% end %>
-              </ul>
-            </li>
-          <% end %>
-        <ul>
-      </li>
-    <% end %>
-  <ul>
+<div class="container p-3">
+  <div class="d-flex justify-content-start link--incident-details">
+    <%= link_to "<p style='margin-bottom: 0; padding-bottom:0;'><i class='fas fa-chevron-left me-2'></i>Back</p>".html_safe, incident_path(@original_comment.incident) %>
+  </div>
+  <div class="card--comment-main border-bottom mt-3 me-2 ms-2">
+    <div class="d-flex justify-content-between align-items-end">
+      <p class="card--name"><%= @original_comment.user.name %></p>
+      <p class="card--date"><%= @original_comment.created_at.to_date %></p>
+    </div>
+    <p class="pe-3 ps-3"><%= @original_comment.content %></p>
+    <div class="d-flex justify-content-end mb-3">
+      <p class="card--comment-comment"style="margin-bottom: 0; padding-bottom: 0;">
+        <i class="fas fa-comment me-1" style="font-size: 16px;"></i>
+        comments
+        (<%= @original_comment.comments.count %>)
+      </p>
+    </div>
+  </div>
+  <% @original_comment.comments.each do |comment| %>
+  <div class="card--comment ps-1 pe-1 ms-4 me-4 mt-3 pb-3">
+    <div class="d-flex justify-content-between card--info">
+      <p style="margin: 0; padding: 0;">
+        <strong><%= comment.user.name %></strong>
+      </p>
+      <p style="margin: 0; padding: 0;"><%= comment.created_at.to_date %></p>
+    </div>
+    <p style="margin: 0; padding: 0;"><%= comment.content %></p>
+  </div>
+<% end %>
+</div>
+<div class="form--comments d-flex justify-content-center">
+    <%= render 'form', incident: @original_comment.incident, original_comment: @original_comment, comment: @comment %>
 </div>
