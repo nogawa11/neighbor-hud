@@ -1,11 +1,16 @@
 <div data-feed-target="feed" id="mainContainer">
 <div id="listContainer">
-<% all_incidents = [] %>
 <% all_incidents = @incidents %>
+<%all_incidents = all_incidents.sort { |a, b| a.location.downcase <=> b.location.downcase } %>
 <ul>
-  <% @incidents.each do |incident| %>
-    <li id="newsCards"><%= link_to incident.title, incident_path(incident) %></li>
-    <p><%= incident. %></p>
+  <% all_incidents.each do |incident| %>
+    <div>
+      <li id="newsCards">
+      <p style="font-weight: 700; padding: 0; margin: 0;"><%= incident.location.upcase %></p>
+      <%= link_to incident.title, incident_path(incident) %>
+      <p style="font-size: 0.7em; overflow: hidden; height: 25px;"> <%= incident.description %> </p>
+      </li>
+    </div>
   <% end %>
 <ul>
 </div>
