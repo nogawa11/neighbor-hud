@@ -1,21 +1,25 @@
 .report_details {
   position: fixed;
-  bottom: 4.5rem;
+  bottom: 10rem;
   left: 50%;
   transform: translateX(-50%);
   width: 80%;
   padding-block: 1rem;
   z-index: 2;
 
+  &.card {
+    overflow: unset;
+  }
+
   .card__body {
     padding: 0;
     transition: all 0.3s ease-in-out;
-    max-height: 0px;
+    max-height: 8px;
 
     &.open {
       max-height: 600px;
       margin-top: 1em;
-      padding: 4px 8px;
+      padding: 0 1px;
       border-top: 2px solid #6d6d6d;
       background: #383838;
     }
