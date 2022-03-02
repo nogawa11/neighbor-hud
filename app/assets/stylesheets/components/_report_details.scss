@@ -4,7 +4,7 @@
   left: 50%;
   transform: translateX(-50%);
   width: 90%;
-  padding-block: 1rem;
+  padding-block: 0.9rem;
   z-index: 2;
 
   &.card {
@@ -17,7 +17,7 @@
     max-height: 0px;
 
     &.open {
-      max-height: 600px;
+      max-height: 300px;
       margin-top: 1em;
       padding: 0 1px;
       border-top: 2px solid #6d6d6d;

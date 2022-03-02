@@ -15,10 +15,10 @@
   &.btn--report {
     color: #FBFBFB;
     background-color: #747985;
-    border-radius: 20px;
+    border-radius: 1rem;
     width: 100%;
     position: absolute;
-    bottom: -80px;
+    bottom: -75px;
     @include centralize();
 
     &:focus {
