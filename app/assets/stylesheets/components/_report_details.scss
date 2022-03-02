@@ -1,10 +1,11 @@
-.filter {
+.report_details {
   position: fixed;
-  bottom: 6rem;
+  bottom: 4.5rem;
   left: 50%;
   transform: translateX(-50%);
-  width: 90%;
-  padding-block: 0.7rem;
+  width: 80%;
+  padding-block: 1rem;
+  z-index: 2;
 
   .card__body {
     padding: 0;
@@ -12,9 +13,14 @@
     max-height: 0px;
 
     &.open {
-      max-height: 200px;
+      max-height: 600px;
+      margin-top: 1em;
+      padding: 4px 8px;
+      border-top: 2px solid #6d6d6d;
+      background: #383838;
     }
   }
+
 
   &__button {
     background: transparent;

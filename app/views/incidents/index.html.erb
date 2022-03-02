@@ -1,8 +1,6 @@
-<%= render "components/home/top_container" %>
-<%= render "components/filter" %>
 
-<ul>
-  <% @incidents.each do |incident| %>
-    <li><%= link_to incident.title, incident_path(incident) %></li>
-  <% end %>
-<ul>
+<div class="incidents-index">
+  <%= render "shared/map" %>
+  <%= render "components/home/top_container" %>
+  <%= render "components/filter" %>
+</div>

@@ -1,0 +1,17 @@
+<!-- TODO: Fix form -->
+<!-- TODO: Set the controller -->
+<div>
+  <%= form_with url: "/incidents", method: :get, class:"date_picker_report" do |f| %>
+    <%= f.label :incident_date, "Select date: " %>
+    <%= f.text_field :incident_date,
+      data: {
+        controller: "flatpickr",
+        flatpickr_date_format: "Y-m-d",
+        flatpickr_disable_mobile: "true", # Prevents native picker on mobile
+        flatpickr_default_date: "today",
+      }%>
+    <%= f.button :select, class: "button date" do %>
+      <i class="fas fa-chevron-down"></i>
+    <% end %>
+  <% end %>
+</div>
