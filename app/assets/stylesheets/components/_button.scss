@@ -14,12 +14,16 @@
 
   &.btn--report {
     color: #FBFBFB;
-    background-color: #1a75e6;
+    background-color: #747985;
     border-radius: 20px;
     width: 100%;
     position: absolute;
     bottom: -80px;
     @include centralize();
+
+    &:focus {
+      background-color: #1a75e6;
+    }
   }
 
   // Font Awesome icons
