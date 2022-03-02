@@ -1,11 +1,10 @@
 .report_details {
-  background: $dark-gradient;
   position: fixed;
   bottom: 4.5rem;
   left: 50%;
   transform: translateX(-50%);
-  width: 90%;
-  padding-block: 0.7rem;
+  width: 80%;
+  padding-block: 1rem;
   z-index: 2;
 
   .card__body {
@@ -14,7 +13,7 @@
     max-height: 0px;
 
     &.open {
-      max-height: 200px;
+      max-height: 600px;
     }
   }
 

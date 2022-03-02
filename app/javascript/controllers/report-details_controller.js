@@ -4,10 +4,11 @@ export default class extends Controller {
   static targets = ["card", "button"]
 
   connect() {
-    console.log("Helloo, Stimulus!");
+    console.log("Hello, Stimulus!");
   }
 
-  openCard() {
+  openCard(event) {
+    event.preventDefault();
     this.buttonTarget.classList.toggle("open")
     this.cardTarget.classList.toggle("open");
   }

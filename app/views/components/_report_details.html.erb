@@ -1,10 +1,10 @@
-<div class="card card--dark report_details" data-controller="report-details">
+<div class="card card--gray report_details" data-controller="report-details">
   <button class="report_details__button" data-action="click->report-details#openCard" data-report-details-target="button">
     Add more details (optional)
     <i class="fas fa-chevron-up"></i>
   </button>
-  <div class="card__body" data-filter-target="card">
-    <%# <%= render "components/categories" %>
-    <%= render "components/date_picker" %>
+  <div class="card__body" data-report-details-target="card">
+    <div class="mt-3"></div>
+    <%= f.input :description, placeholder: "Write incident details here", label: false, input_html: { class: "m-2" }, required: false %>
   </div>
 </div>
