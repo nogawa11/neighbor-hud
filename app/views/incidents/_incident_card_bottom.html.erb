@@ -1,0 +1,17 @@
+<p class="card--category">
+  <%# result = request.location %>
+  <%#= (Geocoder::Calculations.distance_between([result.latitude, result.longitude], [@incident.latitude, @incident.longitude])).round(1) %>
+  <% meguro_lat = 35.6415 %>
+  <% meguro_long = 139.6981 %>
+  <% distance = (Geocoder::Calculations.distance_between([meguro_lat, meguro_long], [@incident.latitude, @incident.longitude])).round(0) %>
+  <%= render 'distance_icon', distance: distance %>
+  <%= distance %>
+  km away from you
+</p>
+<%= link_to '#comments', data: { controller: "scroll-to" } do %>
+  <p class="card--category">
+    <i class="fas fa-comment me-1" style="font-size: 16px;"></i>
+    comments
+    (<%= @incident.comments.count %>)
+  </p>
+<% end %>
