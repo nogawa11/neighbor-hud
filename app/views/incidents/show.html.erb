@@ -1,78 +1,89 @@
 <div class="container p-3">
-<div class="d-flex justify-content-start link--incident-details">
-  <%= link_to "<p><i class='fas fa-chevron-left me-2'></i>Back</p>".html_safe, "#" %>
-</div>
-<div class="card--incident-details mb-3">
-  <div class="p-3">
-    <div class="row">
-      <div class="col-9">
-        <h1><%= @incident.title %></h1>
-      </div>
-      <div class="col-3">
-        <div class="d-flex justify-content-end align-items-center card--category">
-          <%= @incident.category_list.first %>
-          <%= image_tag 'violence.png', style: "width: 25px; height: 25px;", class: "ms-1" %>
+  <div class="d-flex justify-content-start link--incident-details">
+    <%= link_to "<p style='margin-bottom: 0; padding-bottom:0;'><i class='fas fa-chevron-left me-2'></i>Back</p>".html_safe, "#" %>
+  </div>
+  <div class="d-flex ps-1 pt-3 pb-3 pe-3 justify-content-start">
+    <% @incident.category_list.each do |category| %>
+      <span class="tags--category me-2"><%= category %></span>
+    <% end %>
+  </div>
+  <div class="card--incident-details mb-3">
+    <div class="p-3">
+      <div class="row">
+        <div class="col-9">
+          <h1><%= @incident.title %></h1>
+        </div>
+        <div class="col-3">
+          <div class="d-flex justify-content-end align-items-center card--category">
+            <%= @incident.category_list.first %>
+            <%= image_tag 'violence.png', style: "width: 25px; height: 25px;", class: "ms-1" %>
+          </div>
         </div>
       </div>
-    </div>
-    <div
-      data-controller="read-more"
-      data-read-more-more-text-value="Read more"
-      data-read-more-less-text-value="Read less"
-      class="mt-1"
-    >
-      <p data-read-more-target="content">
-        <%= @incident.description.first(300) %>...
-      </p>
-      <div class="d-flex justify-content-end">
-        <button data-action="read-more#toggle">
-          See more
-        </button>
+      <div
+        data-controller="read-more"
+        data-read-more-more-text-value="Read more"
+        data-read-more-less-text-value="Read less"
+        class="mt-1"
+      >
+        <p data-read-more-target="content">
+          <%= @incident.description.first(300) %>...
+        </p>
+        <div class="d-flex justify-content-end">
+          <button data-action="read-more#toggle">
+            See more
+          </button>
+        </div>
+        <template data-read-more-target="full">
+          <p><%= @incident.description %></p>
+        </template>
       </div>
-      <template data-read-more-target="full">
-        <p><%= @incident.description %></p>
-      </template>
+      <%# result = request.location %>
+      <%#= (Geocoder::Calculations.distance_between([result.latitude, result.longitude], [@incident.latitude, @incident.longitude])).round(1) %>
+      <% meguro_lat = 35.6415 %>
+      <% meguro_long = 139.6981 %>
+      <div class="d-flex justify-content-between align-items-center mt-2">
+        <p class="card--category" style="margin-bottom: 0; padding-bottom: 0;">
+          <% distance = (Geocoder::Calculations.distance_between([meguro_lat, meguro_long], [@incident.latitude, @incident.longitude])).round(0) %>
+          <% if distance < 5 %>
+            <i class="fas fa-map-marker-alt me-2" style="font-size: 18px; color: #db4444;"></i>
+          <% elsif distance > 5 && distance < 10 %>
+            <i class="fas fa-map-marker-alt me-2" style="font-size: 18px; color: #db8544;"></i>
+          <% elsif distance > 10 %>
+            <i class="fas fa-map-marker-alt me-2" style="font-size: 18px; color: #44db6a;"></i>
+          <% end %>
+          <%= distance %>
+          km away from you
+        </p>
+        <p class="card--category" style="margin-bottom: 0; padding-bottom: 0;">
+          <i class="fas fa-comment me-1" style="font-size: 16px;"></i>
+          comments
+          (<%= @incident.comments.count %>)
+        </p>
+      </div>
     </div>
-    <%# result = request.location %>
-    <%#= (Geocoder::Calculations.distance_between([result.latitude, result.longitude], [@incident.latitude, @incident.longitude])).round(1) %>
-    <% meguro_lat = 35.6415 %>
-    <% meguro_long = 139.6981 %>
-    <div class="d-flex justify-content-between align-items-center mt-2">
-      <p class="card--category" style="margin-bottom: 0; padding-bottom: 0;">
-        <% distance = (Geocoder::Calculations.distance_between([meguro_lat, meguro_long], [@incident.latitude, @incident.longitude])).round(0) %>
-        <% if distance < 5 %>
-          <i class="fas fa-map-marker-alt me-2" style="font-size: 18px; color: #db4444;"></i>
-        <% elsif distance > 5 && distance < 10 %>
-          <i class="fas fa-map-marker-alt me-2" style="font-size: 18px; color: #db8544;"></i>
-        <% elsif distance > 10 %>
-          <i class="fas fa-map-marker-alt me-2" style="font-size: 18px; color: #44db6a;"></i>
-        <% end %>
-        <%= distance %>
-        km away from you
-      </p>
-      <p class="card--category" style="margin-bottom: 0; padding-bottom: 0;">
-        <i class="fas fa-comment me-1"></i>
-        comments
-        (<%= @incident.comments.count %>)
-      </p>
+    <div style="width: 100%; height: 154px; border-radius: 0 0 16px 16px"
+      data-controller="mapbox"
+      data-mapbox-markers-value="<%= @marker.to_json %>"
+      data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
     </div>
-  </div>
-  <div style="width: 100%; height: 154px; border-radius: 0 0 16px 16px"
-    data-controller="mapbox"
-    data-mapbox-markers-value="<%= @marker.to_json %>"
-    data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
   </div>
 </div>
-<ul>
-    <% @incident.comments.each do |comment| %>
-      <li class="ps-3">
-        <% if !comment.comment.present? %>
-          <%= link_to comment.content, incident_comment_path(@incident, comment), class: "link--incident-details" %>
-        <% end %>
-      </li>
+
+<% @incident.comments.each do |comment| %>
+  <div class="card--comment ps-4 pe-4">
+    <div class="d-flex justify-content-between card--info">
+      <p style="margin: 0; padding: 0;"><%= comment.user.name %></p>
+      <p style="margin: 0; padding: 0;"><%= comment.created_at.to_date %></p>
+    </div>
+    <%= comment.content %>
+    <% if comment.comment.present? %>
+      <%= link_to "", incident_comment_path(@incident, comment), class: "link--incident-details" %>
     <% end %>
-  </ul>
-</div>
+  </div>
+<% end %>
+
+
 <div class="form--comments d-flex justify-content-center">
   <% if @incident.can_receive_comments? || !@incident.user.present?%>
     <%= render 'comments/form', incident: @incident, original_comment: @original_comment, comment: @comment %>

@@ -37,3 +37,12 @@
     font-family: $roboto;
   }
 }
+
+.card--comment {
+  width: 100%;
+
+  .card--info {
+    color: #969696;
+    font-size: 14px;
+  }
+}
