@@ -33,6 +33,8 @@ class CommentsController < ApplicationController
     @original_comment = Comment.find(params[:id])
     authorize @original_comment
     @incident = Incident.find(params[:incident_id])
+    @comment = Comment.new
+    authorize @comment
   end
 
   def destroy

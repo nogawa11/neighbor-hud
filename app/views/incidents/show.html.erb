@@ -1,23 +1,20 @@
-<div class="container">
-  <%= @incident.title %>
-  <%= @incident.description %>
-  <%= @incident.location %>
-  <%= @incident.latitude %>
-  <%= @incident.longitude %>
-  <%= @incident.incident_date %>
-  <% @incident.category_list.each do |category| %>
-    <%= category %>
-  <% end %>
-  <% if @incident.can_receive_comments? %>
-    <%= render 'comments/form', incident: @incident, original_comment: @original_comment, comment: @comment %>
-    <ul>
-      <% @incident.comments.each do |comment| %>
-        <li class="ps-3">
-          <% if !comment.comment.present? %>
-            <%= link_to comment.content, incident_comment_path(@incident, comment) %>
-          <% end %>
-        </li>
-      <% end %>
-    </ul>
+<div class="overflow-scroll">
+  <div class="container ps-3 pe-3 pt-3">
+    <div class="d-flex justify-content-start link--incident-details">
+      <%= link_to "<p style='margin-bottom: 0; padding-bottom:0;'><i class='fas fa-chevron-left me-2'></i>Back</p>".html_safe, "#" %>
+    </div>
+    <div class="d-flex justify-content-start ps-1 pt-3 pb-3 pe-3">
+      <%= render 'tags', incident: @incident %>
+    </div>
+    <div class="card--incident-details mb-3">
+      <%= render 'incident_card', incident: @incident %>
+      <%= render 'map' %>
+    </div>
+  </div>
+  <% @incident.comments.each do |comment| %>
+    <%= render 'comment_card', comment: comment %>
   <% end %>
 </div>
+<% if @incident.can_receive_comments? || !@incident.user.present?%>
+  <%= render 'comments/form', incident: @incident, original_comment: @original_comment, comment: @comment %>
+<% end %>
