@@ -1,10 +1,10 @@
 .report_details {
   position: fixed;
-  bottom: 10rem;
+  bottom: 7rem;
   left: 50%;
   transform: translateX(-50%);
-  width: 80%;
-  padding-block: 1rem;
+  width: 90%;
+  padding-block: 0.9rem;
   z-index: 2;
 
   &.card {
@@ -14,11 +14,12 @@
   .card__body {
     padding: 0;
     transition: all 0.3s ease-in-out;
-    max-height: 8px;
+    max-height: 0px;
+    overflow: hidden;
 
     &.open {
-      max-height: 600px;
-      margin-top: 1em;
+      max-height: 800px;
+      margin-top: 0.7em;
       padding: 0 1px;
       border-top: 2px solid #6d6d6d;
       background: #383838;
@@ -40,7 +41,7 @@
     }
 
     &.open {
-      i {
+      .arrow i {
         transform: rotate(180deg);
       }
     }
