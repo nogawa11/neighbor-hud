@@ -23,7 +23,7 @@ class IncidentsController < ApplicationController
     authorize @incident
     @incident.user = current_user
     if @incident.save
-      redirect_to incidents_path
+      redirect_to incident_path(@incident)
     else
       render :new
     end
