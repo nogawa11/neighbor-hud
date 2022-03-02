@@ -1,4 +1,4 @@
 <%= simple_form_for [incident, original_comment, comment] do |f| %>
-  <%= f.input :content %>
-  <%= f.submit %>
+  <%= f.input :content, label: false %>
+  <%= f.submit style: "display: none;"%>
 <% end %>
