@@ -1,0 +1,29 @@
+* + * {
+  margin-top: 1em;
+}
+
+.remove {
+  transform: translatex(500px);
+  transition: transform 2s;
+}
+
+#mainContainer {
+  background: linear-gradient(rgb(10,10,10), rgb(30,30,30));
+  height: 100vh;
+  z-index: 1;
+  padding-top: 3em;
+}
+
+#listContainer {
+  overflow: scroll;
+  height: 75vh;
+}
+
+#newsCards {
+  border-radius: 0px 0px 40px;
+  border-top: 0.1em solid rgb(42, 80, 124);
+  border-left: 0.1em solid rgb(42, 80, 124);
+  background: linear-gradient(135deg, rgb(20,20,20), rgb(44, 36, 80));
+  padding: 0.2em 1em;
+  font-size: 0.8em;
+}
