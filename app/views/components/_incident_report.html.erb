@@ -1,8 +1,15 @@
 <div class="report">
-  <h3 class="report_container__heading">Report on <span style="color: #238beb">Incident</span></h3>
-  <p>Select a category</p>
+  <div class="mb-0">
+    <h3 class="report_container__heading">Report on <span style="color: #238beb">Incident</span></h3>
+    <%= f.input :location,
+              input_html: { data: { geocoder_target: "location" }, class: "search" },
+              wrapper_html: { data: { controller: "geocoder", geocoder_api_key_value: ENV['MAPBOX_API_KEY'] } },
+              label: false,
+              placeholder: "Enter a location" %>
+    <p>Select a category</p>
+  </div>
   <%= render "components/categories" %>
-  <div class="d-flex justify-content-center">
+  <div class="date-and-comments">
     <%= render "components/date_picker_for_report" %>
     <%= f.input :can_receive_comments,
               as: :boolean,

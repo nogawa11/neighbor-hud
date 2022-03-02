@@ -1,0 +1,21 @@
+<div>
+  <%= form_tag feed_path, method: :get, class:"date_picker" do %>
+    <%= label :start_date, "Incidents from: " %>
+    <%= text_field_tag :start_date, params[:start_date],
+      data: {
+        controller: "flatpickr",
+        flatpickr_date_format: "Y-m-d",
+        flatpickr_disable_mobile: "true", # Prevents native picker on mobile
+        flatpickr_default_date: "today",
+      }%>
+    <%= label :end_date, "to: ", class: "ms-2" %>
+    <%= text_field_tag :end_date, params[:end_date],
+      data: {
+        controller: "flatpickr",
+        flatpickr_date_format: "Y-m-d",
+        flatpickr_disable_mobile: "true", # Prevents native picker on mobile
+        flatpickr_default_date: "today",
+      }%>
+    <%= submit_tag "Search", style: "display: none;"%>
+  <% end %>
+</div>

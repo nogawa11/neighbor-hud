@@ -10,14 +10,13 @@ export default class extends Controller {
 
   connect() {
     mapboxgl.accessToken = this.apiKeyValue
-
     this.map = new mapboxgl.Map({
       container: this.element,
       style: "mapbox://styles/ayanorii/cl05huof2003o15nuivl7b2y7"
     })
 
     this.#addMarkersToMap()
-    // this.#fitMapToMarkers()
+    this.#fitMapToMarkers()
 
     this.map.addControl(new MapboxGeocoder({
       accessToken: mapboxgl.accessToken,
@@ -46,8 +45,8 @@ export default class extends Controller {
 
       new mapboxgl.Marker()
         .setLngLat([marker.lng, marker.lat])
-        .setPopup(popup)
         .addTo(this.map)
+        .setPopup(popup)
         .togglePopup();
     });
   }

@@ -1,0 +1,31 @@
+.incident-show {
+  max-height: calc(100vh - 130px);
+  overflow: scroll;
+
+  &__details.card--incident-details {
+    margin-top: 0.5rem;
+    background-color: #333333;
+    border-radius: 16px;
+    font-family: $roboto;
+
+    h1 {
+      color: rgb(247, 247, 247);
+      font-size: 17px;
+      font-family: $roboto;
+      font-weight: 400;
+    }
+
+    p {
+      font-size: 14px;
+      color: rgb(223, 223, 223);
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .card--category {
+      font-size: 13px;
+      color: #8E9398;
+      font-family: $roboto;
+    }
+  }
+}

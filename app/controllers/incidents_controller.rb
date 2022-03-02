@@ -34,11 +34,11 @@ class IncidentsController < ApplicationController
     authorize @comment
     @incident = Incident.find(params[:incident_id]) if params[:incident_id].present?
     @original_comment = Comment.find(params[:comment_id]) if params[:comment_id].present?
-    @marker = {
-      lat: @incident.latitude,
-      lng: @incident.longitude,
-      id: @incident.id
-    }
+    # @markers = [{
+    #   lat: @incident.latitude,
+    #   lng: @incident.longitude,
+    #   id: @incident.id
+    # }]
   end
 
   def destroy

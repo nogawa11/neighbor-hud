@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="d-flex justify-content-center mt-3 text--offwhite">
+    <p>Here are the recent incidents in your area</p>
+  </div>
+  <div class="mb-3">
+    <%= render 'search' %>
+  </div>
+  <%= render 'buttons' %>
+  <div class="overflow-scroll mt-3 mb-3" style="max-height: 436px;">
+    <% @incidents.each do |incident| %>
+      <%= render 'feed_card', incident: incident %>
+    <% end %>
+  </div>
+  <div class="d-flex justify-content-center text--offwhite">
+    <p style="margin: 0; padding: 0;">Filter by category or date</p>
+  </div>
+  <div class="categories">
+    <%= render "category_list" %>
+  </div>
+  <%= render 'date_picker' %>
+</div>

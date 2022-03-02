@@ -1,11 +1,10 @@
 .form--comments {
   position: fixed;
-  bottom: 50px;
+  bottom: 70px;
   width: 100%;
   background-color: #181818;
   border: 0px;
-  padding-top: 16px;
-  padding-bottom: 8px;
+  padding-block: 1rem;
 
   form {
     width: 90%;
@@ -18,5 +17,22 @@
     border: 0px;
     height: 42px;
     color: rgb(226, 226, 226);
+  }
+}
+
+.form--search {
+  width: 100%;
+  border: 0px;
+
+  form {
+    width: 90%;
+    border: 0px;
+  }
+
+  .form-control {
+    background-color: #BCC4CD;
+    border-radius: 56px;
+    border: 0px;
+    height: 42px;
   }
 }

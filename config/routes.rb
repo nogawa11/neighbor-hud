@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   get '/notifications', to: 'comments#index', as: 'notifications'
   get '/route', to: 'route#show', as: 'route'
+  get '/feed', to: 'feed#index', as: 'feed'
 
   resources :incidents
 
