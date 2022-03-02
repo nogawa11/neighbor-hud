@@ -1,5 +1,9 @@
 class FeedController < ApplicationController
   def index
-    @incidents = policy_scope(Incident)
+    if params[:query].present?
+      @incidents = policy_scope(Incident).near(params[:query])
+    else
+      @incidents = policy_scope(Incident)
+    end
   end
 end

@@ -20,3 +20,20 @@
     color: rgb(226, 226, 226);
   }
 }
+
+.form--search {
+  width: 100%;
+  border: 0px;
+
+  form {
+    width: 90%;
+    border: 0px;
+  }
+
+  .form-control {
+    background-color: #BCC4CD;
+    border-radius: 56px;
+    border: 0px;
+    height: 42px;
+  }
+}
