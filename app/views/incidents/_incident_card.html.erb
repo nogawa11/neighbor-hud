@@ -28,20 +28,14 @@
       <p><%= @incident.description %></p>
     </template>
   </div>
-  <%# result = request.location %>
-  <%#= (Geocoder::Calculations.distance_between([result.latitude, result.longitude], [@incident.latitude, @incident.longitude])).round(1) %>
   <div class="d-flex justify-content-between align-items-center mt-2">
     <p class="card--category" style="margin-bottom: 0; padding-bottom: 0;">
+    <%# result = request.location %>
+    <%#= (Geocoder::Calculations.distance_between([result.latitude, result.longitude], [@incident.latitude, @incident.longitude])).round(1) %>
       <% meguro_lat = 35.6415 %>
       <% meguro_long = 139.6981 %>
       <% distance = (Geocoder::Calculations.distance_between([meguro_lat, meguro_long], [@incident.latitude, @incident.longitude])).round(0) %>
-      <% if distance < 5 %>
-        <i class="fas fa-map-marker-alt me-2" style="font-size: 18px; color: #db4444;"></i>
-      <% elsif distance > 5 && distance < 10 %>
-        <i class="fas fa-map-marker-alt me-2" style="font-size: 18px; color: #db8544;"></i>
-      <% elsif distance > 10 %>
-        <i class="fas fa-map-marker-alt me-2" style="font-size: 18px; color: #44db6a;"></i>
-      <% end %>
+        <%= render 'distance_icon', distance: distance %>
       <%= distance %>
       km away from you
     </p>
