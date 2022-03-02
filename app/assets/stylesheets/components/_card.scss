@@ -39,10 +39,27 @@
 }
 
 .card--comment {
-  width: 100%;
+  color: rgb(230, 230, 230);
+  font-size: 16px;
+  border-bottom: 1px solid rgb(85, 85, 85);
+  position: relative;
 
   .card--info {
-    color: #969696;
+    color: #868686;
     font-size: 14px;
+  }
+
+  .card--comment-comment {
+    font-size: 13px;
+    color: #8E9398;
+    font-family: $roboto;
+  }
+
+  .link--incident-details {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
   }
 }
