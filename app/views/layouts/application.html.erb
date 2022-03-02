@@ -12,20 +12,18 @@
     <%#= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
-    <%= render 'shared/flashes' %>
+    <%#= render 'shared/flashes' %>
     <!-- ---------------------------  Map ---------------------------------- -->
-    <div
+    <!-- <div
       id="mapbox"
       class="mapbox"
       data-controller="mapbox"
       data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
       data-mapbox-markers-value="<%= @markers.to_json %>"
       >
-    </div>
+    </div> -->
     <!-- ---------------------------  Map ---------------------------------- -->
-    <main class="main">
-      <%= yield %>
-    </main>
+    <%= yield %>
     <%= render "shared/navbar" %>
   </body>
 </html>

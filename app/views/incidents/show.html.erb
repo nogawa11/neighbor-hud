@@ -1,5 +1,18 @@
-<div class="container">
-  <%= @incident.title %>
+<div class="container p-3">
+<div class="d-flex justify-content-start">
+  <%= link_to "<p><i class='fas fa-chevron-left me-2'></i>Back</p>".html_safe, "#" %>
+</div>
+<div class="incident-details-card">
+  <div class="d-flex justify-content-end">
+    <%= @incident.title %>
+    <div>
+      <%= @incident.category_list.first %>
+      <i class="fas fa-fist-raised"></i>
+    </div>
+  </div>
+</div>
+
+
   <%= @incident.description %>
   <%= @incident.location %>
   <%= @incident.latitude %>
