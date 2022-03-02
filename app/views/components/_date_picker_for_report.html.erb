@@ -10,5 +10,8 @@
         flatpickr_disable_mobile: "true", # Prevents native picker on mobile
         flatpickr_default_date: "today",
       }%>
+    <%= f.button :select, class: "button date" do %>
+      <i class="fas fa-chevron-down"></i>
+    <% end %>
   <% end %>
 </div>
