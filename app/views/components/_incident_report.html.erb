@@ -2,5 +2,12 @@
   <h3 class="report_container__heading">Report on <span style="color: #238beb">Incident</span></h3>
   <p>Select a category</p>
   <%= render "components/categories" %>
-  <%= render "components/date_picker_for_report" %>
+  <div class="d-flex justify-content-center">
+    <%= render "components/date_picker_for_report" %>
+    <%= f.input :can_receive_comments,
+              as: :boolean,
+              label:"Comments",
+              class: "comment",
+              input_html: { class: "toggle" } %>
+  </div>
 </div>
