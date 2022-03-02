@@ -1,6 +1,6 @@
 
 
-<div data-feed-target="feed" class="" style="background-color: rgba(60,60,60,0.85); height: 100vh; z-index: 3;">
+<div data-feed-target="feed" id="mainContainer">
 <ul>
   <% @incidents.each do |incident| %>
     <li class="card p-1 m-2"><%= link_to incident.title, incident_path(incident) %></li>
