@@ -14,8 +14,23 @@
 
     &.open {
       max-height: 600px;
+      margin-top: 1em;
+      padding: 4px 8px;
+      border-top: 2px solid #6d6d6d;
+      background: #383838;
+    }
+
+    // &.field {
+    //   background: #383838;
+    //   color: #6d6d6d;
+    // }
+    &.field {
+      color: #6d6d6d;
+      background: #383838;
+      border-top: 1px solid #6d6d6d;
     }
   }
+
 
   &__button {
     background: transparent;
