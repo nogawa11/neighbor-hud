@@ -1,4 +1,6 @@
-<%= simple_form_for [incident, original_comment, comment] do |f| %>
-  <%= f.input :content %>
-  <%= f.submit %>
-<% end %>
+<div class="form--comments d-flex justify-content-center">
+  <%= simple_form_for [incident, original_comment, comment] do |f| %>
+  <%= f.input :content, label: false, placeholder: "Comment here"  %>
+  <%= f.submit style: "display: none;"%>
+  <% end %>
+</div>

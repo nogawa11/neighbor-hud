@@ -1,0 +1,50 @@
+<div class="p-3">
+  <div class="row">
+    <div class="col-9">
+      <h1><%= @incident.title %></h1>
+    </div>
+    <div class="col-3">
+      <div class="d-flex justify-content-end align-items-center card--category">
+        <%= @incident.category_list.first %>
+        <%= render 'icon', category: @incident.category_list.first %>
+      </div>
+    </div>
+  </div>
+  <div
+    data-controller="read-more"
+    data-read-more-more-text-value="Read more"
+    data-read-more-less-text-value="Read less"
+    class="mt-1"
+  >
+    <p data-read-more-target="content">
+      <%= @incident.description.first(500) %>...
+    </p>
+    <div class="d-flex justify-content-end">
+      <button data-action="read-more#toggle">
+        See more
+      </button>
+    </div>
+    <template data-read-more-target="full">
+      <p><%= @incident.description %></p>
+    </template>
+  </div>
+  <div class="d-flex justify-content-between align-items-center mt-2">
+    <p class="card--category" style="margin-bottom: 0; padding-bottom: 0;">
+    <%# result = request.location %>
+    <%#= (Geocoder::Calculations.distance_between([result.latitude, result.longitude], [@incident.latitude, @incident.longitude])).round(1) %>
+      <% meguro_lat = 35.6415 %>
+      <% meguro_long = 139.6981 %>
+      <% distance = (Geocoder::Calculations.distance_between([meguro_lat, meguro_long], [@incident.latitude, @incident.longitude])).round(0) %>
+        <%= render 'distance_icon', distance: distance %>
+      <%= distance %>
+      km away from you
+    </p>
+    <%= link_to(data: { controller: "scroll-to" }) do %>
+    <p class="card--category" style="margin-bottom: 0; padding-bottom: 0;">
+      <i class="fas fa-comment me-1" style="font-size: 16px;"></i>
+      comments
+      (<%= @incident.comments.count %>)
+    </p>
+    <% end %>
+  </div>
+</div>
