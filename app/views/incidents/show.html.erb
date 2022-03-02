@@ -16,7 +16,7 @@
         <div class="col-3">
           <div class="d-flex justify-content-end align-items-center card--category">
             <%= @incident.category_list.first %>
-            <%= image_tag 'violence.png', style: "width: 25px; height: 25px;", class: "ms-1" %>
+            <%= render 'icon', category: @incident.category_list.first %>
           </div>
         </div>
       </div>
