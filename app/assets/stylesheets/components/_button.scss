@@ -17,6 +17,9 @@
     background-color: #1a75e6;
     border-radius: 20px;
     width: 80%;
+    position: absolute;
+    bottom: -90px;
+    @include centralize();
   }
 
   // Font Awesome icons

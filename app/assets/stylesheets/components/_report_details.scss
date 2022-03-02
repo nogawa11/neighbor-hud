@@ -1,11 +1,15 @@
 .report_details {
   position: fixed;
-  bottom: 4.5rem;
+  bottom: 10rem;
   left: 50%;
   transform: translateX(-50%);
   width: 80%;
   padding-block: 1rem;
   z-index: 2;
+
+  &.card {
+    overflow: unset;
+  }
 
   .card__body {
     padding: 0;
