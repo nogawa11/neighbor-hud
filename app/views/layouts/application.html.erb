@@ -13,16 +13,6 @@
   </head>
   <body>
     <%= render 'shared/flashes' %>
-    <!-- ---------------------------  Map ---------------------------------- -->
-    <div
-      id="mapbox"
-      class="mapbox"
-      data-controller="mapbox"
-      data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
-      data-mapbox-markers-value="<%= @markers.to_json %>"
-      >
-    </div>
-    <!-- ---------------------------  Map ---------------------------------- -->
     <main class="main">
       <%= yield %>
     </main>
