@@ -1,0 +1,15 @@
+<div class="card--comment ps-1 pe-1 ms-4 me-4 mt-3" id="awesome-stuff-here">
+  <div class="d-flex justify-content-between card--info">
+    <p><strong><%= comment.user.name %></strong></p>
+    <p><%= comment.created_at.to_date %></p>
+  </div>
+  <p><%= comment.content %></p>
+  <div class="d-flex justify-content-end mb-1">
+    <p class="card--comment-comment">
+      <i class="fas fa-comment me-1" style="font-size: 16px;"></i>
+      comments
+      (<%= comment.comments.count %>)
+    </p>
+  </div>
+  <%= link_to "", incident_comment_path(comment.incident, comment), class: "link--incident-details" %>
+</div>
