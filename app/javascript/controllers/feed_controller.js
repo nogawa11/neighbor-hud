@@ -1,7 +1,7 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = ["feedButton", "feed"]
+  static targets = ["feed", "feedButton"]
 
   connect(){
     console.log("hello from feed")
