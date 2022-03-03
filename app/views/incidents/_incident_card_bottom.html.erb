@@ -8,10 +8,8 @@
   <%= distance %>
   km away from you
 </p>
-<%= link_to '#comments', data: { controller: "scroll-to" } do %>
-  <p class="card--category">
-    <i class="fas fa-comment me-1" style="font-size: 16px;"></i>
-    comments
-    (<%= @incident.comments.count %>)
-  </p>
-<% end %>
+<p class="card--category">
+  <i class="fas fa-comment me-1" style="font-size: 16px;"></i>
+  comments
+  (<%= @incident.comments.count %>)
+</p>

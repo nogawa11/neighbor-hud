@@ -1,14 +1,10 @@
 .incident-show {
-  max-height: calc(100vh - 130px);
-  display: flex;
-  flex-direction: column;
-
   &__details.card--incident-details {
     margin-top: 0.5rem;
-    overflow: hidden;
     background-color: #333333;
     border-radius: 16px;
     font-family: $roboto;
+    overflow: hidden;
 
     h1 {
       color: rgb(247, 247, 247);
@@ -29,31 +25,36 @@
       color: #8E9398;
       font-family: $roboto;
     }
-  }
-
-  &__map {
-    transition: all 0.5s;
-    height: 0;
-    width: 100%;
-
-    &.open {
-      height: 300px;
-    }
-
-    .mapboxgl-canvas.open {
-      transition: all 0.5s;
-      position: unset;
-    }
 
     .mapboxgl-control-container {
       display: none;
     }
   }
 
-  &__comments {
-    max-height: 100%;
-    height: 100%;
-    overflow: scroll;
-    margin-block: 1rem 0.5rem;
-  }
+  // &__map {
+  //   // transition: all 0.5s;
+  //   // height: 0;
+  //   width: 100%;
+  //   height: 120px;
+
+  //   // &.open {
+  //     // height: 300px;
+  //   // }
+
+  //   .mapboxgl-map {
+  //     overflow: unset !important;
+  //   }
+
+  //   // .mapboxgl-canvas.open {
+  //   //   transition: all 0.5s;
+  //   // }
+
+  // }
+
+  // &__comments {
+  //   max-height: 100%;
+  //   height: 100%;
+  //   overflow: scroll;
+  //   margin-block: 1rem 0.5rem;
+  // }
 }

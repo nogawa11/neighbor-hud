@@ -1,4 +1,11 @@
-<%= link_to "#" do %>
-  <i class='fas fa-chevron-left me-2'></i>
-  Back
+<% if params[:path] == 'map' %>
+  <%= link_to root_path do %>
+    <i class='fas fa-chevron-left me-2'></i>
+    Back
+  <% end %>
+<% elsif %>
+  <%= link_to feed_path do %>
+    <i class='fas fa-chevron-left me-2'></i>
+    Back
+  <% end %>
 <% end %>

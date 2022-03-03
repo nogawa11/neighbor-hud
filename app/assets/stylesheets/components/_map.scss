@@ -3,7 +3,7 @@
   height: 100vh;
 
   &gl-ctrl-top-right {
-    top: 2.5rem;
+    top: 0.7rem !important;
     width: 90%;
     left: 50%;
     transform: translateX(-50%);
@@ -14,6 +14,15 @@
 /* ------------------------------- Marker Icon ------------------------------ */
   &gl-popup-anchor-bottom .mapboxgl-popup-tip {
     border-top-color: $primary;
+  }
+  &gl-popup-anchor-top .mapboxgl-popup-tip {
+    border-bottom-color: $primary;
+  }
+  &gl-popup-anchor-left .mapboxgl-popup-tip {
+    border-right-color: $primary;
+  }
+  &gl-popup-anchor-right .mapboxgl-popup-tip {
+    border-left-color: $primary;
   }
 
   &gl-popup-content {
@@ -43,6 +52,7 @@
 .mapboxgl-ctrl.mapboxgl-ctrl-geocoder {
     margin: 0;
     background: transparent;
+    overflow: hidden;
   }
 
   .mapboxgl-ctrl-geocoder--icon {

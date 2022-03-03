@@ -6,7 +6,7 @@
         controller: "flatpickr",
         flatpickr_date_format: "Y-m-d",
         flatpickr_disable_mobile: "true", # Prevents native picker on mobile
-        flatpickr_default_date: "today",
+        flatpickr_default_date: params[:start_date].present? ? params[:start_date] : "today",
       }%>
     <%= label :end_date, "to: ", class: "ms-2" %>
     <%= text_field_tag :end_date, params[:end_date],
@@ -14,7 +14,7 @@
         controller: "flatpickr",
         flatpickr_date_format: "Y-m-d",
         flatpickr_disable_mobile: "true", # Prevents native picker on mobile
-        flatpickr_default_date: "today",
+        flatpickr_default_date: params[:end_date].present? ? params[:end_date] : "today",
       }%>
     <%= submit_tag "Search", style: "display: none;"%>
   <% end %>

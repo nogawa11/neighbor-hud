@@ -8,7 +8,7 @@ export default class extends Controller {
     markers: Array
   }
 
-  static target = ["latitude", "longitude"]
+  static targets = [ 'noSearch', "latitude", "longitude" ]
 
   connect() {
     mapboxgl.accessToken = this.apiKeyValue
@@ -26,6 +26,14 @@ export default class extends Controller {
     this.map.addControl(
       geocoder
     )
+    // this.#fitMapToMarkers()
+
+    if (!this.isInShowPage()) {
+      this.map.addControl(new MapboxGeocoder({
+        accessToken: mapboxgl.accessToken,
+        mapboxgl: mapboxgl
+      }))
+    }
 
     const latitude = document.querySelector(".latitude")
     const longitude = document.querySelector(".longitude")
@@ -56,6 +64,9 @@ export default class extends Controller {
     })
   }
 
+  isInShowPage() {
+    return (/incidents\/\d+/).test(window.location.pathname);
+  }
 /* --------------------------------- Private -------------------------------- */
   #addMarkersToMap() {
     this.markersValue.forEach((marker) => {
@@ -64,10 +75,12 @@ export default class extends Controller {
           closeOnClick: false,
           closeButton: false
         }).setHTML(
-          `<a href="${window.location.href}/${marker.id}" class="mapbox-icon"></a>`
+          `<a href="incidents/${marker.id}?path=map" class="mapbox-icon"></a>`
         )
 
-      new mapboxgl.Marker()
+      const emptyMarker = document.createElement('div');
+
+      new mapboxgl.Marker(emptyMarker)
         .setLngLat([marker.lng, marker.lat])
         .addTo(this.map)
         .setPopup(popup)
