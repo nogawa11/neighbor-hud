@@ -2,12 +2,15 @@ class FeedController < ApplicationController
   def index
     if params[:query].present?
       @incidents = policy_scope(Incident).near(params[:query])
+    elsif params[:start_date].present?
+      date_filter(params[:start_date], params[:end_date])
+    elsif params[:filter].present?
+      news_user_filter(params[:filter])
+    elsif params[:category].present?
+      category_filter(params[:category])
     else
       all_incidents
     end
-    params[:start_date].present? ? date_filter(params[:start_date], params[:end_date]) : all_incidents
-    params[:filter].present? ? news_user_filter(params[:filter]) : all_incidents
-    params[:category].present? ? category_filter(params[:category]) : all_incidents
   end
 
   private
