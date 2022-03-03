@@ -12,12 +12,15 @@
   </div>
   <div
     class="mt-1"
+    data-controller="read-more"
+    data-read-more-more-text-value="Read more"
+    data-read-more-less-text-value="Read less"
   >
     <p data-read-more-target="content">
       <%= @incident.description.first(250) %>...
     </p>
     <div class="d-flex justify-content-end">
-      <button data-action="click->read-more#open">
+      <button data-action="read-more#toggle">
         See more
       </button>
     </div>
@@ -25,7 +28,7 @@
       <p><%= @incident.description %></p>
     </template>
   </div>
-  <div class="d-flex justify-content-between align-items-center mt-2">
+  <div class="d-flex justify-content-between align-items-end mt-2">
     <%= render 'incident_card_bottom', incident: @incident  %>
   </div>
 </div>

@@ -1,16 +1,21 @@
-import { Controller } from "stimulus"
+// import { Controller } from "stimulus"
+import { Application } from "@hotwired/stimulus"
+import ReadMore from "stimulus-read-more"
 
-export default class extends Controller {
-  static targets = [ "content", "full", "map" ]
+const application = Application.start()
+application.register("read-more", ReadMore)
 
-  connect() {
-    console.log("read");
-  }
+// export default class extends Controller {
+//   static targets = [ "content", "full", "map" ]
 
-  open(event) {
-    const map = document.querySelector(".mapboxgl-canvas");
-    map.classList.toggle("open")
-    this.mapTarget.classList.toggle("open");
-    this.contentTarget.classList.toggle("open")
-  }
-}
+//   connect() {
+//     console.log("read");
+//   }
+
+//   open(event) {
+//     // const map = document.querySelector(".mapboxgl-canvas");
+//     // map.classList.toggle("open")
+//     // this.mapTarget.classList.toggle("open");
+//     this.contentTarget.classList.toggle("open")
+//   }
+// }

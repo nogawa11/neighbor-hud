@@ -1,17 +1,18 @@
-<div class="incident-show">
-  <div class="container ps-3 pe-3 mt-5">
-    <%= render "incidents/incident_back_button" %>
-    <div class="pb-1">
+<div class="incident-show" style ="max-height: calc(100vh - 160px);
+  overflow: scroll !important;">
+  <div class="container ps-3 pe-3 mt-3">
+    <div class="link--incident-details">
+      <%= render "incidents/incident_back_button" %>
+    </div>
+    <div class="pb-1 d-flex justify-content-end">
       <%= render 'tags', incident: @incident %>
     </div>
-    <div class="incident-show__details card--incident-details"     data-controller="read-more">
+    <div class="incident-show__details card--incident-details">
       <%= render 'incident_card', incident: @incident %>
-      <%= render 'map', data: {
-        read_more_target: "map"
-      } %>
+      <%= render 'map' %>
     </div>
   </div>
-  <div class="incident-show__comments">
+  <div class="mt-2">
     <% @incident.comments.each do |comment| %>
       <%= render 'comment_card', comment: comment %>
     <% end %>
