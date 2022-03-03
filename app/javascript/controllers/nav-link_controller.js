@@ -1,30 +1,32 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
+  static targets = ["home", "incidents", "new", "route", "notifications"]
 
   connect() {
     console.log("Hello, Stimulus!");
-    const links = document.querySelectorAll(".nav__link");
-    links.forEach((link) => {
-      if (this.#checkPathname(link)) {
-        link.classList.add("active");
-      }
-    })
+    this.links = document.querySelectorAll(".nav__link");
+    this.#setActiveLink();
   }
 
-/* --------------------------------- Private -------------------------------- */
+  /* --------------------------------- Private -------------------------------- */
 
-  #checkPathname(link) {
-    const path = link.pathname;
-    const currentPath = window.location.pathname;
+  #setActiveLink() {
+    const path = window.location.pathname;
 
-    const linkPath = this.#getSlicedPath(path);
-    const windowPath = this.#getSlicedPath(currentPath);
-
-    return linkPath === windowPath;
-  }
-
-  #getSlicedPath(path) {
-    return path.slice(1).split("/")[0];
+    switch (true) {
+      case path === "/":
+        return this.homeTarget.classList.add("active");
+      case path === "/incidents" || (/incidents\/\d+/).test(path):
+        return this.incidentsTarget.classList.add("active");
+      case path === "/incidents/new":
+        return this.newTarget.classList.add("active");
+      case path === "/notifications":
+        return this.notificationsTarget.classList.add("active");
+      case path === "/route":
+        return this.routeTarget.classList.add("active");
+      default:
+        return
+    }
   }
 }
