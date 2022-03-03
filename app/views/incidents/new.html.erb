@@ -1,12 +1,56 @@
-<div class="content">
-  <%= simple_form_for @incident do |f| %>
-    <%= render "components/incident_report", f: f %>
-    <%# <%= f.input :category_list, label: "Add categories", as: :check_boxes, collection: [ "Violence", "Theft", "Arson", "Drugs", "Harrasment/SA", "Disturbing the Peace", "Traffic" ] %>
-    <div style="background: $dark-gradient;">
-      <%= render "components/report_details", f: f %>
-    </div>
-  <% end %>
-  <div style="z-index: 1; width: 100%; height: 190px;">
+<div class="content" data-controller="report-details">
+  <%= simple_form_for @incident,
+                    data: {
+                      report_details_target: 'form',
+                      action: "submit->report-details#create" } do |f| %>
+    <div class="report">
+      <%= f.button :submit, "Report", class: "btn btn--report", style: "z-index: 100" %>
+      <%# <%= render "components/incident_report", f: f %>
+      <div class="mb-0">
+        <h3 class="report_container__heading">Report on <span style="color: #238beb">Incident</span></h3>
+        <%= f.input :location,
+              input_html: { data: { geocoder_target: "location" }, class: "search" },
+              wrapper_html: { data: { controller: "geocoder", geocoder_api_key_value: ENV['MAPBOX_API_KEY'] } },
+              label: false,
+              as: :hidden %>
+        <%= f.input :latitude,label: false, as: :hidden,  input_html: { class: "latitude" } %>
+        <%= f.input :longitude,label: false, as: :hidden, input_html: { class: "longitude" }  %>
+        <p>Select a category</p>
+        <%= render "components/categories" %>
+        <div class="date-and-comments">
+          <%= render "components/date_picker_for_report" %>
+          <%= f.input :can_receive_comments,
+              as: :boolean,
+              label:"Comments",
+              class: "comment",
+              input_html: { class: "toggle" } %>
+        </div>
+      </div>
+      <div class="card card--gray">
+        <div class="report-details" style="background: $dark-gradient;">
+          <%#<%= render "components/ report_details"> %>
+          <button class="report_details__button" data-action="click->report-details#openCard" data-report-details-target="button">
+            <i class="fas fa-info-circle"></i>
+            Add more details
+            <span class="arrow"><i class="fas fa-chevron-up"></i></span>
+          </button>
+          <div class="card__body" data-report-details-target="card">
+            <%= f.input :title,
+                label: false,
+                placeholder: "What happened?",
+                input_html: { class: "title" } %>
+            <%= f.input :description,
+                placeholder: "Write incident details here (optional)",
+                label: false,
+                input_html: { class: "description" },
+                required: false %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <%# <%= f.input :category_list, label: "Add categories", as: :check_boxes, collection: [ "Violence", "Theft", "Arson", "Drugs", "Harrasment/SA", "Disturbing the Peace", "Traffic" ] %>
+  <div style="z-index: 1; width: 100%; height: 210px;">
     <%= render 'shared/map' %>
   </div>
 </div>

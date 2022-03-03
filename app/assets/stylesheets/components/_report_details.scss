@@ -1,11 +1,14 @@
-.report_details {
+.report-details {
   position: fixed;
-  bottom: 7rem;
+  bottom: 9rem;
   left: 50%;
   transform: translateX(-50%);
   width: 90%;
   padding-block: 0.9rem;
   z-index: 2;
+  border: 1px solid #333333;
+  border-radius: 1rem;
+  background: #333333;
 
   &.card {
     overflow: unset;
@@ -20,17 +23,23 @@
     &.open {
       max-height: 800px;
       margin-top: 0.7em;
-      padding: 0 1px;
+      padding: 0;
       border-top: 2px solid #6d6d6d;
       background: #383838;
+      width: 100%;
     }
   }
 
-  input.description {
+  input.description, input.title {
     color: #bcc4cd;
     background: #383838;
     border: none;
-    border-radius: 1rem;
+    justify-content: center;
+    // border-radius: 1rem;
+  }
+
+  input.description {
+    border-top: 2px solid #6d6d6d;
   }
 
   &__button {
