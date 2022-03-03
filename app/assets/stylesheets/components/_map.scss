@@ -52,6 +52,7 @@
 .mapboxgl-ctrl.mapboxgl-ctrl-geocoder {
     margin: 0;
     background: transparent;
+    overflow: hidden;
   }
 
   .mapboxgl-ctrl-geocoder--icon {
