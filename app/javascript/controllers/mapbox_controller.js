@@ -37,7 +37,7 @@ export default class extends Controller {
   }
 
   isInShowPage() {
-    return window.location.pathname.includes("incidents");
+    return (/incidents\/\d+/).test(window.location.pathname);
   }
 /* --------------------------------- Private -------------------------------- */
   #addMarkersToMap() {
