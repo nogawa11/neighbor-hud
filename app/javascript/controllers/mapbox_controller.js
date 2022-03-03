@@ -8,6 +8,8 @@ export default class extends Controller {
     markers: Array
   }
 
+  static targets = [ 'noSearch' ]
+
   connect() {
     mapboxgl.accessToken = this.apiKeyValue
     this.map = new mapboxgl.Map({
@@ -18,10 +20,12 @@ export default class extends Controller {
     this.#addMarkersToMap()
     // this.#fitMapToMarkers()
 
-    this.map.addControl(new MapboxGeocoder({
-      accessToken: mapboxgl.accessToken,
-      mapboxgl: mapboxgl
-    }))
+    if (!this.isInShowPage()) {
+      this.map.addControl(new MapboxGeocoder({
+        accessToken: mapboxgl.accessToken,
+        mapboxgl: mapboxgl
+      }))
+    }
 
     this.map.addControl(new mapboxgl.GeolocateControl({
       positionOptions: {
@@ -32,6 +36,9 @@ export default class extends Controller {
     }));
   }
 
+  isInShowPage() {
+    return window.location.pathname.includes("incidents");
+  }
 /* --------------------------------- Private -------------------------------- */
   #addMarkersToMap() {
     this.markersValue.forEach((marker) => {
