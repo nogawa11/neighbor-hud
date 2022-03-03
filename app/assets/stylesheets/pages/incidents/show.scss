@@ -26,6 +26,10 @@
     }
   }
 
+  .mapboxgl-control-container {
+    display: none !important;
+  }
+
   // &__map {
   //   // transition: all 0.5s;
   //   // height: 0;
@@ -44,9 +48,6 @@
   //   //   transition: all 0.5s;
   //   // }
 
-  //   // .mapboxgl-control-container {
-  //   //   display: none;
-  //   // }
   // }
 
   // &__comments {
