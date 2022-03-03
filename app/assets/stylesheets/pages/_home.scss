@@ -3,3 +3,10 @@
   position: relative;
   z-index: 1;
 }
+
+.incidents-index {
+
+  .mapboxgl-ctrl-top-right {
+    top: 7rem;
+  }
+}

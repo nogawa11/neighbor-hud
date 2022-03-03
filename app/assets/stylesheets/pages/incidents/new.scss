@@ -1,0 +1,14 @@
+.incidents-new {
+  .mapboxgl-ctrl-top-right {
+    top: 1rem;
+  }
+
+  .card.card--gray {
+    position: fixed;
+    bottom: 8rem;
+    z-index: 100;
+    width: 90%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}

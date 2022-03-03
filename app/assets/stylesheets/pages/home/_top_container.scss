@@ -1,23 +1,28 @@
 .top_container {
   text-align: center;
-  margin-top: 0.875rem;
   font-size: 0.875rem;
   position: absolute;
+  width: 100%;
   top: 0;
+
+  &__logo {
+    padding-block: 1rem;
+    background: $dark;
+  }
 
   &__heading {
     font-family: $roboto;
     font-size: inherit;
     position: relative;
     letter-spacing: 0.75px;
-    text-shadow: 0 0 15px 10px #000;
+    margin: 0;
   }
 
   &__buttons-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
-    margin-top: 4.5rem;
+    margin-top: 5rem;
   }
 
   &__button {
