@@ -18,7 +18,7 @@ export default class extends Controller {
     })
 
     this.#addMarkersToMap()
-    this.#fitMapToMarkers()
+    // this.#fitMapToMarkers()
 
     if (!this.isInShowPage()) {
       this.map.addControl(new MapboxGeocoder({
@@ -50,7 +50,9 @@ export default class extends Controller {
           `<a href="incidents/${marker.id}?path=map" class="mapbox-icon"></a>`
         )
 
-      new mapboxgl.Marker()
+      const emptyMarker = document.createElement('div');
+
+      new mapboxgl.Marker(emptyMarker)
         .setLngLat([marker.lng, marker.lat])
         .addTo(this.map)
         .setPopup(popup)
