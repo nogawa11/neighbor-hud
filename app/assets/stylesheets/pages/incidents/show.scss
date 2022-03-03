@@ -25,6 +25,10 @@
       color: #8E9398;
       font-family: $roboto;
     }
+
+    .mapboxgl-control-container {
+      display: none;
+    }
   }
 
   // &__map {
