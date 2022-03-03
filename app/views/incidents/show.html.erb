@@ -4,7 +4,7 @@
     <div class="pb-1">
       <%= render 'tags', incident: @incident %>
     </div>
-    <div class="incident-show__details card--incident-details"     data-controller="read-more">
+    <div class="incident-show__details card--incident-details"     >
       <%= render 'incident_card', incident: @incident %>
       <%= render 'map', data: {
         read_more_target: "map"

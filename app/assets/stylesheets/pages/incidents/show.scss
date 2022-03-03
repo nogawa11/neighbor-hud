@@ -5,7 +5,7 @@
 
   &__details.card--incident-details {
     margin-top: 0.5rem;
-    overflow: hidden;
+    // overflow: hidden;
     background-color: #333333;
     border-radius: 16px;
     font-family: $roboto;
@@ -40,9 +40,13 @@
       height: 300px;
     }
 
+    .mapboxgl-map {
+      overflow: unset;
+    }
+
     .mapboxgl-canvas.open {
       transition: all 0.5s;
-      position: unset;
+      // position: unset;
     }
 
     .mapboxgl-control-container {
