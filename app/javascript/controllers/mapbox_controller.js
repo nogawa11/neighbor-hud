@@ -20,7 +20,7 @@ export default class extends Controller {
     this.#addMarkersToMap()
     this.#fitMapToMarkers()
 
-    if (!this.#isInShowPage) {
+    if (!this.isInShowPage()) {
       this.map.addControl(new MapboxGeocoder({
         accessToken: mapboxgl.accessToken,
         mapboxgl: mapboxgl
@@ -36,6 +36,9 @@ export default class extends Controller {
     }));
   }
 
+  isInShowPage() {
+    return window.location.pathname.includes("incidents");
+  }
 /* --------------------------------- Private -------------------------------- */
   #addMarkersToMap() {
     this.markersValue.forEach((marker) => {
@@ -60,8 +63,4 @@ export default class extends Controller {
     this.markersValue.forEach(marker => bounds.extend([ marker.lng, marker.lat ]))
     this.map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 0 })
   }
-
-  #isInShowPage() {
-    return window.location.pathname.includes("incidents");
-  };
 }

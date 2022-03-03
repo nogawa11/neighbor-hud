@@ -1,6 +1,6 @@
 <div class="form--search d-flex justify-content-center">
   <%= form_tag feed_path, method: :get do %>
-  <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Enter a location"%>
+  <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Enter a location", value: params[:query]%>
   <%= submit_tag "Search", style: "display: none;"%>
   <% end %>
 </div>
