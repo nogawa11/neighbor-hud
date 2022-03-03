@@ -1,5 +1,3 @@
-<div class="d-flex justify-content-end">
-  <% @incident.category_list.each do |category| %>
-    <span class="tags--category me-2"><%= category %></span>
-  <% end %>
-</div>
+<% @incident.category_list.each do |category| %>
+  <span class="tags--category me-2"><%= category %></span>
+<% end %>
