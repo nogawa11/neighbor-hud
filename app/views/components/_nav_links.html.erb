@@ -1,27 +1,36 @@
-<!-- TODO: Replace href placeholders -->
-<ul class="nav__links" data-controller="active-link">
+<ul class="nav__links" data-controller="nav-link">
   <li>
-    <%= link_to "/", class:"nav__link" do %>
+    <%= link_to "/", class:"nav__link", data: {
+      "nav-link-target": "home"
+    } do %>
       <i class="fas fa-home"></i>
     <% end %>
   </li>
   <li>
-    <%= link_to "/incidents", class:"nav__link" do %>
+    <%= link_to "/incidents", class:"nav__link", data: {
+      "nav-link-target": "incidents"
+    } do %>
       <i class="fas fa-newspaper"></i>
     <% end %>
   </li>
   <li>
-    <%= link_to "/incidents/new", class:"nav__link" do %>
+    <%= link_to "/incidents/new", class:"nav__link", data: {
+      "nav-link-target": "new"
+    } do %>
       <i class="fas fa-plus"></i>
     <% end %>
   </li>
   <li>
-    <%= link_to "/incidents/route", class:"nav__link" do %>
+    <%= link_to "/route", class:"nav__link", data: {
+      "nav-link-target": "route"
+    } do %>
       <i class="fas fa-map-marked-alt"></i>
     <% end %>
   </li>
   <li>
-    <%= link_to "/incidents/notifications", class:"nav__link" do %>
+    <%= link_to "/notifications", class:"nav__link", data: {
+      "nav-link-target": "notifications"
+    } do %>
       <i class="fas fa-chart-bar"></i>
     <% end %>
   </li>
