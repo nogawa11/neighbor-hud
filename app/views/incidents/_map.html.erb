@@ -1,7 +1,6 @@
-<div class="incident-show__map" data-read-more-target="map">
-  <div
+<div
     data-controller="mapbox"
-    data-mapbox-markers-value="<%= @markers.to_json %>"
-    data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
-  </div>
+    data-mapbox-markers-value="<%= @marker.to_json %>"
+    data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
+    style="width: 100%; height: 120px;">
 </div>
