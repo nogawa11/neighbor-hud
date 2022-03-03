@@ -1,11 +1,5 @@
 .report-details {
-  position: fixed;
-  bottom: 9rem;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 90%;
   padding-block: 0.9rem;
-  z-index: 2;
   border: 1px solid #333333;
   border-radius: 1rem;
   background: #333333;
@@ -61,4 +55,6 @@
       }
     }
   }
+
+
 }

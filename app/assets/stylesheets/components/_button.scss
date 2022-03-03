@@ -12,20 +12,6 @@
     box-shadow: none;
   }
 
-  &.btn--report {
-    color: #FBFBFB;
-    background-color: #747985;
-    border-radius: 1rem;
-    width: 90%;
-    position: absolute;
-    bottom: -130px;
-    @include centralize();
-
-    &:focus {
-      background-color: #1a75e6;
-    }
-  }
-
   // Font Awesome icons
   i {
     position: relative;
