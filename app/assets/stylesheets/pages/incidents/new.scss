@@ -10,19 +10,5 @@
     width: 90%;
     left: 50%;
     transform: translateX(-50%);
-
-    .report-details__submit {
-      color: $light;
-      background-color: #747985;
-      border-radius: 1rem;
-      width: 100%;
-      position: fixed;
-      bottom: 4rem;
-      @include centralize();
-
-      &:focus {
-        background-color: #1a75e6;
-      }
-    }
   }
 }

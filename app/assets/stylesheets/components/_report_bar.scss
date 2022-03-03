@@ -24,4 +24,18 @@
   align-items: center;
   margin: 0 auto;
   }
+
+  .report-details__submit {
+    color: $light;
+    background-color: #747985;
+    border-radius: 1rem;
+    width: 90%;
+    position: fixed;
+    bottom: 5rem;
+    @include centralize();
+
+    &:focus {
+      background-color: #1a75e6;
+    }
+  }
 }
