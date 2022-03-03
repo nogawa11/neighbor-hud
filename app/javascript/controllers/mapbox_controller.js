@@ -19,14 +19,6 @@ export default class extends Controller {
 
     this.#addMarkersToMap()
     this.#fitMapToMarkers()
-    var geocoder = new MapboxGeocoder({
-      accessToken: mapboxgl.accessToken,
-      mapboxgl: mapboxgl
-    })
-    this.map.addControl(
-      geocoder
-    )
-    // this.#fitMapToMarkers()
 
     if (!this.isInShowPage()) {
       this.map.addControl(new MapboxGeocoder({
