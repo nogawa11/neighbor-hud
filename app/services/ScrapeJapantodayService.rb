@@ -29,12 +29,12 @@ class ScrapeJapantodayService < ApplicationRecord
         @article[:description] = doc.at("[@itemprop = 'articleBody']").text
         @incident = Incident.new(@article)
         keywords = []
-        keywords << "Violence" if VIOLENCE.any? { |keyword| @article[:description].downcase.include? keyword }
         keywords << "Theft" if THEFT.any? { |keyword| @article[:description].downcase.include? keyword }
         keywords << "Arson" if ARSON.any? { |keyword| @article[:description].downcase.include? keyword }
         keywords << "Harrasment" if HARASSMENT.any? { |keyword| @article[:description].downcase.include? keyword }
         keywords << "Traffic" if TRAFFIC.any? { |keyword| @article[:description].downcase.include? keyword }
         keywords << "Drugs" if DRUGS.any? { |keyword| @article[:description].downcase.include? keyword }
+        keywords << "Violence" if VIOLENCE.any? { |keyword| @article[:description].downcase.include? keyword }
         keywords << "Disturbing the Peace" if keywords.empty?
         keywords.each do |keyword|
           @incident.category_list.add(keyword)
