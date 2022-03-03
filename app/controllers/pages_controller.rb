@@ -2,10 +2,10 @@ class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:home]
   def home
     # Had to add the following instances otherwise the map wouldn't work.
-    if params[:query].present?
-      @incidents = policy_scope(Incident).near(params[:query])
-    elsif params[:filter].present?
+    if params[:filter].present?
       news_user_filter(params[:filter])
+    elsif params[:start_date].present?
+      date_filter(params[:start_date], params[:end_date])
     elsif params[:category].present?
       category_filter(params[:category])
     else
