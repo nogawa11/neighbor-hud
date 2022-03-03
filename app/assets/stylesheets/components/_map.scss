@@ -15,6 +15,15 @@
   &gl-popup-anchor-bottom .mapboxgl-popup-tip {
     border-top-color: $primary;
   }
+  &gl-popup-anchor-top .mapboxgl-popup-tip {
+    border-bottom-color: $primary;
+  }
+  &gl-popup-anchor-left .mapboxgl-popup-tip {
+    border-right-color: $primary;
+  }
+  &gl-popup-anchor-right .mapboxgl-popup-tip {
+    border-left-color: $primary;
+  }
 
   &gl-popup-content {
     background: $primary;
