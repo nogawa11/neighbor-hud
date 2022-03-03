@@ -4,7 +4,6 @@
                       report_details_target: 'form',
                       action: "submit->report-details#create" } do |f| %>
     <div class="report">
-      <%= f.button :submit, "Report", class: "btn btn--report", style: "z-index: 100" %>
       <%# <%= render "components/incident_report", f: f %>
       <div class="mb-0">
         <h3 class="report_container__heading">Report on <span style="color: #238beb">Incident</span></h3>
@@ -47,6 +46,7 @@
           </div>
         </div>
       </div>
+      <%= f.button :submit, "Report", class: "btn btn--report report-details__submit", style: "z-index: 100" %>
     <% end %>
   </div>
   <%# <%= f.input :category_list, label: "Add categories", as: :check_boxes, collection: [ "Violence", "Theft", "Arson", "Drugs", "Harrasment/SA", "Disturbing the Peace", "Traffic" ] %>
