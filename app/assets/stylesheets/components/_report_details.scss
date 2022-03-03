@@ -26,6 +26,12 @@
     }
   }
 
+  input.description {
+    color: #bcc4cd;
+    background: #383838;
+    border: none;
+    border-radius: 1rem;
+  }
 
   &__button {
     background: transparent;
