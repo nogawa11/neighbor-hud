@@ -4,6 +4,7 @@
     background-color: #333333;
     border-radius: 16px;
     font-family: $roboto;
+    overflow: hidden;
 
     h1 {
       color: rgb(247, 247, 247);
@@ -23,6 +24,10 @@
       font-size: 13px;
       color: #8E9398;
       font-family: $roboto;
+    }
+
+    .mapboxgl-control-container {
+      display: none;
     }
   }
 
