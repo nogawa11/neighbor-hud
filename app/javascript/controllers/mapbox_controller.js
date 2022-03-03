@@ -23,9 +23,7 @@ export default class extends Controller {
       accessToken: mapboxgl.accessToken,
       mapboxgl: mapboxgl
     })
-    this.map.addControl(
-      geocoder
-    )
+    this.map.addControl(geocoder)
     // this.#fitMapToMarkers()
 
     if (!this.isInShowPage()) {
@@ -37,19 +35,10 @@ export default class extends Controller {
 
     const latitude = document.querySelector(".latitude")
     const longitude = document.querySelector(".longitude")
-    console.log(latitude)
-  geocoder.on('result', e => {
-      latitude.value = e.result.center[0]
-      longitude.value = e.result.center[1]
-      console.log(e.result.center);
-  });
-
-    const geolocate = new mapboxgl.GeolocateControl({
-      positionOptions: {
-        enableHighAccuracy: true
-      },
-      trackUserLocation: true,
-      showUserHeading: true
+    geocoder.on('result', e => {
+        latitude.value = e.result.center[0]
+        longitude.value = e.result.center[1]
+        console.log(e.result.center);
     });
     this.addMapInputToForm()
   }
