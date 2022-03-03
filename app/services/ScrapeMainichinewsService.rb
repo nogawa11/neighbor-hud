@@ -4,7 +4,7 @@ require "nokogiri"
 class ScrapeMainichinewsService < ApplicationRecord
   THEFT = ["stolen", "stole", "theft", "robbery", "robbed", "steals", "robbing", "stealing"]
   ARSON = ["burn", "fire", "burned", "arson"]
-  HARASSMENT = ["sexual assault", "grope", "groped", "groping", "sexual abuse", "harassed", "harass", "harassment", "exposing", "indecent", "raped", "sexual", "naked"]
+  HARASSMENT = ["sexual assault", "grope", "groped", "groping", "sexual abuse", "harassed", "harass", "harassment", "exposing", "indecent", "raped", "sexual", "naked", "voyeurism"]
   TRAFFIC = ["motorcyclist", "crash", "red light", "car accident"]
   DRUGS = ["stimulants", "weed", "marijuana", "cocaine", "heroine", "methamphetamine", "methamphetamines", "drugs"]
   VIOLENCE = ["violent", "hit", "kill", "murder", "stabbed", "knife", "killed", "punched", "kicked", "killing", "attacked", "abuse", "assaulting", "dead", "stabbing", "attacks", "shoot", "shoots", "shot", "assault", "gun", "knife"]
