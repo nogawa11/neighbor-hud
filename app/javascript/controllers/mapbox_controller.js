@@ -47,7 +47,7 @@ export default class extends Controller {
           closeOnClick: false,
           closeButton: false
         }).setHTML(
-          `<a href="incidents/${marker.id}" class="mapbox-icon"></a>`
+          `<a href="incidents/${marker.id}?path=map" class="mapbox-icon"></a>`
         )
 
       new mapboxgl.Marker()
