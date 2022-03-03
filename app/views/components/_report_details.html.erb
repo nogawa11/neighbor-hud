@@ -8,8 +8,8 @@
     <%= f.input :description,
                 placeholder: "Write incident details here",
                 label: false,
-                input_html: { :style=> "background: #383838; border: none; border-radius: 1rem; color: #bcc4cd;"},
+                input_html: { class: "description" },
                 required: false %>
-    <%= f.button :submit, "Report", class: "btn btn--report", input_html: { style: "overflow: hidden;"} %>
+    <%= f.button :submit, "Report", class: "btn btn--report" %>
   </div>
 </div>
