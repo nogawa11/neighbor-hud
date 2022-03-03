@@ -1,4 +1,5 @@
-<div class="incident-show">
+<div class="incident-show" style ="max-height: calc(100vh - 160px);
+  overflow: scroll !important;">
   <div class="container ps-3 pe-3 mt-3">
     <div class="link--incident-details">
       <%= render "incidents/incident_back_button" %>
@@ -11,7 +12,7 @@
       <%= render 'map' %>
     </div>
   </div>
-  <div class="incident-show__comments">
+  <div class="mt-2">
     <% @incident.comments.each do |comment| %>
       <%= render 'comment_card', comment: comment %>
     <% end %>
