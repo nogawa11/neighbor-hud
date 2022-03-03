@@ -12,4 +12,8 @@ export default class extends Controller {
     this.buttonTarget.classList.toggle("open")
     this.cardTarget.classList.toggle("open");
   }
+
+  create() {
+    console.log("Hello");
+  }
 }

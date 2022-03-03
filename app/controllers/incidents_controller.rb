@@ -25,6 +25,8 @@ class IncidentsController < ApplicationController
     @incident = Incident.new(incident_params)
     authorize @incident
     @incident.user = current_user
+    @incident.incident_date = params[:incident_date]
+
     if @incident.save
       redirect_to incident_path(@incident)
     else
