@@ -17,7 +17,7 @@ export default class extends Controller {
     switch (true) {
       case path === "/":
         return this.homeTarget.classList.add("active");
-      case path === "/incidents" || (/incidents\/\d+/).test(path):
+      case path === "/feed" || (/incidents\/\d+/).test(path):
         return this.incidentsTarget.classList.add("active");
       case path === "/incidents/new":
         return this.newTarget.classList.add("active");
