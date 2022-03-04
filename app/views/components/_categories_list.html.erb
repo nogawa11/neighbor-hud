@@ -1,45 +1,12 @@
 <!-- TODO: Change icon colors to primary -->
 <div class="categories__list">
-  <div class="categories__item">
-    <%= link_to "/?category=violence" do %>
-      <%= image_tag "/assets/home/violence.png", style: "height: 40px; width: 40px;" %>
-    <% end %>
-    <p>Violence</p>
-  </div>
-  <div class="categories__item">
-    <%= link_to "/?category=theft" do %>
-      <%= image_tag "/assets/home/theft.png", style: "height: 40px; width: 40px;" %>
-    <% end %>
-    <p>Theft</p>
-  </div>
-  <div class="categories__item">
-    <%= link_to "/?category=harassment" do %>
-      <%= image_tag "/assets/home/harassment.png", style: "height: 40px; width: 40px;" %>
-    <% end %>
-    <p>Harassment</p>
-  </div>
-  <div class="categories__item">
-    <%= link_to "/?category=disturbing" do %>
-      <%= image_tag "/assets/home/disturb.png", style: "height: 40px; width: 40px;" %>
-    <% end %>
-    <p>Disturbance</p>
-  </div>
-  <div class="categories__item">
-    <%= link_to "/?category=arson" do %>
-      <%= image_tag "/assets/home/arson.png", style: "height: 40px; width: 40px;" %>
-    <% end %>
-    <p>Arson</p>
-  </div>
-  <div class="categories__item">
-    <%= link_to "/?category=drugs" do %>
-      <%= image_tag "/assets/home/drugs.png", style: "height: 40px; width: 40px;" %>
-    <% end %>
-    <p>Drugs</p>
-  </div>
-  <div class="categories__item">
-    <%= link_to "/?category=traffic" do %>
-      <%= image_tag "/assets/home/traffic.png", style: "height: 40px; width: 40px;" %>
-    <% end %>
-    <p>Traffic</p>
-  </div>
+  <% Dir.each_child("app/assets/images/home") do |file| %>
+    <% formatted_file = file.gsub(".png", "") %>
+    <div class="categories__item">
+      <%= link_to "/?category=#{formatted_file}" do %>
+        <%= image_tag "#{file}" %>
+      <% end %>
+      <p><%= formatted_file.capitalize %></p>
+    </div>
+  <% end %>
 </div>
