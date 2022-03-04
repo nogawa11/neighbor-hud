@@ -16,9 +16,7 @@ class ScrapeMainichinewsService < ApplicationRecord
     @urls = []
     html_doc.search('.newslist').css('li').each do |li|
       url = "https:#{li.css('a').attribute('href').value}"
-      if url != "https:" && url.include?("https://mainichi.jp/english/articles/")
-        @urls << url
-      end
+      @urls << url if url != "https:" && url.include?("https://mainichi.jp/english/articles/")
     end
     @urls.each do |url|
       file = URI.open(url).read
