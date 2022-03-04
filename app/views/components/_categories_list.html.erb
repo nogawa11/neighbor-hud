@@ -1,10 +1,8 @@
-<!-- TODO: Change icon colors to primary -->
 <div class="categories__list" data-controller="active-button">
   <% Dir.each_child("app/assets/images/home") do |file| %>
     <% formatted_file = file.gsub(".png", "") %>
     <div class="categories__item">
-      <%#= "/?category=#{formatted_file}" %>
-      <button data-active-button-target="categoryButton">
+      <button class="categories__button active" data-active-button-target="categoryButton">
         <%= image_tag "#{file}" %>
         <p><%= formatted_file.capitalize %></p>
       </button>

@@ -47,4 +47,16 @@
   }
 /* ----------------------------- Categories Item ---------------------------- */
 
+  &__button {
+    img {
+      transition: all 0.4s;
+      filter: invert(91%) sepia(13%) saturate(7%) hue-rotate(126deg) brightness(93%) contrast(87%);
+    }
+
+    &.active {
+      img {
+        filter: unset;
+      }
+    }
+  }
 }
