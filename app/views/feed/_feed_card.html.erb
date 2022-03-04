@@ -4,7 +4,7 @@
       <h1><%= incident.title %></h1>
     </div>
     <div class="col-2">
-      <%= render 'feed/icon', category: incident.category_list.first %>
+      <%= render 'feed/icon.html.erb', category: incident.category_list.first %>
     </div>
   </div>
   <p class="card--description"><%= incident.description.first(100)... %></p>
@@ -19,7 +19,7 @@
       <% distance = (Geocoder::Calculations.distance_between([meguro_lat, meguro_long], [incident.latitude, incident.longitude])).round(0) %>
     <% end %>
     <p>
-      <%= render 'incidents/distance_icon', distance: distance %>
+      <%= render 'incidents/distance_icon.html.erb', distance: distance %>
       <%= distance %>
       km away from you
     </p>

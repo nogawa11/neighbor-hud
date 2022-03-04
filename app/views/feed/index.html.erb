@@ -1,15 +1,11 @@
-<div class="container feed">
+<div class="container feed"  data-controller="active-button">
   <div class="feed__top">
     <p>Here are the recent incidents in your area</p>
     <%= render 'search' %>
     <%= render 'buttons' %>
   </div>
   <div class="feed__mid">
-    <div class="feed__incidents">
-      <% @incidents.each do |incident| %>
-        <%= render 'feed_card', incident: incident %>
-      <% end %>
-    </div>
+    <%= render 'feed_incidents' %>
   </div>
   <div class="feed__bottom">
     <div class="feed__filter">
