@@ -20,13 +20,7 @@ class CommentsController < ApplicationController
     @comment.user = current_user
     @comment.comment = @original_comment if @original_comment.present?
     @comment.incident = @incident
-    if @comment.save && !@original_comment.present?
-      redirect_to incident_path(@incident)
-    elsif @comment.save && @original_comment.present?
-      redirect_to incident_comment_path(@incident, @original_comment)
-    else
-      render :new
-    end
+    redirect(@comment, @original_comment, @incident)
   end
 
   def show
@@ -60,5 +54,15 @@ class CommentsController < ApplicationController
 
   def find_incident(incident_id)
     @incident = Incident.find(incident_id)
+  end
+
+  def redirect(comment, original_comment, incident)
+    if comment.save && !original_comment.present?
+      redirect_to incident_path(incident)
+    elsif comment.save && original_comment.present?
+      redirect_to incident_comment_path(incident, original_comment)
+    else
+      render :new
+    end
   end
 end

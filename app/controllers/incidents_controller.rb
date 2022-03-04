@@ -22,7 +22,7 @@ class IncidentsController < ApplicationController
     @incident = Incident.new
     authorize @incident
     @markers = [
-      {lat: 0, lng: 0}
+      { lat: 0, lng: 0 }
     ]
   end
 
