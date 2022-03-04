@@ -41,6 +41,11 @@ class ScrapeMainichinewsService < ApplicationRecord
         keywords.each do |keyword|
           @incident.category_list.add(keyword)
         end
+        if @incident.category_list.first == 'Disturbing the Peace'
+          @incident.image_path = 'disturb.png'
+        else
+          @incident.image_path = "#{category_list.first}.png"
+        end
         @incident.save
       end
     end
