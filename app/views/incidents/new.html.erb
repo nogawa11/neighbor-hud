@@ -5,9 +5,10 @@
                       action: "submit->report-details#create" } do |f| %>
     <div class="report">
       <%# <%= render "components/incident_report", f: f %>
-      <div class="mb-0">
+      <div class="report-form">
         <h3 class="report_container__heading">Report on <span style="color: #238beb">Incident</span></h3>
-        <%= f.input :location,
+        <%# Location and category need to be updated later. The current ones are temporary codes. %>
+        <%# <%= f.input :location,
               input_html: { data: { geocoder_target: "location" }, class: "search" },
               wrapper_html: { data: { controller: "geocoder", geocoder_api_key_value: ENV['MAPBOX_API_KEY'] } },
               label: false,
@@ -16,8 +17,11 @@
         <%= f.input :longitude,label: false, as: :hidden, input_html: { class: "longitude" }  %>
         <%# <p>Select a category</p> %>
         <%#= render "components/categories" %>
-        <%= f.input :location %>
-        <%= f.input :category_list, label: "Add categories", collection: [ "Violence", "Theft", "Arson", "Drugs", "Harrasment", "Disturbing the Peace", "Traffic" ] %>
+        <%= f.input :location, placeholder: "Enter a location", input_html: { class: "search" } %>
+        <%= f.input :category_list,
+                    label: "Add categories",
+                    collection: [ "Violence", "Theft", "Arson", "Drugs", "Harrasment", "Disturbing the Peace", "Traffic" ],
+                    input_html: { class: "category" } %>
         <div class="date-and-comments">
           <%= render "components/date_picker_for_report" %>
           <%= f.input :can_receive_comments,
@@ -51,7 +55,5 @@
       <%= f.button :submit, "Report", class: "btn btn--report report-details__submit", style: "z-index: 100" %>
     <% end %>
   </div>
-  <div style="z-index: 1; width: 100%; height: 210px;">
-    <%= render 'shared/map' %>
-  </div>
+  <%= render 'shared/map' %>
 </div>
