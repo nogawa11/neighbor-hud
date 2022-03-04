@@ -29,7 +29,7 @@ export default class extends Controller {
 
     const latitude = document.querySelector(".latitude")
     const longitude = document.querySelector(".longitude")
-    geocoder.on('result', e => {
+    this.map.on('result', e => {
         latitude.value = e.result.center[0]
         longitude.value = e.result.center[1]
         console.log(e.result.center);
@@ -39,11 +39,11 @@ export default class extends Controller {
 
   addMapInputToForm(){
     const input = document.querySelector(".mapboxgl-ctrl-geocoder--input")
-    input.addEventListener("keyup", (event) => {
-      document.getElementById("incident_location").value = input.value
+    input.addEventListener("keyup", (e) => {
+      document.getElementById("incident_location").value = e.currentTarget.value
     })
-    input.addEventListener("change", (event) => {
-      document.getElementById("incident_location").value = input.value
+    input.addEventListener("change", (e) => {
+      document.getElementById("incident_location").value = e.currentTarget.value
     })
   }
 
