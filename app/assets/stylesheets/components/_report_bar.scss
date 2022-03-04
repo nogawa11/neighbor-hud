@@ -6,6 +6,10 @@
   padding: 24px 16px 1px 16px;
   text-align: center;
 
+  .report-form {
+    margin-bottom: 0;
+  }
+
   input.search {
     margin-bottom: 1px;
     border-radius: 1rem;
@@ -15,7 +19,9 @@
   }
 
   input.category {
-    background: #383838;
+    margin-bottom: 1px;
+    border-radius: 1rem;
+    background: #e5e5e5;
   }
 
   p {
