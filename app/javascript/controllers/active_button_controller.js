@@ -3,13 +3,13 @@ import {
 } from "stimulus"
 
 export default class extends Controller {
-  static targets = ["button"]
+  static targets = ["topButton"]
 
   connect() {
-    this.buttonTargets.forEach((button) => {
+    this.topButtonTargets.forEach((button) => {
       button.addEventListener("click", (e) => {
         this.fetchData(e);
-        this.buttonTargets.forEach((sibling) => {
+        this.topButtonTargets.forEach((sibling) => {
           sibling.classList.remove("active");
         })
         button.classList.add("active");
