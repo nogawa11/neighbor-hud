@@ -17,7 +17,7 @@
         <%= f.input :longitude,label: false, as: :hidden, input_html: { class: "longitude" }  %>
         <%# <p>Select a category</p> %>
         <%#= render "components/categories" %>
-        <%= f.input :location, placeholder: "Enter a location", input_html: { class: "search" } %>
+        <%= f.input :location, placeholder: "Enter a location", input_html: { class: "search" }, as: :hidden %>
         <%= f.input :category_list,
                     label: "Add categories",
                     collection: [ "Violence", "Theft", "Arson", "Drugs", "Harrasment", "Disturbing the Peace", "Traffic" ],
