@@ -1,23 +1,23 @@
 <div class="container feed">
-  <div class="d-flex justify-content-center mt-3 text--offwhite">
+  <div class="feed__top">
     <p>Here are the recent incidents in your area</p>
-  </div>
-  <div class="mb-3">
     <%= render 'search' %>
+    <%= render 'buttons' %>
   </div>
-  <%= render 'buttons' %>
-  <div class="overflow-scroll mt-3 mb-3 feed__incidents">
-    <% @incidents.each do |incident| %>
-      <%= render 'feed_card', incident: incident %>
-    <% end %>
+  <div class="feed__mid">
+    <div class="feed__incidents">
+      <% @incidents.each do |incident| %>
+        <%= render 'feed_card', incident: incident %>
+      <% end %>
+    </div>
   </div>
-  <div class="feed__filter">
-    <div class="d-flex justify-content-center text--offwhite">
+  <div class="feed__bottom">
+    <div class="feed__filter">
       <p class="feed__paragraph">Filter by category or date</p>
+      <div class="categories">
+        <%= render "category_list" %>
+      </div>
+      <%= render 'date_picker' %>
     </div>
-    <div class="categories">
-      <%= render "category_list" %>
-    </div>
-    <%= render 'date_picker' %>
   </div>
 </div>

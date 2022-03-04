@@ -41,7 +41,9 @@
     border-radius: 1rem;
     width: 90%;
     position: fixed;
-    bottom: 5rem;
+    bottom: 5.5rem;
+    left: 50%;
+    transform: translateX(-50%);
     @include centralize();
 
     &:focus {
