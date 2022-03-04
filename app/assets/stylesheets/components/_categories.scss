@@ -4,7 +4,8 @@
   grid-template-areas:
     "button-left categories_list button-right"
     "button-left date-picker button-right";
-  gap: 0.5rem;
+  row-gap: 0.25rem;
+  column-gap: 0.5rem;
   position: relative;
 
 /* ----------------------------- Categories List ---------------------------- */
@@ -15,7 +16,7 @@
     overflow: auto;
     align-items: center;
     grid-area: categories_list;
-    padding-block: 1rem 0.5rem;
+    padding-block: 0.5rem 0.25rem;
     transition: all 0.3s ease-in-out;
     -webkit-overflow-scrolling: touch;
     -ms-overflow-style: none;  /* IE and Edge */
