@@ -14,8 +14,10 @@
               as: :hidden %>
         <%= f.input :latitude,label: false, as: :hidden,  input_html: { class: "latitude" } %>
         <%= f.input :longitude,label: false, as: :hidden, input_html: { class: "longitude" }  %>
-        <p>Select a category</p>
-        <%= render "components/categories" %>
+        <%# <p>Select a category</p> %>
+        <%#= render "components/categories" %>
+        <%= f.input :location %>
+        <%= f.input :category_list, label: "Add categories", collection: [ "Violence", "Theft", "Arson", "Drugs", "Harrasment", "Disturbing the Peace", "Traffic" ] %>
         <div class="date-and-comments">
           <%= render "components/date_picker_for_report" %>
           <%= f.input :can_receive_comments,
@@ -49,7 +51,6 @@
       <%= f.button :submit, "Report", class: "btn btn--report report-details__submit", style: "z-index: 100" %>
     <% end %>
   </div>
-  <%# <%= f.input :category_list, label: "Add categories", as: :check_boxes, collection: [ "Violence", "Theft", "Arson", "Drugs", "Harrasment/SA", "Disturbing the Peace", "Traffic" ] %>
   <div style="z-index: 1; width: 100%; height: 210px;">
     <%= render 'shared/map' %>
   </div>

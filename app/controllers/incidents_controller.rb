@@ -26,7 +26,8 @@ class IncidentsController < ApplicationController
     authorize @incident
     @incident.user = current_user
     @incident.incident_date = params[:incident_date]
-
+    add_icon_image(@incident.category_list.first)
+    @incident.image_path = @image_path
     if @incident.save
       redirect_to incident_path(@incident)
     else
@@ -59,6 +60,14 @@ class IncidentsController < ApplicationController
   end
 
   def incident_params
-    params.require(:incident).permit(:id, :title, :description, :incident_date, :location, :latitude, :longitude, :user_id, :can_receive_comments, category_list: [])
+    params.require(:incident).permit(:id, :title, :description, :incident_date, :location, :latitude, :longitude, :user_id, :can_receive_comments, :category_list, category_list: [])
+  end
+
+  def add_icon_image(category)
+    if category == 'Disturbing the Peace'
+      @image_path = 'disturb.png'
+    else
+      @image_path = "#{category}.png"
+    end
   end
 end
