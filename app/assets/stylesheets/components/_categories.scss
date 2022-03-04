@@ -7,6 +7,7 @@
   row-gap: 0.25rem;
   column-gap: 0.5rem;
   position: relative;
+  overflow: hidden;
 
 /* ----------------------------- Categories List ---------------------------- */
   &__list {
@@ -34,11 +35,12 @@
     text-align: center;
     font-size: 0.75rem;
     font-weight: 400;
-    display: grid;
-    grid-template-rows: 43px auto;
-    justify-items: center;
-    align-items: center;
     width: 75px;
+
+    img {
+      width: 40px;
+      height: 40px;
+    }
 
     p {
       margin: 0;
@@ -46,4 +48,16 @@
   }
 /* ----------------------------- Categories Item ---------------------------- */
 
+  &__button {
+    img {
+      transition: all 0.4s;
+      filter: invert(91%) sepia(13%) saturate(7%) hue-rotate(126deg) brightness(93%) contrast(87%);
+    }
+
+    &.active {
+      img {
+        filter: unset;
+      }
+    }
+  }
 }
