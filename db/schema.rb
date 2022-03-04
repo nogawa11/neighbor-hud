@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_01_023862) do
+ActiveRecord::Schema.define(version: 2022_03_04_020922) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 2022_03_01_023862) do
     t.boolean "can_receive_comments"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "image_path"
     t.index ["user_id"], name: "index_incidents_on_user_id"
   end
 

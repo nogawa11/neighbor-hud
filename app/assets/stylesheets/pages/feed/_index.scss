@@ -1,0 +1,12 @@
+.feed {
+  &__incidents {
+    max-height: 417px;
+  }
+
+  &__paragraph {
+    margin: 0;
+    padding: 0;
+    letter-spacing: 1px;
+    font-weight: 600;
+  }
+}
