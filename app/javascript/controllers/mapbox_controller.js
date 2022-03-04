@@ -18,7 +18,7 @@ export default class extends Controller {
     })
 
     this.#addMarkersToMap()
-    this.#fitMapToMarkers()
+    // this.#fitMapToMarkers()
 
     if (!this.isInShowPage()) {
       this.map.addControl(new MapboxGeocoder({
