@@ -17,7 +17,10 @@
         <%# <p>Select a category</p> %>
         <%#= render "components/categories" %>
         <%= f.input :location %>
-        <%= f.input :category_list, label: "Add categories", collection: [ "Violence", "Theft", "Arson", "Drugs", "Harrasment", "Disturbing the Peace", "Traffic" ] %>
+        <%= f.input :category_list,
+                    label: "Add categories",
+                    collection: [ "Violence", "Theft", "Arson", "Drugs", "Harrasment", "Disturbing the Peace", "Traffic" ],
+                    input_html: { class: "category" } %>
         <div class="date-and-comments">
           <%= render "components/date_picker_for_report" %>
           <%= f.input :can_receive_comments,
