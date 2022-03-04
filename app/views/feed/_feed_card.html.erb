@@ -11,7 +11,13 @@
   <div class="card--bottom d-flex justify-content-between align-items-end mt-2">
     <% meguro_lat = 35.6415 %>
     <% meguro_long = 139.6981 %>
-    <% distance = (Geocoder::Calculations.distance_between([meguro_lat, meguro_long], [incident.latitude, incident.longitude])).round(0) %>
+    <% if request.location.latitude.present? %>
+      <% distance = (Geocoder::Calculations.distance_between([request.location.latitude, request.location.longitude], [incident.latitude, incident.longitude])).round(0) %>
+    <% elsif incident.latitude.nil? %>
+      <% distance = 'Unknown' %>
+    <% else %>
+      <% distance = (Geocoder::Calculations.distance_between([meguro_lat, meguro_long], [incident.latitude, incident.longitude])).round(0) %>
+    <% end %>
     <p>
       <%= render 'incidents/distance_icon', distance: distance %>
       <%= distance %>
