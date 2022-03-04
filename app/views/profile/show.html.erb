@@ -2,7 +2,29 @@
   <div class="users__header d-flex justify-content-center border-bottom mt-3">
     <h1><%= @user.name.capitalize %>'s <span class="text--blue">Profile</span></h1>
   </div>
-  <div class="users__posts">
-
+  <div class="users__posts mt-2">
+    <h5>My Posts:</h5>
+    <% if @user.incidents.first.present? %>
+      <% @user.incidents.each do |incident| %>
+        <% if incident.title.present? %>
+          <%= render 'feed/feed_card', incident: incident %>
+        <% end %>
+      <% end %>
+    <% else %>
+      <p>You have no Posts</p>
+    <% end %>
+  </div>
+  <div class="users__comments">
+    <h5>My Comments:</h5>
+      <% if @user.comments.first.present? %>
+        <% @user.comments.each do |comment| %>
+          <div class="comments__cards mt-2">
+            <p class="ms-3 me-3">You commented on <%= link_to comment.incident.title, incident_path(comment.incident) %> on <%= comment.created_at.strftime("%Y-%m-%d") %></p>
+            <%= render 'incidents/comment_card', comment: comment %>
+          </div>
+        <% end %>
+      <% else %>
+        <p class="m-3">You have no comments</p>
+      <% end %>
   </div>
 </div>
