@@ -11,8 +11,8 @@ export default class extends Controller {
   static targets = [ 'noSearch', "latitude", "longitude" ]
 
   async connect() {
-    await this.#getUserLocation()
-    this.#startMapbox()
+    await this.#startMapbox()
+    this.#centerMap()
     this.#addMarkersToMap()
     this.#addSearchBox()
     this.#addCurrentLocationButton()
@@ -25,7 +25,7 @@ export default class extends Controller {
         console.log(e.result.center);
     });
 
-    this.#addMapInputToForm()
+    this.#isInNewIncidentPage() && this.#addMapInputToForm()
   }
 
 /* --------------------------------- Private -------------------------------- */
@@ -33,6 +33,18 @@ export default class extends Controller {
     navigator.geolocation.getCurrentPosition(position => {
       this.map.setCenter([position.coords.longitude, position.coords.latitude])
     });
+  }
+
+  #getIncidentLocation() {
+    const lng = this.markersValue[0].lng;
+    const lat = this.markersValue[0].lat;
+    console.log(lng, lat);
+    this.map.setCenter([lng, lat])
+    this.map.setZoom(13)
+  }
+
+  #centerMap() {
+    this.#isInShowPage() ? this.#getIncidentLocation() : this.#getUserLocation()
   }
 
   #startMapbox() {
@@ -97,7 +109,11 @@ export default class extends Controller {
   }
 
   #isInShowPage() {
-    return (/incidents\/\d+/).test(window.location.pathname);
+    return (/\/incidents\/\d+.*/).test(window.location.pathname);
+  }
+
+  #isInNewIncidentPage() {
+    return (/\/incidents\/new\/?/).test(window.location.pathname)
   }
 
   #fitMapToMarkers() {
