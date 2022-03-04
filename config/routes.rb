@@ -4,9 +4,9 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
 
-  get '/notifications', to: 'comments#index', as: 'notifications'
   get '/route', to: 'route#show', as: 'route'
   get '/feed', to: 'feed#index', as: 'feed'
+  get '/profile', to: 'profile#show', as: 'profile'
 
   resources :incidents
 
