@@ -1,5 +1,5 @@
 <!-- TODO: Change icon colors to primary -->
-<div class="categories__list">
+<div class="categories__list" data-controller="active-button">
   <% Dir.each_child("app/assets/images/home") do |file| %>
     <% formatted_file = file.gsub(".png", "") %>
     <div class="categories__item">

@@ -1,42 +1,53 @@
-import {
-  Controller
-} from "stimulus"
+import { Controller } from "stimulus";
 
 export default class extends Controller {
-  static targets = ["topButton"]
+  static targets = ["topButton", "categoryButton"];
 
   connect() {
-    this.topButtonTargets.forEach((button) => {
-      button.addEventListener("click", (e) => {
-        this.fetchData(e);
-        this.topButtonTargets.forEach((sibling) => {
-          sibling.classList.remove("active");
-        })
-        button.classList.add("active");
-      });
-    })
+    this.#handleButtons(this.topButtonTargets, "filter");
+    this.#handleButtons(this.categoryButtonTargets, "category");
   }
 
-  fetchData(e) {
+  /* --------------------------------- Private -------------------------------- */
+  #getFormattedPath(button, params) {
+    if (params === "category") {
+      console.log(button);
+      return button.children[1].innerText.toLowerCase();
+    } else {
+      console.log(button);
+      const path = button.innerText.replace(/\s/g, "");
+      return path.toLowerCase();
+    }
+  }
+
+  #fetchData(e, params) {
     const options = {
       method: "GET",
       headers: {
-        'Accept': 'text/plain'
-      }
-    }
-    const path = this.#getFormattedPath(e.target);
-    fetch(`/?filter=${path}`, options).then((response) =>
+        Accept: "text/plain",
+      },
+    };
+
+    const path = this.#getFormattedPath(e.currentTarget, params);
+
+    fetch(`/?${params}=${path}`, options).then((response) =>
       response.text().then((responseText) => {
         const map = document.querySelector("#mapbox");
         map.outerHTML = responseText;
-        history.pushState(null, null, `/?filter=${path}`);
+        history.pushState(null, null, `/?${params}=${path}`);
       })
     );
   }
 
-/* --------------------------------- Private -------------------------------- */
-  #getFormattedPath(button) {
-    const path = button.innerText.replace(/\s/g, '');
-    return path.toLowerCase();
+  #handleButtons(targets, params) {
+    targets.forEach((button) => {
+      button.addEventListener("click", (e) => {
+        this.#fetchData(e, params);
+        targets.forEach((sibling) => {
+          sibling.classList.remove("active");
+        });
+        button.classList.add("active");
+      });
+    });
   }
 }
