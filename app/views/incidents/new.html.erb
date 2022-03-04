@@ -52,7 +52,9 @@
           </div>
         </div>
       </div>
-      <%= f.button :submit, "Report", class: "btn btn--report report-details__submit", style: "z-index: 100" %>
+      <%= f.button :submit, "Report",
+      class: "btn btn--report report-details__submit",
+      data: { disable_with: "Processsing..." } %>
     <% end %>
   </div>
   <%= render 'shared/map' %>
