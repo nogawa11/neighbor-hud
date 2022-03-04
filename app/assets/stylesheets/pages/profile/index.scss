@@ -1,0 +1,20 @@
+.profile-show {
+  height: calc(100vh - 6em);
+  top: 0;
+  overflow: scroll;
+  color: rgb(240, 240, 240);
+
+  .text--roboto {
+    font-family: $roboto;
+    font-weight: 300;
+    font-size: 18px;
+  }
+
+  .text--gray {
+    color: gray;
+  }
+
+  .text--blue {
+    color: $primary;
+  }
+}

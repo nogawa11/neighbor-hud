@@ -1,9 +1,9 @@
-<div class="users-show p-3">
-  <div class="users__header d-flex justify-content-center border-bottom mt-3">
+<div class="profile-show p-3">
+  <div class="profile__header d-flex justify-content-center border-bottom mt-3">
     <h1><%= @user.name.capitalize %>'s <span class="text--blue">Profile</span></h1>
   </div>
-  <div class="users__posts mt-2">
-    <h5>My Posts:</h5>
+  <div class="profile__incidents mt-2">
+    <h5 class="text--gray text--roboto"><em>My Posts:</em></h5>
     <% if @user.incidents.first.present? %>
       <% @user.incidents.each do |incident| %>
         <% if incident.title.present? %>
@@ -11,11 +11,11 @@
         <% end %>
       <% end %>
     <% else %>
-      <p>You have no Posts</p>
+      <p><em>You have no Posts</em></p>
     <% end %>
   </div>
-  <div class="users__comments">
-    <h5>My Comments:</h5>
+  <div class="profile__comments">
+    <h5 class="text--gray text--roboto"><em>My Comments:</em></h5>
       <% if @user.comments.first.present? %>
         <% @user.comments.each do |comment| %>
           <div class="comments__cards mt-2">
@@ -24,7 +24,7 @@
           </div>
         <% end %>
       <% else %>
-        <p class="m-3">You have no comments</p>
+        <p class="m-3"><em>You have no comments</em></p>
       <% end %>
   </div>
 </div>
