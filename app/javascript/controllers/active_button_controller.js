@@ -29,7 +29,7 @@ export default class extends Controller {
       response.text().then((responseText) => {
         const map = document.querySelector("#mapbox");
         map.outerHTML = responseText;
-        console.log("Done");
+        history.pushState(null, null, `/?filter=${path}`);
       })
     );
   }
