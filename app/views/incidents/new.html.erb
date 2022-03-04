@@ -13,8 +13,10 @@
               label: false,
               as: :hidden %>
         <%= f.input :latitude,label: false, as: :hidden,  input_html: { class: "latitude" } %>
-        <%= f.input :longitude,label: false, as: :hidden, input_html: { class: "longitude" }  %>
-        <p>Select a category</p>
+        <%= f.input :longitude,label: false, as: :hidden, input_html: { class: "longitude" } %>
+        <%= f.input :categories, label: "Select a category", collection: ["Violence", "Theft", "Harassment", "Disturbance", "Arson", "Drugs", "Traffic"] %>
+        <%# The category part needs to be updated later %>
+        <%# <p>Select a category</p>
         <%= render "components/categories" %>
         <div class="date-and-comments">
           <%= render "components/date_picker_for_report" %>
