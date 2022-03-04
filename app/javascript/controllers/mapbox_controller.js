@@ -11,6 +11,7 @@ export default class extends Controller {
   static targets = [ 'noSearch', "latitude", "longitude" ]
 
   connect() {
+    // Initialize MapBox.
     mapboxgl.accessToken = this.apiKeyValue
     this.map = new mapboxgl.Map({
       container: this.element,
@@ -20,12 +21,15 @@ export default class extends Controller {
     this.#addMarkersToMap()
     // this.#fitMapToMarkers()
 
+    // Adds the search box if the current page is not /incidents/:id.
     if (!this.isInShowPage()) {
       this.map.addControl(new MapboxGeocoder({
         accessToken: mapboxgl.accessToken,
         mapboxgl: mapboxgl
       }))
     }
+
+    // Adds a current location button.
     this.map.addControl(new mapboxgl.GeolocateControl({
       positionOptions: {
         enableHighAccuracy: true
@@ -33,7 +37,6 @@ export default class extends Controller {
       trackUserLocation: true,
       showUserHeading: true
     }));
-
     const latitude = document.querySelector(".latitude")
     const longitude = document.querySelector(".longitude")
     this.map.on('result', e => {
@@ -44,6 +47,7 @@ export default class extends Controller {
     this.addMapInputToForm()
   }
 
+  // When adding a new report, gets the the input from MapBox search box and inserts into the simple form.
   addMapInputToForm(){
     const input = document.querySelector(".mapboxgl-ctrl-geocoder--input")
     input.addEventListener("keyup", (e) => {
