@@ -49,7 +49,7 @@ class IncidentsController < ApplicationController
 
   def destroy
     @incident.destroy
-    redirect_to incidents_path
+    redirect_to feed_path
   end
 
   private
