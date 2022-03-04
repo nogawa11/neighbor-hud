@@ -1,30 +1,23 @@
 <div class="profile-show p-3">
-  <div class="profile__header d-flex justify-content-center border-bottom mt-3">
-    <h1><%= @user.name.capitalize %>'s <span class="text--blue">Profile</span></h1>
+  <div class="d-flex justify-content-center border-bottom mt-3">
+    <h1>My <span class="text--blue">Profile</span></h1>
   </div>
-  <div class="profile__incidents mt-2">
+  <div
+    class="profile__incidents mt-2"
+    data-controller="read-more"
+    data-read-more-more-text-value="Read more"
+    data-read-more-less-text-value="Read less"
+  >
     <h5 class="text--gray text--roboto"><em>My Posts:</em></h5>
-    <% if @user.incidents.first.present? %>
-      <% @user.incidents.each do |incident| %>
-        <% if incident.title.present? %>
-          <%= render 'feed/feed_card', incident: incident %>
-        <% end %>
-      <% end %>
-    <% else %>
-      <p><em>You have no Posts</em></p>
-    <% end %>
+    <%= render 'incidents', user: @user %>
   </div>
-  <div class="profile__comments">
+  <div
+    class="profile__comments"
+    data-controller="read-more"
+    data-read-more-more-text-value="Read more"
+    data-read-more-less-text-value="Read less"
+  >
     <h5 class="text--gray text--roboto"><em>My Comments:</em></h5>
-      <% if @user.comments.first.present? %>
-        <% @user.comments.each do |comment| %>
-          <div class="comments__cards mt-2">
-            <p class="ms-3 me-3">You commented on <%= link_to comment.incident.title, incident_path(comment.incident) %> on <%= comment.created_at.strftime("%Y-%m-%d") %></p>
-            <%= render 'incidents/comment_card', comment: comment %>
-          </div>
-        <% end %>
-      <% else %>
-        <p class="m-3"><em>You have no comments</em></p>
-      <% end %>
+    <%= render 'comments', user: @user %>
   </div>
 </div>
