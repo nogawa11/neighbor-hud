@@ -1,7 +1,7 @@
 import { Controller } from "stimulus";
 
 export default class extends Controller {
-  static targets = ["topButton", "categoryButton"];
+  static targets = ["topButton", "categoryButton", "feed"];
 
   connect() {
     this.#handleButtons(this.topButtonTargets, "filter");
@@ -20,6 +20,29 @@ export default class extends Controller {
     }
   }
 
+  #updateMap(res) {
+    const map = document.querySelector("#mapbox");
+    map.outerHTML = res;
+  }
+
+  #fetchHome(path, params, options) {
+    fetch(`/?${params}=${path}`, options).then((response) =>
+      response.text().then((responseText) => {
+        this.#updateMap(responseText);
+        history.pushState(null, null, `/?${params}=${path}`);
+      })
+    );
+  }
+
+  #fetchFeed(path, params, options) {
+    fetch(`/feed/?${params}=${path}`, options).then((response) =>
+      response.text().then((responseText) => {
+        this.feedTarget.outerHTML = responseText;
+        history.pushState(null, null, `/feed/?${params}=${path}`);
+      })
+    );
+  }
+
   #fetchData(e, params) {
     const options = {
       method: "GET",
@@ -30,13 +53,11 @@ export default class extends Controller {
 
     const path = this.#getFormattedPath(e.currentTarget, params);
 
-    fetch(`/?${params}=${path}`, options).then((response) =>
-      response.text().then((responseText) => {
-        const map = document.querySelector("#mapbox");
-        map.outerHTML = responseText;
-        history.pushState(null, null, `/?${params}=${path}`);
-      })
-    );
+    this.#isInFeedPage() ? this.#fetchFeed(path, params, options) : this.#fetchHome(path, params, options);
+  }
+
+  #isInFeedPage() {
+    return (/\/feed.*/).test(window.location.pathname);
   }
 
   #handleButtons(targets, params) {
