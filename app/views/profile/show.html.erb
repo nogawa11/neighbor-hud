@@ -1,0 +1,23 @@
+<div class="profile-show p-3">
+  <div class="d-flex justify-content-center border-bottom mt-3">
+    <h1>My <span class="text--blue">Profile</span></h1>
+  </div>
+  <div
+    class="profile__incidents mt-2"
+    data-controller="read-more"
+    data-read-more-more-text-value="Read more"
+    data-read-more-less-text-value="Read less"
+  >
+    <h5 class="text--gray text--roboto"><em>My Posts:</em></h5>
+    <%= render 'incidents', user: @user %>
+  </div>
+  <div
+    class="profile__comments"
+    data-controller="read-more"
+    data-read-more-more-text-value="Read more"
+    data-read-more-less-text-value="Read less"
+  >
+    <h5 class="text--gray text--roboto"><em>My Comments:</em></h5>
+    <%= render 'comments', user: @user %>
+  </div>
+</div>
