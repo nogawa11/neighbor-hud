@@ -4,7 +4,6 @@ export default class extends Controller {
   static targets = ["home", "incidents", "new", "route", "notifications"]
 
   connect() {
-    console.log("Hello, Stimulus!");
     this.links = document.querySelectorAll(".nav__link");
     this.#setActiveLink();
   }
