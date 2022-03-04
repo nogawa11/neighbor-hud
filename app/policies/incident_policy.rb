@@ -14,7 +14,6 @@ class IncidentPolicy < ApplicationPolicy
     return true
   end
 
-
   def create?
     return true
   end

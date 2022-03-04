@@ -6,17 +6,17 @@ class CommentsController < ApplicationController
   end
 
   def new
+    find_incident(params[:incident_id]) if params[:incident_id].present?
+    find_original_comment(params[:comment_id]) if params[:comment_id].present?
     @comment = Comment.new
     authorize @comment
-    @incident = Incident.find(params[:incident_id]) if params[:incident_id].present?
-    @original_comment = Comment.find(params[:comment_id]) if params[:comment_id].present?
   end
 
   def create
+    find_incident(params[:incident_id])
+    find_original_comment(params[:comment_id]) if params[:comment_id].present?
     @comment = Comment.new(comment_params)
     authorize @comment
-    @original_comment = Comment.find(params[:comment_id]) if params[:comment_id].present?
-    @incident = Incident.find(params[:incident_id])
     @comment.user = current_user
     @comment.comment = @original_comment if @original_comment.present?
     @comment.incident = @incident
@@ -30,16 +30,14 @@ class CommentsController < ApplicationController
   end
 
   def show
-    @original_comment = Comment.find(params[:id])
-    authorize @original_comment
-    @incident = Incident.find(params[:incident_id])
+    find_incident(params[:incident_id])
+    find_original_comment(params[:id])
     @comment = Comment.new
     authorize @comment
   end
 
   def destroy
-    @comment = Comment.find(params[:id])
-    authorize @comment
+    find_comment(params[:id])
     @comment.destroy
     redirect_to incident_path(@comment.incident)
   end
@@ -48,5 +46,19 @@ class CommentsController < ApplicationController
 
   def comment_params
     params.require(:comment).permit(:content, :comment_id, :incident_id)
+  end
+
+  def find_original_comment(comment_id)
+    @original_comment = Comment.find(comment_id)
+    authorize @original_comment
+  end
+
+  def find_comment(comment_id)
+    @comment = Comment.find(comment_id)
+    authorize @comment
+  end
+
+  def find_incident(incident_id)
+    @incident = Incident.find(incident_id)
   end
 end
