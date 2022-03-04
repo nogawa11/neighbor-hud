@@ -44,7 +44,7 @@ class ScrapeMainichinewsService < ApplicationRecord
         if @incident.category_list.first == 'Disturbing the Peace'
           @incident.image_path = 'disturb.png'
         else
-          @incident.image_path = "#{category_list.first}.png"
+          @incident.image_path = "#{@incident.category_list.first}.png"
         end
         @incident.save
       end
