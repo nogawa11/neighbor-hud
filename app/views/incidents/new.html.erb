@@ -54,7 +54,7 @@
       </div>
       <%= f.button :submit, "Report",
       class: "btn btn--report report-details__submit",
-      data: { disabled: true, hint: "Please fill in required fields." } %>
+      data: { disable_with: "Reporting Incident..." } %>
     <% end %>
   </div>
   <%= render 'shared/map' %>
