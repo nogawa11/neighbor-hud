@@ -1,35 +1,34 @@
-<div class="ps-3 pe-3">
-  <div class="top_container__buttons-container">
-    <% if params[:filter] == "crimenews" %>
-      <a class="btn top_container__button" style="width: 100%;" href="/">
-        All
-      </a>
-      <a class="btn top_container__button active" style="width: 100%;"href="/?filter=crimenews">
-        Crime News
-      </a>
-      <a class="btn top_container__button" style="width: 100%;" href="/?filter=userreports">
-        User Reports
-      </a>
-    <% elsif params[:filter] == "userreports" %>
-      <a class="btn top_container__button" style="width: 100%;" href="/">
-        All
-      </a>
-      <a class="btn top_container__button" style="width: 100%;"href="/?filter=crimenews">
-        Crime News
-      </a>
-      <a class="btn top_container__button active" style="width: 100%;" href="/?filter=userreports">
-        User Reports
-      </a>
-    <% else %>
-      <a class="btn top_container__button active" style="width: 100%;" href="/">
-        All
-      </a>
-      <a class="btn top_container__button" style="width: 100%;"href="/?filter=crimenews">
-        Crime News
-      </a>
-      <a class="btn top_container__button" style="width: 100%;" href="/?filter=userreports">
-        User Reports
-      </a>
-    <% end %>
-  </div>
+
+<div class="top_container__buttons-container container">
+  <% if params[:filter] == "crimenews" %>
+    <a class="btn top_container__button" style="width: 100%;" href="/">
+      All
+    </a>
+    <a class="btn top_container__button active" style="width: 100%;"href="/?filter=crimenews">
+      Crime News
+    </a>
+    <a class="btn top_container__button" style="width: 100%;" href="/?filter=userreports">
+      User Reports
+    </a>
+  <% elsif params[:filter] == "userreports" %>
+    <a class="btn top_container__button" style="width: 100%;" href="/">
+      All
+    </a>
+    <a class="btn top_container__button" style="width: 100%;"href="/?filter=crimenews">
+      Crime News
+    </a>
+    <a class="btn top_container__button active" style="width: 100%;" href="/?filter=userreports">
+      User Reports
+    </a>
+  <% else %>
+    <a class="btn top_container__button active" style="width: 100%;" href="/">
+      All
+    </a>
+    <a class="btn top_container__button" style="width: 100%;"href="/?filter=crimenews">
+      Crime News
+    </a>
+    <a class="btn top_container__button" style="width: 100%;" href="/?filter=userreports">
+      User Reports
+    </a>
+  <% end %>
 </div>

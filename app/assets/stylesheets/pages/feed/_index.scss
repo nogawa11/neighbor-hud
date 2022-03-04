@@ -1,12 +1,33 @@
 .feed {
+  display: grid;
+  grid-template-rows: auto calc(100vh - 380px) auto;
+  overflow: scroll;
+
+  &__top {
+    display: grid;
+    gap: 1rem;
+    padding-block: 1rem;
+    text-align: center;
+
+    & > p {
+      margin: 0;
+    }
+  }
+
   &__incidents {
-    max-height: 417px;
+    max-height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    overflow: auto;
   }
 
   &__paragraph {
     margin: 0;
     padding: 0;
+    padding-top: 0.5rem;
     letter-spacing: 1px;
     font-weight: 600;
+    text-align: center;
   }
 }
