@@ -10,29 +10,12 @@ export default class extends Controller {
 
   static targets = [ 'noSearch', "latitude", "longitude" ]
 
-  connect() {
-    mapboxgl.accessToken = this.apiKeyValue
-    this.map = new mapboxgl.Map({
-      container: this.element,
-      style: "mapbox://styles/ayanorii/cl05huof2003o15nuivl7b2y7"
-    })
-
+  async connect() {
+    await this.#startMapbox()
+    this.#centerMap()
     this.#addMarkersToMap()
-    // this.#fitMapToMarkers()
-
-    if (!this.isInShowPage()) {
-      this.map.addControl(new MapboxGeocoder({
-        accessToken: mapboxgl.accessToken,
-        mapboxgl: mapboxgl
-      }))
-    }
-    this.map.addControl(new mapboxgl.GeolocateControl({
-      positionOptions: {
-        enableHighAccuracy: true
-      },
-      trackUserLocation: true,
-      showUserHeading: true
-    }));
+    this.#addSearchBox()
+    this.#addCurrentLocationButton()
 
     const latitude = document.querySelector(".latitude")
     const longitude = document.querySelector(".longitude")
@@ -41,23 +24,48 @@ export default class extends Controller {
         longitude.value = e.result.center[1]
         console.log(e.result.center);
     });
-    this.addMapInputToForm()
+
+    this.#isInNewIncidentPage() && this.#addMapInputToForm()
   }
 
-  addMapInputToForm(){
-    const input = document.querySelector(".mapboxgl-ctrl-geocoder--input")
-    input.addEventListener("keyup", (e) => {
-      document.getElementById("incident_location").value = e.currentTarget.value
-    })
-    input.addEventListener("change", (e) => {
-      document.getElementById("incident_location").value = e.currentTarget.value
-    })
-  }
-
-  isInShowPage() {
-    return (/incidents\/\d+/).test(window.location.pathname);
-  }
 /* --------------------------------- Private -------------------------------- */
+  #getUserLocation() {
+    navigator.geolocation.getCurrentPosition(position => {
+      this.map.setCenter([position.coords.longitude, position.coords.latitude])
+    });
+  }
+
+  #getIncidentLocation() {
+    const lng = this.markersValue[0].lng;
+    const lat = this.markersValue[0].lat;
+    console.log(lng, lat);
+    this.map.setCenter([lng, lat])
+    this.map.setZoom(13)
+  }
+
+  #centerMap() {
+    this.#isInShowPage() ? this.#getIncidentLocation() : this.#getUserLocation()
+  }
+
+  #startMapbox() {
+    // Initialize MapBox.
+    mapboxgl.accessToken = this.apiKeyValue
+    this.map = new mapboxgl.Map({
+      container: this.element,
+      style: "mapbox://styles/ayanorii/cl05huof2003o15nuivl7b2y7",
+    })
+  }
+
+  #addSearchBox() {
+    // Adds the search box if the current page is not /incidents/:id.
+    if (!this.#isInShowPage()) {
+      this.map.addControl(new MapboxGeocoder({
+        accessToken: mapboxgl.accessToken,
+        mapboxgl: mapboxgl
+      }))
+    }
+  }
+
   #addMarkersToMap() {
     this.markersValue.forEach((marker) => {
       const popup = new mapboxgl.Popup(
@@ -76,6 +84,36 @@ export default class extends Controller {
         .setPopup(popup)
         .togglePopup();
     });
+  }
+
+  #addCurrentLocationButton() {
+    // Adds a current location button.
+    this.map.addControl(new mapboxgl.GeolocateControl({
+      positionOptions: {
+        enableHighAccuracy: true
+      },
+      trackUserLocation: true,
+      showUserHeading: true
+    }));
+  }
+
+  #addMapInputToForm() {
+    // When adding a new report, gets the the input from MapBox search box and inserts into the simple form.
+    const input = document.querySelector(".mapboxgl-ctrl-geocoder--input")
+    input.addEventListener("keyup", (e) => {
+      document.getElementById("incident_location").value = e.currentTarget.value
+    })
+    input.addEventListener("change", (e) => {
+      document.getElementById("incident_location").value = e.currentTarget.value
+    })
+  }
+
+  #isInShowPage() {
+    return (/\/incidents\/\d+.*/).test(window.location.pathname);
+  }
+
+  #isInNewIncidentPage() {
+    return (/\/incidents\/new\/?/).test(window.location.pathname)
   }
 
   #fitMapToMarkers() {
