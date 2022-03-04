@@ -26,6 +26,13 @@ export default class extends Controller {
         mapboxgl: mapboxgl
       }))
     }
+    this.map.addControl(new mapboxgl.GeolocateControl({
+      positionOptions: {
+        enableHighAccuracy: true
+      },
+      trackUserLocation: true,
+      showUserHeading: true
+    }));
 
     const latitude = document.querySelector(".latitude")
     const longitude = document.querySelector(".longitude")
