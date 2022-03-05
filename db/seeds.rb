@@ -29,7 +29,8 @@ incident_1 = Incident.new(
   latitude: 35.695379,
   longitude: 139.702881,
   can_receive_comments: true,
-  user: user
+  user: user,
+  image_path: "Drugs.png"
 )
 incident_1.save!
 
@@ -41,7 +42,8 @@ incident_2 = Incident.new(
   latitude: "35.66443563179996",
   longitude: "139.69044280054845",
   can_receive_comments: false,
-  user: user
+  user: user,
+  image_path: "Drugs.png"
 )
 incident_2.save!
 
@@ -53,7 +55,8 @@ incident_3 = Incident.new(
   latitude: 35.774569,
   longitude: 139.791914,
   can_receive_comments: true,
-  user: user
+  user: user,
+  image_path: "Drugs.png"
 )
 incident_3.save!
 
@@ -65,7 +68,8 @@ incident_4 = Incident.new(
   latitude: Faker::Address.latitude,
   longitude: Faker::Address.longitude,
   can_receive_comments: true,
-  user: user
+  user: user,
+  image_path: "Drugs.png"
 )
 incident_4.save!
 
@@ -77,7 +81,8 @@ incident_5 = Incident.new(
   latitude: 42.35871933091293,
   longitude: -83.10033841230707,
   can_receive_comments: false,
-  user: user
+  user: user,
+  image_path: "Drugs.png"
 )
 incident_5.save!
 

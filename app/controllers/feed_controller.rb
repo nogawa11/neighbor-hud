@@ -1,6 +1,6 @@
 class FeedController < ApplicationController
   def index
-    if params[:query].present?
+    if params[:query].present? || params[:filter] == "all"
       @incidents = policy_scope(Incident).near(params[:query]).order(created_at: :desc)
     elsif params[:start_date].present?
       date_filter(params[:start_date], params[:end_date])
