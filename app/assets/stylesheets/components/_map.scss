@@ -25,15 +25,16 @@
   }
 
   &gl-popup-content {
-    background: $primary;
+    background-color: $primary;
     padding: 0;
     overflow: hidden;
   }
 
   // TODO: Add icon
   &-icon {
-    background: $primary;
+    background-size: cover;
     display: inline-block;
+    filter: invert(99%) sepia(103%) saturate(2%) hue-rotate(319deg) brightness(215%) contrast(100%);
     width: 50px;
     height: 50px;
   }
