@@ -25,6 +25,11 @@ export default class extends Controller {
         console.log(e.result.center);
     });
 
+    navigator.geolocation.getCurrentPosition((position) => {
+      localStorage.setItem('lat', position.coords.latitude);
+      localStorage.setItem('long', position.coords.longitude);
+    });
+
     this.#isInNewIncidentPage() && this.#addMapInputToForm()
   }
 
