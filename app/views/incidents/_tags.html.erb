@@ -1,3 +1,7 @@
 <% @incident.category_list.each do |category| %>
-  <span class="tags--category me-2"><%= category %></span>
+  <% if category == "Disturb" %>
+    <span class="tags--category me-2">Disturbing the peace</span>
+  <% else %>
+    <span class="tags--category me-2"><%= category %></span>
+  <% end %>
 <% end %>

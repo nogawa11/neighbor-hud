@@ -34,13 +34,9 @@ class ScrapeJapantodayService < ApplicationRecord
         keywords << "Traffic" if TRAFFIC.any? { |keyword| @article[:description].downcase.include? keyword }
         keywords << "Drugs" if DRUGS.any? { |keyword| @article[:description].downcase.include? keyword }
         keywords << "Violence" if VIOLENCE.any? { |keyword| @article[:description].downcase.include? keyword }
-        keywords << "Disturbing the Peace" if keywords.empty?
+        keywords << "Disturb" if keywords.empty?
         keywords.each { |keyword| @incident.category_list.add(keyword) }
-        if @incident.category_list.first == "Disturbing the Peace"
-          @incident.image_path = "disturb.png"
-        else
-          @incident.image_path = "#{@incident.category_list.first}.png"
-        end
+        @incident.image_path = "#{@incident.category_list.first}.png"
         @incident.save
       end
     end
