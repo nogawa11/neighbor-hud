@@ -8,7 +8,8 @@ class IncidentsController < ApplicationController
       {
         lat: incident.latitude,
         lng: incident.longitude,
-        id: incident.id
+        id: incident.id,
+
       }
     end
 
@@ -48,7 +49,8 @@ class IncidentsController < ApplicationController
     @marker = [{
       lat: @incident.latitude,
       lng: @incident.longitude,
-      id: @incident.id
+      id: @incident.id,
+      src: ActionController::Base.helpers.asset_path("#{@incident.image_path.downcase}")
     }]
   end
 
