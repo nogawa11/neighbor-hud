@@ -1,5 +1,3 @@
-<!-- TODO: Fix form -->
-<!-- TODO: Set the controller -->
 <div>
   <%= form_tag root_path, method: :get, class:"date_picker" do |f| %>
     <%= label :start_date, "Incidents from: " %>
@@ -7,7 +5,9 @@
       class: "me-1",
       data: {
         controller: "flatpickr",
-        flatpickr_date_format: "Y-m-d",
+        flatpickr_alt_input: "true",
+        flatpickr_date_format: "m-d",
+        flatpickr_alt_format: "F J",
         flatpickr_disable_mobile: "true", # Prevents native picker on mobile
         flatpickr_default_date: params[:start_date].present? ? params[:start_date] : "today",
       }%>
@@ -15,7 +15,9 @@
     <%= text_field_tag :end_date, params[:end_date],
       data: {
         controller: "flatpickr",
-        flatpickr_date_format: "Y-m-d",
+        flatpickr_alt_input: "true",
+        flatpickr_date_format: "m-d",
+        flatpickr_alt_format: "F J",
         flatpickr_disable_mobile: "true", # Prevents native picker on mobile
         flatpickr_default_date: params[:end_date].present? ? params[:start_date] : "today",
       }%>
