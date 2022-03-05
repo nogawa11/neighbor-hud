@@ -32,7 +32,9 @@
 
   // TODO: Add icon
   &-icon {
-    background-size: cover;
+    background-size: 75%;
+    background-repeat: no-repeat;
+    background-position: center;
     display: inline-block;
     filter: invert(99%) sepia(103%) saturate(2%) hue-rotate(319deg) brightness(215%) contrast(100%);
     width: 50px;

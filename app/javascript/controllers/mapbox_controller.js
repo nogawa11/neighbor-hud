@@ -82,7 +82,7 @@ export default class extends Controller {
         }).setHTML(
           `<a href="incidents/${marker.id}?path=map"
           class="mapbox-icon"
-          style="background: url(${background})"></a>`
+          style="background-image: url(${background})"></a>`
         )
       const emptyMarker = document.createElement('div');
 
