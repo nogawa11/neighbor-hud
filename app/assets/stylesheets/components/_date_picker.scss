@@ -1,10 +1,22 @@
-.date_picker {
-  @include centralize;
+.date-picker {
   letter-spacing: 0.5px;
+  display: grid;
+  grid-template-columns: auto 0.5fr auto 0.5fr;
+  padding-inline: 5%;
+  align-items: center;
 
   label {
     color: $light-gray;
     font-size: 14px;
+    text-align: center;
+  }
+
+  &__input.form-control.input {
+    background: transparent;
+    border: none;
+    color: $light;
+    padding: 0;
+    text-align: center;
   }
 }
 
