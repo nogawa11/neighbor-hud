@@ -11,13 +11,18 @@ class IncidentsController < ApplicationController
         id: incident.id
       }
     end
+
+    respond_to do |format|
+      format.html
+      format.text { render partial: "/shared/map.html.erb", locals: { markers: @markers } }
+    end
   end
 
   def new
     @incident = Incident.new
     authorize @incident
     @markers = [
-      {lat: 0, lng: 0}
+      { lat: 0, lng: 0 }
     ]
   end
 

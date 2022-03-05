@@ -11,6 +11,11 @@ class FeedController < ApplicationController
     else
       all_incidents
     end
+
+    respond_to do |format|
+      format.html
+      format.text { render partial: "/feed/feed_incidents.html.erb", locals: { incidents: @incidents } }
+    end
   end
 
   private

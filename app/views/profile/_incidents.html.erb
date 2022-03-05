@@ -1,0 +1,30 @@
+<% if user.incidents.count > 2 %>
+  <div data-read-more-target="content">
+    <% user.incidents.first(2).each do |incident| %>
+      <% if incident.title.present? %>
+        <%= render 'feed/feed_card', incident: incident %>
+      <% end %>
+    <% end %>
+    <div class="d-flex justify-content-end m-3">
+      <button
+        data-action="read-more#toggle">
+        Read more
+      </button>
+    </div>
+    <template data-read-more-target="full">
+      <% user.incidents.each do |incident| %>
+        <% if incident.title.present? %>
+          <%= render 'feed/feed_card', incident: incident %>
+        <% end %>
+      <% end %>
+    </template>
+  </div>
+<% elsif user.incidents.count <= 2 %>
+  <% user.incidents.each do |incident| %>
+    <% if incident.title.present? %>
+      <%= render 'feed/feed_card', incident: incident %>
+    <% end %>
+  <% end %>
+<% else %>
+  <p><em>You have no incidents</em></p>
+<% end %>

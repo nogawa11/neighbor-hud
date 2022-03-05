@@ -1,79 +1,11 @@
-<!-- TODO: Change icon colors to primary -->
-  <div class="categories__list">
-    <!-- Item Start -->
+<div class="categories__list">
+  <% Dir.each_child("app/assets/images/home") do |file| %>
+    <% formatted_file = file.gsub(".png", "") %>
     <div class="categories__item">
-      <%= image_tag("icons/home-invasion.svg") %>
-      <p>Invasion</p>
+      <button class="categories__button active" data-active-button-target="categoryButton">
+        <%= image_tag "#{file}" %>
+        <p><%= formatted_file.capitalize %></p>
+      </button>
     </div>
-
-    <!-- Item End -->
-    <!-- Item Start -->
-    <div class="categories__item">
-      <%= image_tag("icons/item-stolen.svg") %>
-      <p>Item Stolen</p>
-    </div>
-    <!-- Item End -->
-    <!-- Item Start -->
-    <div class="categories__item">
-      <%= image_tag("icons/violence.svg") %>
-      <p>Violence</p>
-    </div>
-    <!-- Item End -->
-
-    <!-- Item Start -->
-    <div class="categories__item">
-      <%= image_tag("icons/home-invasion.svg") %>
-      <p>Invasion</p>
-    </div>
-    <!-- Item End -->
-    <!-- Item Start -->
-    <div class="categories__item">
-      <%= image_tag("icons/item-stolen.svg") %>
-      <p>Item Stolen</p>
-    </div>
-    <!-- Item End -->
-    <!-- Item Start -->
-    <div class="categories__item">
-      <%= image_tag("icons/violence.svg") %>
-      <p>Violence</p>
-    </div>
-    <!-- Item End -->
-
-    <!-- Item Start -->
-    <div class="categories__item">
-      <%= image_tag("icons/home-invasion.svg") %>
-      <p>Invasion</p>
-    </div>
-    <!-- Item End -->
-    <!-- Item Start -->
-    <div class="categories__item">
-      <%= image_tag("icons/item-stolen.svg") %>
-      <p>Item Stolen</p>
-    </div>
-    <!-- Item End -->
-    <!-- Item Start -->
-    <div class="categories__item">
-      <%= image_tag("icons/violence.svg") %>
-      <p>Violence</p>
-    </div>
-    <!-- Item End -->
-
-    <!-- Item Start -->
-    <div class="categories__item">
-      <%= image_tag("icons/home-invasion.svg") %>
-      <p>Invasion</p>
-    </div>
-    <!-- Item End -->
-    <!-- Item Start -->
-    <div class="categories__item">
-      <%= image_tag("icons/item-stolen.svg") %>
-      <p>Item Stolen</p>
-    </div>
-    <!-- Item End -->
-    <!-- Item Start -->
-    <div class="categories__item">
-      <%= image_tag("icons/violence.svg") %>
-      <p>Violence</p>
-    </div>
-    <!-- Item End -->
-  </div>
+  <% end %>
+</div>

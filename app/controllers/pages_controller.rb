@@ -1,7 +1,6 @@
 class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:home]
   def home
-    # Had to add the following instances otherwise the map wouldn't work.
     if params[:filter].present?
       news_user_filter(params[:filter])
     elsif params[:start_date].present?
@@ -17,6 +16,11 @@ class PagesController < ApplicationController
         lng: incident.longitude,
         id: incident.id
       }
+    end
+
+    respond_to do |format|
+      format.html
+      format.text { render partial: "/shared/map.html.erb", locals: { markers: @markers } }
     end
   end
 
