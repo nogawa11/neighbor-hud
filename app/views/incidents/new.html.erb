@@ -16,15 +16,20 @@
         <%= f.input :longitude, label: false, as: :hidden, input_html: { class: "longitude" }  %>
         <%# <p>Select a category</p> %>
         <%#= render "components/categories" %>
+        <div data-report-details-target="test"></div>
         <%= f.input :location,
                     placeholder: "Enter a location",
-                    input_html: { class: "search" },
-                    data: { target: "report-details.location" } %>
+                    input_html: {
+                      class: "search",
+                      data: { "report-details-target": "location" }
+                    } %>
         <%= f.input :category_list,
                     label: "Add categories",
                     collection: [ "Violence", "Theft", "Arson", "Drugs", "Harrasment", "Disturbing the Peace", "Traffic" ],
-                    input_html: { class: "category" },
-                    data: { target: "report-details.category" } %>
+                    input_html: {
+                      class: "category",
+                      data: { "report-details-target": "category" }
+                    } %>
         <div class="date-and-comments">
           <%= render "components/date_picker_for_report" %>
           <%= f.input :can_receive_comments,
@@ -46,8 +51,10 @@
             <%= f.input :title,
                 label: false,
                 placeholder: "What happened?",
-                input_html: { class: "title" },
-                data: { target: "report-details.title" } %>
+                input_html: {
+                  class: "title",
+                  data: { "report-details-target": "title" }
+                } %>
             <%= f.input :description,
                 placeholder: "Write incident details here (optional)",
                 label: false,
@@ -60,7 +67,8 @@
                     "Report",
                     class: "btn btn--report report-details__submit",
                     diable_with: "Reporting Incident...",
-                    data: { target: "report-details.reportButton" } %>
+                    disabled: true,
+                    data: { "report-details-target": "reportButton" } %>
     <% end %>
   </div>
   <%= render 'shared/map' %>
