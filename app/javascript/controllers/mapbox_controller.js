@@ -73,21 +73,24 @@ export default class extends Controller {
 
   #addMarkersToMap() {
     this.markersValue.forEach((marker) => {
+      const background = marker.src ? marker.src.toLowerCase() : "https://i.imgur.com/7teZKVh.png"
+
       const popup = new mapboxgl.Popup(
         {
           closeOnClick: false,
           closeButton: false
         }).setHTML(
-          `<a href="incidents/${marker.id}?path=map" class="mapbox-icon"></a>`
+          `<a href="incidents/${marker.id}?path=map"
+          class="mapbox-icon"
+          style="background: url(${background})"></a>`
         )
-
       const emptyMarker = document.createElement('div');
 
       new mapboxgl.Marker(emptyMarker)
-        .setLngLat([marker.lng, marker.lat])
-        .addTo(this.map)
-        .setPopup(popup)
-        .togglePopup();
+      .setLngLat([marker.lng, marker.lat])
+      .addTo(this.map)
+      .setPopup(popup)
+      .togglePopup();
     });
   }
 
