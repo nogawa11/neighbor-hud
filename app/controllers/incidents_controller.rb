@@ -69,10 +69,6 @@ class IncidentsController < ApplicationController
   end
 
   def add_icon_image(category)
-    if category == 'Disturbing the Peace'
-      @image_path = 'disturb.png'
-    else
-      @image_path = "#{category}.png"
-    end
+    @image_path = "#{category}.png"
   end
 end
