@@ -47,4 +47,14 @@
   &.btn--gradient-danger {
     background: $danger-gradient;
   }
+
+  /* ----------------------------- Incident report ---------------------------- */
+  &.btn--report {
+    z-index: 100;
+    background:#238beb;
+
+    &.btn--report:disabled {
+      background:#808080;
+    }
+  }
 }
