@@ -6,18 +6,18 @@
     <div class="report">
       <%# <%= render "components/incident_report", f: f %>
       <div class="report-form">
-        <h3 class="report_container__heading">Report on <span style="color: #238beb">Incident</span></h3>
+        <h3 class="report_container__heading">Report on <span>Incident</span></h3>
         <%# Location and category need to be updated later. The current ones are temporary codes. %>
-        <%# <%= f.input :location,
-              input_html: { data: { geocoder_target: "location" }, class: "search" },
-              wrapper_html: { data: { controller: "geocoder", geocoder_api_key_value: ENV['MAPBOX_API_KEY'] } },
-              label: false,
-              as: :hidden %>
-        <%= f.input :latitude,label: false, as: :hidden,  input_html: { class: "latitude" } %>
-        <%= f.input :longitude,label: false, as: :hidden, input_html: { class: "longitude" }  %>
+        <%= f.input :location,
+                    input_html: { data: { geocoder_target: "location" }, class: "search" },
+                    wrapper_html: { data: { controller: "geocoder", geocoder_api_key_value: ENV['MAPBOX_API_KEY'] } },
+                    label: false,
+                    as: :hidden %>
+        <%= f.input :latitude, label: false, as: :hidden,  input_html: { class: "latitude" } %>
+        <%= f.input :longitude, label: false, as: :hidden, input_html: { class: "longitude" }  %>
         <%# <p>Select a category</p> %>
         <%#= render "components/categories" %>
-        <%= f.input :location, placeholder: "Enter a location", input_html: { class: "search" }, as: :hidden %>
+        <%# <%= f.input :location, placeholder: "Enter a location", input_html: { class: "search" }, as: :hidden %>
         <%= f.input :category_list,
                     label: "Add categories",
                     collection: [ "Violence", "Theft", "Arson", "Drugs", "Harrasment", "Disturbing the Peace", "Traffic" ],
@@ -52,9 +52,10 @@
           </div>
         </div>
       </div>
-      <%= f.button :submit, "Report",
-      class: "btn btn--report report-details__submit",
-      data: { disable_with: "Reporting Incident..." } %>
+      <%= f.button :submit,
+                    "Report",
+                    class: "btn btn--report report-details__submit",
+                    data: { disable_with: "Reporting Incident..." } %>
     <% end %>
   </div>
   <%= render 'shared/map' %>
