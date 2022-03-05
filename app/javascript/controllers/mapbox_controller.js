@@ -17,6 +17,10 @@ export default class extends Controller {
     this.#addSearchBox()
     this.#addCurrentLocationButton()
 
+    navigator.geolocation.getCurrentPosition((position) => {
+      window.href = "/?lat=" + String(position.coords.latitude) + "&lon=" + String(position.coords.longitude);
+    });
+
     const latitude = document.querySelector(".latitude")
     const longitude = document.querySelector(".longitude")
     this.map.on('result', e => {
