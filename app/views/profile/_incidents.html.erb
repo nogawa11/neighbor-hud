@@ -8,7 +8,7 @@
     <div class="d-flex justify-content-end m-3">
       <button
         data-action="read-more#toggle">
-        Read more
+        See more
       </button>
     </div>
     <template data-read-more-target="full">
@@ -19,12 +19,12 @@
       <% end %>
     </template>
   </div>
-<% elsif user.incidents.count <= 2 %>
+<% elsif user.incidents.count <= 2  && @user.comments.count < 0 %>
   <% user.incidents.each do |incident| %>
     <% if incident.title.present? %>
       <%= render 'feed/feed_card', incident: incident %>
     <% end %>
   <% end %>
-<% else %>
-  <p><em>You have no incidents</em></p>
+<% elsif user.incidents.count == 0 %>
+  <p class="m-3"><em>You have no incidents</em></p>
 <% end %>

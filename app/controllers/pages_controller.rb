@@ -1,7 +1,9 @@
 class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:home]
   def home
-    if params[:filter].present?
+    if params[:filter] == "all"
+      all_incidents
+    elsif params[:filter].present?
       news_user_filter(params[:filter])
     elsif params[:start_date].present?
       date_filter(params[:start_date], params[:end_date])
@@ -14,7 +16,8 @@ class PagesController < ApplicationController
       {
         lat: incident.latitude,
         lng: incident.longitude,
-        id: incident.id
+        id: incident.id,
+        src: ActionController::Base.helpers.asset_path("#{incident.image_path.downcase}")
       }
     end
 
@@ -39,7 +42,7 @@ class PagesController < ApplicationController
   end
 
   def category_filter(category)
-    if category == "disturbing"
+    if category == "disturb"
       @incidents = policy_scope(Incident).tagged_with('Disturbing the Peace')
     else
       @incidents = policy_scope(Incident).tagged_with(category.capitalize)

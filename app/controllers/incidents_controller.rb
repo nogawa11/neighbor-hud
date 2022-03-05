@@ -8,7 +8,8 @@ class IncidentsController < ApplicationController
       {
         lat: incident.latitude,
         lng: incident.longitude,
-        id: incident.id
+        id: incident.id,
+
       }
     end
 
@@ -48,7 +49,8 @@ class IncidentsController < ApplicationController
     @marker = [{
       lat: @incident.latitude,
       lng: @incident.longitude,
-      id: @incident.id
+      id: @incident.id,
+      src: ActionController::Base.helpers.asset_path("#{@incident.image_path.downcase}")
     }]
   end
 
@@ -69,10 +71,6 @@ class IncidentsController < ApplicationController
   end
 
   def add_icon_image(category)
-    if category == 'Disturbing the Peace'
-      @image_path = 'disturb.png'
-    else
-      @image_path = "#{category}.png"
-    end
+    @image_path = "#{category}.png"
   end
 end
