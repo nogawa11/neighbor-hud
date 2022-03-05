@@ -17,16 +17,17 @@ export default class extends Controller {
     this.#addSearchBox()
     this.#addCurrentLocationButton()
 
-    navigator.geolocation.getCurrentPosition((position) => {
-      window.href = "/?lat=" + String(position.coords.latitude) + "&lon=" + String(position.coords.longitude);
-    });
-
     const latitude = document.querySelector(".latitude")
     const longitude = document.querySelector(".longitude")
     this.map.on('result', e => {
         latitude.value = e.result.center[0]
         longitude.value = e.result.center[1]
         console.log(e.result.center);
+    });
+
+    navigator.geolocation.getCurrentPosition((position) => {
+      localStorage.setItem('lat', position.coords.latitude);
+      localStorage.setItem('long', position.coords.longitude);
     });
 
     this.#isInNewIncidentPage() && this.#addMapInputToForm()
