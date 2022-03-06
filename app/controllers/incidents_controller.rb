@@ -32,8 +32,8 @@ class IncidentsController < ApplicationController
     authorize @incident
     @incident.user = current_user
     @incident.incident_date = params[:incident_date]
-    if @incident.category_list.first == "Disturbing the Peace"
-      @incident.category_list.remove("Disturbing the Peace")
+    if @incident.category_list.first.include?("disturbing")
+      @incident.category_list.remove("disturbing the peace")
       @incident.category_list.add("Disturb")
     end
     add_icon_image(@incident.category_list.first)
@@ -71,10 +71,18 @@ class IncidentsController < ApplicationController
   end
 
   def incident_params
-    params.require(:incident).permit(:id, :title, :description, :incident_date, :location, :latitude, :longitude, :user_id, :can_receive_comments, :category_list, category_list: [])
+    params.require(:incident).permit(:id, :title, :description, :incident_date, :location, :latitude, :longitude, :user_id, :can_receive_comments, :category_list, :category, category_list: [])
   end
 
   def add_icon_image(category)
     @image_path = "#{category}.png"
+  end
+
+  def add_category(category)
+    if category.include?("Disturbing")
+      @category = "Disturb"
+    else
+      @category = category
+    end
   end
 end

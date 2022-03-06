@@ -43,6 +43,16 @@ export default class extends Controller {
     );
   }
 
+  #fetchIncidentsNew(path, params, options) {
+    fetch(`/incidents/new/?${params}=${path}`, options).then((response) =>
+      response.text().then((responseText) => {
+        // this.newTarget.outerHTML = responseText;
+        // history.pushState(null, null, `/incidents/new/?${params}=${path}`);
+        window.location.href = `/incidents/new/?${params}=${path}`;
+      })
+    );
+  }
+
   #fetchData(e, params) {
     const options = {
       method: "GET",
@@ -53,16 +63,29 @@ export default class extends Controller {
 
     const path = this.#getFormattedPath(e.currentTarget, params);
 
-    this.#isInFeedPage() ? this.#fetchFeed(path, params, options) : this.#fetchHome(path, params, options);
+    // this.#isInFeedPage() ? this.#fetchFeed(path, params, options) : this.#fetchHome(path, params, options);
+
+    if (this.#isInIncidentsNewPage()) {
+      this.#fetchIncidentsNew(path, params, options);
+    } else if (this.#isInFeedPage()) {
+      this.#fetchFeed(path, params, options);
+    } else {
+      this.#fetchHome(path, params, options);
+    }
   }
 
   #isInFeedPage() {
     return (/\/feed.*/).test(window.location.pathname);
   }
 
+  #isInIncidentsNewPage() {
+    return (/\/incidents\/new.*/).test(window.location.pathname);
+  }
+
   #handleButtons(targets, params) {
     targets.forEach((button) => {
       button.addEventListener("click", (e) => {
+        e.preventDefault();
         this.#fetchData(e, params);
         targets.forEach((sibling) => {
           sibling.classList.remove("active");
