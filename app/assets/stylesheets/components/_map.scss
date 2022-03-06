@@ -10,7 +10,7 @@
     box-shadow: $box-shadow;
   }
 
-/* ------------------------------- Marker Icon ------------------------------ */
+  /* ------------------------------- Marker Icon ------------------------------ */
   &gl-popup-anchor-bottom .mapboxgl-popup-tip {
     border-top-color: $primary;
   }
@@ -30,55 +30,63 @@
     overflow: hidden;
   }
 
-  // TODO: Add icon
   &-icon {
     background-size: 75%;
     background-repeat: no-repeat;
     background-position: center;
     display: inline-block;
-    filter: invert(99%) sepia(103%) saturate(2%) hue-rotate(319deg) brightness(215%) contrast(100%);
+    filter: invert(99%) sepia(103%) saturate(2%) hue-rotate(319deg)
+      brightness(215%) contrast(100%);
     width: 50px;
     height: 50px;
   }
-/* ------------------------------- Marker Icon ------------------------------ */
+  /* ------------------------------- Marker Icon ------------------------------ */
 
-/* ------------------------- Current Position Button ------------------------ */
+  /* ------------------------- Current Position Button ------------------------ */
   &gl-ctrl.mapboxgl-ctrl-group {
     position: absolute;
     z-index: -1;
     top: 100px;
     right: -1rem;
   }
-/* ------------------------- Current Position Button ------------------------ */
+  /* ------------------------- Current Position Button ------------------------ */
 
-.mapboxgl-ctrl.mapboxgl-ctrl-geocoder {
+  .mapboxgl-ctrl.mapboxgl-ctrl-geocoder {
     margin: 0;
     background: transparent;
     overflow: hidden;
+    width: 100%;
+    max-width: 100%;
   }
 
   .mapboxgl-ctrl-geocoder--icon {
     z-index: 1;
+    top: 10px;
   }
 
-  // Search input
-  &gl-ctrl-geocoder--input {
+/* ------------------------------ Search input ------------------------------ */
+.mapboxgl-ctrl-geocoder {
+  input[type="text"] {
     background: $dark;
-    color: $light;
-    border: none;
-    outline: none;
-    font-size: 1rem;
-
-    &::placeholder {
-      font-style: italic;
-      font-weight: 400;
-    }
-
-    &:focus {
-      color: inherit;
+      color: $light;
+      border: none;
       outline: none;
+      font-size: 1rem;
+      border-radius: 5px;
+      padding: 0.375rem 2.8125rem;
+
+      &::placeholder {
+        font-style: italic;
+        font-weight: 400;
+      }
+
+      &:focus {
+        color: inherit;
+        outline: none;
+      }
     }
   }
+/* ------------------------------ Search input ------------------------------ */
 
   // Search clear button
   .mapboxgl-ctrl-geocoder--button {
