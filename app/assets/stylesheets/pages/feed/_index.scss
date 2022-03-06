@@ -8,7 +8,6 @@
     display: grid;
     grid-template-rows: auto calc(100vh - 390px) auto;
     overflow: scroll;
-    transition: 1s;
   }
 
   .categories {
