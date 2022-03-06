@@ -1,0 +1,42 @@
+.route {
+  .mapboxgl-ctrl-geocoder--input {
+    display: none;
+  }
+
+  .mapboxgl-ctrl-top-left {
+    width: 100%;
+  }
+
+  .mapbox .mapboxgl-ctrl-geocoder {
+    background: transparent;
+    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
+
+    input[type="text"] {
+      padding: 0 1rem;
+    }
+  }
+
+  .mapbox-directions-origin {
+    .mapbox-form-label {
+      background-color: $primary;
+    }
+
+    input[type="text"] {
+      box-shadow: none;
+    }
+
+    .mapboxgl-ctrl-geocoder {
+      border-bottom: 1px solid #FFFFFF20;
+    }
+  }
+
+  .mapbox-form-label {
+    background: $secondary;
+  }
+
+  .mapboxgl-ctrl-directions {
+    width: 100%;
+  }
+}
