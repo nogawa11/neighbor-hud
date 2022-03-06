@@ -1,0 +1,23 @@
+<div class="card card--gray">
+  <div class="report-details">
+    <button class="report-details__button" data-action="click->report-details#openCard" data-report-details-target="button">
+      <i class="fas fa-info-circle"></i>
+      Add more details
+      <span class="arrow"><i class="fas fa-chevron-up"></i></span>
+    </button>
+    <div class="card__body" data-report-details-target="card">
+      <%= f.input :title,
+                label: false,
+                placeholder: "What happened?",
+                input_html: {
+                  class: "title",
+                  data: { "report-details-target": "title" }
+                } %>
+      <%= f.input :description,
+                placeholder: "Write incident details here (optional)",
+                label: false,
+                input_html: { class: "description" },
+                required: false %>
+    </div>
+  </div>
+</div>

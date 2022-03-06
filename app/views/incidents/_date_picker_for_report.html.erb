@@ -1,5 +1,3 @@
-<!-- TODO: Fix form -->
-<!-- TODO: Set the controller -->
 <div class="incidents-new__date-picker">
   <%= form_with url: "/incidents", method: :get, class:"date_picker_report" do |f| %>
     <%= f.label :incident_date, "Select date: " %>
@@ -8,7 +6,7 @@
       data: {
         controller: "flatpickr",
         flatpickr_alt_input: "true",
-        flatpickr_date_format: "m-d",
+        flatpickr_date_format: "Y-m-d",
         flatpickr_alt_format: "M J",
         flatpickr_disable_mobile: "true", # Prevents native picker on mobile
         flatpickr_default_date: "today",
