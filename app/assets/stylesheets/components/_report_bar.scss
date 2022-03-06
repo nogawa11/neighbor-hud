@@ -7,11 +7,21 @@
   text-align: center;
   z-index: 2;
 
+  h3 {
+    font-size: calc(1.3rem + 3vw);
+  }
+
   .report-form {
     margin-bottom: 0;
 
     span {
       color: #238beb;
+    }
+  }
+
+  .incident_category_list {
+    label {
+      color: rgb(173, 173, 173);
     }
   }
 
@@ -24,8 +34,7 @@
 
   .select .form-select {
     margin-bottom: 1px;
-    border-radius: 1rem;
-    background: #bcc4cd;
+    border-radius: 50px;
   }
 
   p {
@@ -33,25 +42,33 @@
   }
 
   .date-and-comments {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+
+    label {
+      color: rgb(173, 173, 173);
+    }
   }
 
   .report-details__submit {
-    color: $light;
+    color: rgb(243, 243, 243);
     background-color: #747985;
-    border-radius: 1rem;
+    border-radius: 0 0 16px 16px;
     width: 90%;
     position: fixed;
-    bottom: 5.5rem;
-    left: 50%;
-    transform: translateX(-50%);
+    bottom: 5.6rem;
+    height: 48px;
+    left: 5%;
     @include centralize();
 
     &:focus {
       background-color: #1a75e6;
+    }
+
+    &.close {
+      display: none;
     }
   }
 }

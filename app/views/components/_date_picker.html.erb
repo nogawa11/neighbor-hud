@@ -9,7 +9,7 @@
         flatpickr_date_format: "Y-m-d",
         flatpickr_alt_format: "M J",
         flatpickr_disable_mobile: "true", # Prevents native picker on mobile
-        flatpickr_default_date: params[:start_date].present? ? params[:start_date] : "today",
+        flatpickr_default_date: params[:start_date].present? ? params[:start_date] : (Date.today - 7),
       }%>
     <%= label :end_date, "to: " %>
     <%= text_field_tag :end_date, params[:end_date],
