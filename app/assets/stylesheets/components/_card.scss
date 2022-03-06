@@ -1,7 +1,7 @@
 .card {
   background: $dark-gray;
   color: $light;
-  border-radius: 1rem;
+  border-radius: 16px;
   box-shadow: $box-shadow;
   overflow: hidden;
   margin-bottom: 24px;
@@ -17,6 +17,7 @@
   &.card--gray {
     background: #383838;
     margin: 0;
+    border-radius: 16px 16px 0 0;
   }
 }
 

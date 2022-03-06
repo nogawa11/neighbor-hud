@@ -1,7 +1,6 @@
 .report-details {
   padding-top: 0.9rem;
   border: 1px solid #333333;
-  border-radius: 1rem;
   background: #333333;
 
   &.card {
@@ -11,24 +10,25 @@
   .card__body {
     padding: 0;
     transition: all 0.3s ease-in-out;
-    max-height: 0px;
+    max-height: 150px;
     overflow: hidden;
     border-top: 2px solid transparent;
+    background: #333333;
+    width: 100%;
+    border-radius: 16px 16px 0 0;
 
     &.open {
       max-height: 150px;
       padding: 0;
-      border-top: 2px solid #6d6d6d;
-      background: #383838;
-      width: 100%;
     }
   }
 
   input.description, input.title {
     color: #bcc4cd;
-    background: #383838;
+    background: #333333;
     border: none;
     justify-content: center;
+    border-top: 2px solid #6d6d6d;
     // border-radius: 1rem;
   }
 
@@ -47,13 +47,6 @@
       font-size: 1.25rem;
       margin-right: 0.3rem;
       position: relative;
-      top: 2px;
-    }
-
-    &.open {
-      .arrow i {
-        transform: rotate(180deg);
-      }
     }
   }
 }

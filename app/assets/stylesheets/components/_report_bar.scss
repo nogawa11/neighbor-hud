@@ -42,10 +42,11 @@
   .report-details__submit {
     color: $light;
     background-color: #747985;
-    border-radius: 1rem;
+    border-radius: 0 0 16px 16px;
     width: 90%;
     position: fixed;
-    bottom: 5.5rem;
+    bottom: 5.6rem;
+    height: 48px;
     left: 50%;
     transform: translateX(-50%);
     @include centralize();
