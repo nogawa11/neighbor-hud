@@ -32,6 +32,10 @@ class IncidentsController < ApplicationController
     authorize @incident
     @incident.user = current_user
     @incident.incident_date = params[:incident_date]
+    if @incident.category_list.first == "Disturbing the Peace"
+      @incident.category_list.remove("Disturbing the Peace")
+      @incident.category_list.add("Disturb")
+    end
     add_icon_image(@incident.category_list.first)
     @incident.image_path = @image_path
     if @incident.save
