@@ -1,14 +1,10 @@
 .card {
   background: $dark-gray;
   color: $light;
-  border-radius: 1rem;
+  border-radius: 16px;
   box-shadow: $box-shadow;
   overflow: hidden;
   margin-bottom: 24px;
-
-  // &__body {
-  //   padding: 1rem 1.5rem;
-  // }
 
   &.card--dark {
     background: $dark;
@@ -17,6 +13,12 @@
   &.card--gray {
     background: #383838;
     margin: 0;
+    border-radius: 16px 16px 0 0;
+
+    &.close {
+      bottom: 5.5em;
+      border-radius: 50px;
+    }
   }
 }
 

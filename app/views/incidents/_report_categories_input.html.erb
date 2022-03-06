@@ -1,7 +1,7 @@
 <%= f.input :category_list,
-            label: "Add categories",
+            label: "Choose a category",
             collection: [ "Violence", "Theft", "Arson", "Drugs", "Harrasment", "Disturb", "Traffic" ],
-            selected: 0,
+            default: false,
             input_html: {
               class: "category",
               data: { "report-details-target": "category" }
