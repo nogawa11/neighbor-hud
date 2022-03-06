@@ -1,7 +1,7 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = ["card", "button", "location", "title", "category",　"reportButton"]
+  static targets = ["card", "button", "location", "title", "category",　"reportButton", "detailsCard"]
 
   previousLocation = '';
   previousCategory = '';
@@ -46,10 +46,12 @@ export default class extends Controller {
     this.disableForm = true;
   }
 
-  openCard(event) {
+  closeCard(event) {
     event.preventDefault();
-    this.buttonTarget.classList.toggle("open")
-    this.cardTarget.classList.toggle("open");
+    this.buttonTarget.classList.toggle("close")
+    this.cardTarget.classList.toggle("close")
+    this.reportButtonTarget.classList.toggle("close")
+    this.detailsCardTarget.classList.toggle("close");
   }
 
   validateForm() {

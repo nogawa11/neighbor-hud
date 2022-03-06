@@ -17,9 +17,10 @@
     width: 100%;
     // border-radius: 16px 16px 0 0;
 
-    &.open {
-      max-height: 150px;
+    &.close {
+      max-height: 0px;
       padding: 0;
+      overflow: hidden;
     }
   }
 

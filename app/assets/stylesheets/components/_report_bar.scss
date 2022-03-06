@@ -66,5 +66,9 @@
     &:focus {
       background-color: #1a75e6;
     }
+
+    &.close {
+      display: none;
+    }
   }
 }
