@@ -16,7 +16,7 @@ export default class extends Controller {
   }
 
   get title() {
-    return this.titleTarget.value;
+    return this.titleTarget.value.trim();
   }
 
   get isLocationChanged() {
@@ -40,12 +40,10 @@ export default class extends Controller {
   }
 
   connect() {
-    console.log("Hello, Stimulus!");
     this.previousLocation = this.location;
     this.previousCategory = this.category;
     this.previousTitle = this.title;
     this.disableForm = true;
-    // this.addCategoryToForm()
   }
 
   openCard(event) {
