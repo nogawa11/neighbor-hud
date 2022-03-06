@@ -19,6 +19,12 @@
     }
   }
 
+  .incident_category_list {
+    label {
+      color: rgb(173, 173, 173);
+    }
+  }
+
   input.search {
     margin-bottom: 1px;
     border-radius: 1rem;
@@ -29,7 +35,6 @@
   .select .form-select {
     margin-bottom: 1px;
     border-radius: 50px;
-    background: #bcc4cd;
   }
 
   p {
@@ -37,22 +42,25 @@
   }
 
   .date-and-comments {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+
+    label {
+      color: rgb(173, 173, 173);
+    }
   }
 
   .report-details__submit {
-    color: $light;
+    color: rgb(243, 243, 243);
     background-color: #747985;
     border-radius: 0 0 16px 16px;
     width: 90%;
     position: fixed;
     bottom: 5.6rem;
     height: 48px;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 5%;
     @include centralize();
 
     &:focus {
