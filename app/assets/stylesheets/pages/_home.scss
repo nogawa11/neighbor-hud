@@ -7,6 +7,13 @@
 .incidents-index {
 
   .mapboxgl-ctrl-top-right {
-    top: 7.1rem;
+    top: 7.5rem;
+
+    .mapboxgl-ctrl.mapboxgl-ctrl-group {
+      position: absolute;
+      z-index: -1;
+      top: 7em;
+      right: -1rem;
+    }
   }
 }
