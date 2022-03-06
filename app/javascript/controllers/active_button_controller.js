@@ -63,8 +63,6 @@ export default class extends Controller {
 
     const path = this.#getFormattedPath(e.currentTarget, params);
 
-    // this.#isInFeedPage() ? this.#fetchFeed(path, params, options) : this.#fetchHome(path, params, options);
-
     if (this.#isInIncidentsNewPage()) {
       this.#fetchIncidentsNew(path, params, options);
     } else if (this.#isInFeedPage()) {
