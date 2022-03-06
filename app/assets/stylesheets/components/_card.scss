@@ -8,6 +8,11 @@
 
   &.card--dark {
     background: $dark;
+    border-radius: 50px;
+
+    &.open {
+      border-radius: 16px;
+    }
   }
 
   &.card--gray {

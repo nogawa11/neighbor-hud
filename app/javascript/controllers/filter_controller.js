@@ -1,7 +1,7 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = ["card", "button"]
+  static targets = ["card", "button", "closedCard"]
 
   connect() {
   }
@@ -9,5 +9,6 @@ export default class extends Controller {
   openCard() {
     this.buttonTarget.classList.toggle("open")
     this.cardTarget.classList.toggle("open");
+    this.closedCardTarget.classList.toggle("open");
   }
 }
