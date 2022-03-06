@@ -132,6 +132,10 @@ export default class extends Controller {
       && this.map.addControl(
       new MapboxDirections({
         accessToken: mapboxgl.accessToken,
+        profile: 'mapbox/walking',
+        alternatives: true,
+        geometries: 'geojson',
+        controls: { instructions: false },
       }),
       "top-left"
       );
