@@ -5,6 +5,14 @@
   width: 100%;
   top: 0;
 
+  h1 {
+    font-size: 36px;
+  }
+
+  .text--blue {
+    color: $primary;
+  }
+
   &__logo {
     padding-block: 1rem;
     background: $dark;
@@ -16,6 +24,8 @@
     position: relative;
     letter-spacing: 0.75px;
     margin: 0;
+    font-weight: 400;
+    color: rgb(165, 165, 165);
   }
 
   &__buttons-container {
