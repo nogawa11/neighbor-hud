@@ -1,7 +1,6 @@
 .report-details {
   padding-top: 0.9rem;
-  border: 1px solid #333333;
-  background: #333333;
+  background: #1b1b1b;
 
   &.card {
     overflow: unset;
@@ -13,7 +12,7 @@
     max-height: 150px;
     overflow: hidden;
     border-top: 2px solid transparent;
-    background: #333333;
+    background: #1b1b1b;
     width: 100%;
 
     &.close {
@@ -25,7 +24,7 @@
 
   input.description, input.title {
     color: #bcc4cd;
-    background: #333333;
+    background: #1b1b1b;
     border: none;
     justify-content: center;
     border-top: 2px solid #6d6d6d;
