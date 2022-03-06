@@ -1,6 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 import mapboxgl from "mapbox-gl"
 import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder"
+import MapboxDirections from "@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions";
 
 export default class extends Controller {
   static values = {
@@ -31,6 +32,7 @@ export default class extends Controller {
     });
 
     this.#isInNewIncidentPage() && this.#addMapInputToForm()
+    this.#addDirections()
   }
 
 /* --------------------------------- Private -------------------------------- */
@@ -122,6 +124,16 @@ export default class extends Controller {
 
   #isInNewIncidentPage() {
     return (/\/incidents\/new\/?/).test(window.location.pathname)
+  }
+
+  #addDirections() {
+    window.location.pathname.includes("/route")
+      && this.map.addControl(
+      new MapboxDirections({
+        accessToken: mapboxgl.accessToken,
+      }),
+      "top-left"
+    );
   }
 
   #fitMapToMarkers() {
