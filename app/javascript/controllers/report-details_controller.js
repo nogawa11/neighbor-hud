@@ -1,13 +1,18 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = ["card", "button", "location", "title", "reportButton", "detailsCard"]
+  static targets = ["card", "button", "location", "title", "reportButton", "detailsCard", "category"]
 
   previousLocation = '';
   previousTitle = '';
+  previousCategory = '';
 
   get location() {
     return this.locationTarget.value;
+  }
+
+  get category() {
+    return this.categoryTarget.value;
   }
 
   get title() {
@@ -22,8 +27,12 @@ export default class extends Controller {
     return this.previousTitle !== this.title;
   }
 
+  get isCategoryChanged() {
+    return this.previousTitle !== this.title;
+  }
+
   get isFormValid() {
-    return (this.isLocationChanged || this.isTitleChanged);
+    return (this.isLocationChanged && this.isTitleChanged && this.isCategoryChanged);
   }
 
   set disableForm(value) {

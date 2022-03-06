@@ -32,7 +32,9 @@ class IncidentsController < ApplicationController
     authorize @incident
     @incident.user = current_user
     @incident.incident_date = params[:incident_date]
-    if @incident.category_list.first.include?("disturbing")
+    if @incident.category_list.empty?
+      @incident.category_list.add("Disturb")
+    elsif @incident.category_list.first.include?("disturbing")
       @incident.category_list.remove("disturbing the peace")
       @incident.category_list.add("Disturb")
     end
