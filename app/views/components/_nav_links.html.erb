@@ -1,33 +1,33 @@
 <ul class="nav__links" data-controller="nav-link">
-  <li>
+  <li data-tippy-content="Home">
     <%= link_to "/", class:"nav__link", data: {
       "nav-link-target": "home"
     } do %>
       <i class="fas fa-home"></i>
     <% end %>
   </li>
-  <li>
+  <li data-tippy-content="Feed">
     <%= link_to "/feed", class:"nav__link", data: {
       "nav-link-target": "incidents"
     } do %>
       <i class="fas fa-newspaper"></i>
     <% end %>
   </li>
-  <li>
+  <li data-tippy-content="Report an incident">
     <%= link_to "/incidents/new", class:"nav__link", data: {
       "nav-link-target": "new"
     } do %>
       <i class="fas fa-plus"></i>
     <% end %>
   </li>
-  <li>
+  <li data-tippy-content="Find a safe route">
     <%= link_to "/route", class:"nav__link", data: {
       "nav-link-target": "route"
     } do %>
       <i class="fas fa-map-marked-alt"></i>
     <% end %>
   </li>
-  <li>
+  <li data-tippy-content="My activity">
     <%= link_to "/profile", class:"nav__link", data: {
       "nav-link-target": "profile"
     } do %>
