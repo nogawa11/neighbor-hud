@@ -1,4 +1,6 @@
 class FeedController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:index]
+
   def index
     if params[:query].present? || params[:filter] == "all"
       @incidents = policy_scope(Incident).near(params[:query]).order(created_at: :desc)

@@ -19,11 +19,13 @@
   }
 }
 
-.button--logout {
+.button--logout  {
   display: inline-flex;
   align-items: center;
-  margin-top: 2em;
-  padding: .7em;
-  background-color: #113A5F;
-  color: #908D8D;
+  padding: 0.7em;
+  background-color: #40464c;
+  color: #c2c2c2;
+  border-radius: 50px;
+  width: 100%;
+  justify-content: center;
 }
