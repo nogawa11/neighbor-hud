@@ -28,6 +28,7 @@
     background-color: $primary;
     padding: 0;
     overflow: hidden;
+    display: flex;
   }
 
   &-icon {
@@ -46,7 +47,7 @@
   &gl-ctrl.mapboxgl-ctrl-group {
     position: absolute;
     z-index: -1;
-    top: 100px;
+    top: 6.5em;
     right: -1rem;
   }
   /* ------------------------- Current Position Button ------------------------ */

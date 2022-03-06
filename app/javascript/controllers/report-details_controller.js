@@ -1,11 +1,11 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = ["card", "button", "location", "title", "category",　"reportButton", "detailsCard"]
+  static targets = ["card", "button", "location", "title", "reportButton", "detailsCard", "category"]
 
   previousLocation = '';
-  previousCategory = '';
   previousTitle = '';
+  previousCategory = '';
 
   get location() {
     return this.locationTarget.value;
@@ -23,16 +23,16 @@ export default class extends Controller {
     return this.previousLocation !== this.location;
   }
 
-  get isCategoryChanged() {
-    return this.previousCategory !== this.category;
-  }
-
   get isTitleChanged() {
     return this.previousTitle !== this.title;
   }
 
+  get isCategoryChanged() {
+    return this.previousTitle !== this.title;
+  }
+
   get isFormValid() {
-    return (this.isLocationChanged || this.isCategoryChanged) || this.isTitleChanged;
+    return (this.isLocationChanged && this.isTitleChanged && this.isCategoryChanged);
   }
 
   set disableForm(value) {
@@ -41,16 +41,15 @@ export default class extends Controller {
 
   connect() {
     this.previousLocation = this.location;
-    this.previousCategory = this.category;
     this.previousTitle = this.title;
     this.disableForm = true;
   }
 
   closeCard(event) {
     event.preventDefault();
-    this.buttonTarget.classList.toggle("close")
-    this.cardTarget.classList.toggle("close")
-    this.reportButtonTarget.classList.toggle("close")
+    this.buttonTarget.classList.toggle("close");
+    this.cardTarget.classList.toggle("close");
+    this.reportButtonTarget.classList.toggle("close");
     this.detailsCardTarget.classList.toggle("close");
   }
 

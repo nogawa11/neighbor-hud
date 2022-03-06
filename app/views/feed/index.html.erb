@@ -1,19 +1,28 @@
-<div class="container feed"  data-controller="active-button">
-  <div class="feed__top">
-    <p>Here are the recent incidents in your area</p>
-    <%= render 'search' %>
-    <%= render 'buttons' %>
-  </div>
-  <div class="feed__mid">
-    <%= render 'feed_incidents' %>
-  </div>
-  <div class="feed__bottom">
-    <div class="feed__filter">
-      <p class="feed__paragraph">Filter by category or date</p>
-      <div class="categories">
-        <%= render "/components/categories_list.html.erb" %>
+ <div data-controller="filter">
+  <div class="container feed" data-controller="active-button" data-filter-target="feed">
+    <div class="feed__top">
+      <p>Here are the recent incidents in your area</p>
+      <%= render 'search' %>
+      <%= render 'buttons' %>
+    </div>
+    <div class="feed__mid">
+      <%= render 'feed_incidents' %>
+    </div>
+    <div class="feed__bottom">
+      <div class="feed__filter">
+        <div class="feed__button">
+          <button data-action="click->filter#closeFilter" class="feed__paragraph" data-filter-target="button">
+            <i class="fas fa-chevron-up"></i>
+            Filter by category or date
+          </button>
+        </div>
+        <div class="categories" data-filter-target="categories">
+          <%= render "/components/categories_list.html.erb" %>
+        </div>
+        <div data-filter-target="date" class="date">
+          <%= render 'components/date_picker', path: feed_path %>
+        </div>
       </div>
-      <%= render 'components/date_picker', path: feed_path %>
     </div>
   </div>
 </div>

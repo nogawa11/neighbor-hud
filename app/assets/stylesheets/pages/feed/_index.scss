@@ -1,7 +1,30 @@
 .feed {
   display: grid;
-  grid-template-rows: auto calc(100vh - 380px) auto;
+  grid-template-rows: auto calc(100vh - 271px) auto;
   overflow: scroll;
+  transition: 1s;
+
+  &.open {
+    display: grid;
+    grid-template-rows: auto calc(100vh - 390px) auto;
+    overflow: scroll;
+  }
+
+  .categories {
+    display: none;
+
+    &.open {
+      display: grid;
+    }
+  }
+
+  .date {
+    display: none;
+
+    &.open {
+      display: grid;
+    }
+  }
 
   &__top {
     display: grid;
@@ -12,6 +35,12 @@
     & > p {
       margin: 0;
     }
+  }
+
+  &__button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
   }
 
   &__incidents {
@@ -27,7 +56,21 @@
     padding: 0;
     padding-top: 0.5rem;
     letter-spacing: 1px;
-    font-weight: 600;
+    font-weight: 400;
     text-align: center;
+
+    i {
+      transition: $transition;
+      font-size: 1.25rem;
+      margin-right: 0.3rem;
+      position: relative;
+      top: 2px;
+    }
+
+    &.open {
+      i {
+        transform: rotate(180deg);
+      }
+    }
   }
 }

@@ -6,9 +6,9 @@
     <div class="report">
       <div class="report-form">
         <h3 class="report_container__heading">Report an <span>Incident</span></h3>
+        <%= render "report_categories_input", f: f %>
         <%= render "hidden_location_input", f: f %>
         <%= render "report_location_input", f: f %>
-        <%= render "report_categories_input", f: f %>
         <div class="date-and-comments">
           <%= render "date_picker_for_report" %>
           <%= render "report_comments_switcher", f: f %>

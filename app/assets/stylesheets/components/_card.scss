@@ -5,15 +5,22 @@
   box-shadow: $box-shadow;
   overflow: hidden;
   margin-bottom: 24px;
+  border: 0;
 
   &.card--dark {
     background: $dark;
+    border-radius: 50px;
+
+    &.open {
+      border-radius: 16px;
+    }
   }
 
   &.card--gray {
     background: #383838;
     margin: 0;
     border-radius: 16px 16px 0 0;
+    transition: 0.6s;
 
     &.close {
       bottom: 5.5em;
