@@ -1,6 +1,6 @@
 <div class="card card--gray">
   <div class="report-details">
-    <button class="report-details__button" data-action="click->report-details#openCard" data-report-details-target="button">
+    <button class="report-details__button">
       <i class="fas fa-info-circle"></i>
       Add details
     </button>
@@ -13,7 +13,7 @@
                   data: { "report-details-target": "title" }
                 } %>
       <%= f.input :description,
-                placeholder: "Write incident details here (optional)",
+                placeholder: "Share your experience (optional)",
                 label: false,
                 input_html: { class: "description" },
                 required: false %>

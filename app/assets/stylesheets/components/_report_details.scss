@@ -29,7 +29,6 @@
     border: none;
     justify-content: center;
     border-top: 2px solid #6d6d6d;
-    // border-radius: 1rem;
   }
 
   input.description {
@@ -38,12 +37,11 @@
 
   &__button {
     background: transparent;
-    font-weight: 600;
-    letter-spacing: 1px;
-    padding-bottom: 1rem;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    padding-bottom: 0.5rem;
 
     i {
-      transition: $transition;
       font-size: 1.25rem;
       margin-right: 0.3rem;
       position: relative;
