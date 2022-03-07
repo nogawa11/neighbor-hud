@@ -92,7 +92,15 @@
     }
 
     .mapboxgl-ctrl-geocoder {
-      border-bottom: 1px solid #ffffff20;
+      border-bottom: 1px solid #a8a8a8;
+      background-color: rgb(17, 17, 17);
+    }
+  }
+
+
+  .mapbox-directions-destination {
+    .mapboxgl-ctrl-geocoder {
+      background-color: rgb(17, 17, 17);
     }
   }
 
