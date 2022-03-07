@@ -37,6 +37,8 @@ class ScrapeMainichinewsService < ApplicationRecord
         keywords << "Disturb" if keywords.empty?
         keywords.each { |keyword| @incident.category_list.add(keyword) }
         @incident.image_path = "#{@incident.category_list.first}.png"
+        @incident.url = url
+        @incident.source = "The Mainichi"
         @incident.save
       end
     end

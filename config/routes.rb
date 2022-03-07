@@ -16,6 +16,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :comments, only: :destroy
+
   # Sidekiq Web UI, only for admins.
   require "sidekiq/web"
   authenticate :user, ->(user) { user.admin? } do

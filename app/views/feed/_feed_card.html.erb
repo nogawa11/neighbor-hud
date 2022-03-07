@@ -1,10 +1,15 @@
 <div class="card--feed me-1 ms-1 p-3">
+  <% if incident.user == current_user && current_page?('/profile') %>
+    <div class="button--delete">
+      <%= link_to "<i class='fas fa-times'></i>".html_safe, incident_path(incident), method: :delete, data: { confirm: "Would you like to delete this incident?" } %>
+    </div>
+  <% end %>
   <div class="row d-flex justify-content-between">
     <div class="col-10">
       <% if incident.user_id.nil? %>
-        <h1 class="text--blue"><i>News report</i></h1>
+        <h1 class="text--blue"><i>News Report</i></h1>
       <% else %>
-        <h1 class="text--blue"><i>User report</i></h1>
+        <h1 class="text--blue"><i>User Report</i></h1>
       <% end %>
       <h1><%= incident.title %></h1>
     </div>

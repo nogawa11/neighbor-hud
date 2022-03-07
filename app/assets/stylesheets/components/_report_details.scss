@@ -9,7 +9,11 @@
   .card__body {
     padding: 0;
     transition: all 0.3s ease-in-out;
+<<<<<<< HEAD
     // max-height: 150px;
+=======
+    max-height: 150px;
+>>>>>>> master
     max-height: 0px;
     overflow: hidden;
     border-top: 2px solid transparent;
@@ -17,9 +21,13 @@
     width: 100%;
 
     &.open {
+<<<<<<< HEAD
         max-height: 800px;
         padding: 0;
         overflow: hidden;
+=======
+      max-height: 150px;
+>>>>>>> master
     }
 
     // &.close {
@@ -51,6 +59,16 @@
       font-size: 1.25rem;
       margin-right: 0.3rem;
       position: relative;
+      transition: all 0.5s;
+    }
+
+    .fa-angle-up {
+      font-size: 1.5rem;
+      margin-left: 0.5rem;
+    }
+
+    &.open .fa-angle-up {
+      transform: rotate(180deg);
     }
 
     &.open {

@@ -5,10 +5,16 @@
 
   .card.card--gray {
     position: fixed;
-    bottom: 8.5rem;
+    bottom: 6rem;
     z-index: 100;
     width: 90%;
     left: 5%;
+    border-radius: 1rem;
+
+    &.open {
+      bottom: 8.5rem;
+      border-radius: 1rem 1rem 0 0;
+    }
   }
 
   .map-container {
