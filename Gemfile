@@ -45,7 +45,7 @@ gem 'sidekiq'
 gem 'sidekiq-failures', '~> 1.0'
 gem "serviceworker-rails"
 gem 'turf-ruby'
-
+gem 'polylines', '~> 0.3.0'
 
 
 group :development, :test do  gem 'pry-byebug'
