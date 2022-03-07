@@ -48,7 +48,7 @@ export default class extends Controller {
 
     this.#isInNewIncidentPage() && this.#addMapInputToForm();
     this.#addDirections();
-    this.#displayObstacles();
+    this.#loadMap();
     this.#clearRoutesAndBoxes();
     this.#checkRoutesForCollisions();
   }
@@ -213,24 +213,37 @@ export default class extends Controller {
     });
   }
 
-  #displayObstacles() {
-    this.map.on("load", () => {
-      this.map.addLayer({
-        id: "obstacles",
-        type: "fill",
-        source: {
-          type: "geojson",
-          data: this.#getObstacle(),
-        },
-        layout: {},
-        paint: {
-          "fill-color": "#f03b20",
-          "fill-opacity": 0.5,
-          "fill-outline-color": "#f03b20",
-        },
-      });
+  #addObstacles() {
+    this.map.addLayer({
+      id: "obstacles",
+      type: "fill",
+      source: {
+        type: "geojson",
+        data: this.#getObstacle(),
+      },
+      layout: {},
+      paint: {
+        "fill-color": "#f03b20",
+        "fill-opacity": 0.5,
+        "fill-outline-color": "#f03b20",
+      },
+    });
+  }
 
+  #setOriginPosition() {
+    navigator.geolocation.getCurrentPosition((position) => {
+      this.directions.setOrigin([
+        position.coords.longitude,
+        position.coords.latitude,
+      ]);
+    });
+  }
+
+  #loadMap() {
+    this.map.on("load", () => {
+      this.#addObstacles();
       this.#addRouteLineLayerAndSource();
+      this.#setOriginPosition();
     });
   }
 
