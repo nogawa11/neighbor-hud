@@ -235,29 +235,31 @@ export default class extends Controller {
     });
   }
 
+  #setRouteLineColor(clear) {
+    if (clear) {
+      this.map.setPaintProperty("theRoute", "line-color", "#74c476");
+    } else {
+      this.bbox = turf.bbox(this.polygon);
+      this.map.setPaintProperty("theRoute", "line-color", "#de2d26");
+    }
+  }
+
   #checkRoutesForCollisions() {
     this.directions.on("route", (event) => {
       this.#setLayersVisibility("none")
 
       for (const route of event.route) {
         this.#setLayersVisibility("visible");
+        
         // Get GeoJSON LineString feature of route
         const routeLine = polyline.toGeoJSON(route.geometry);
         this.bbox = turf.bbox(routeLine);
         this.polygon = turf.bboxPolygon(this.bbox);
         this.map.getSource("theRoute").setData(routeLine);
+
         const clear = turf.booleanDisjoint(this.#getObstacle(), routeLine);
-
-        if (clear) {
-            this.map.setPaintProperty("theRoute", "line-color", "#74c476");
-        } else {
-          this.bbox = turf.bbox(this.polygon);
-          this.map.setPaintProperty("theRoute", "line-color", "#de2d26");
-        }
+        this.#setRouteLineColor(clear);
       }
-
-      // Update the data for the route
-      // This will update the route line on the map
     });
   }
 }
