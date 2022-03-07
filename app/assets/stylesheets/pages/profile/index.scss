@@ -4,6 +4,10 @@
   overflow: scroll;
   color: rgb(240, 240, 240);
 
+  h1 {
+    font-size: calc(1.3rem + 3vw);
+  }
+
   .text--roboto {
     font-family: $roboto;
     font-weight: 300;
