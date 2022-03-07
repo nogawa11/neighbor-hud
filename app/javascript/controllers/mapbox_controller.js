@@ -244,13 +244,22 @@ export default class extends Controller {
     }
   }
 
+  #findNewRoute() {
+    // Add a randomly selected waypoint to get a new route from the Directions API
+    const randomWaypoint = turf.randomPoint(10, { bbox: this.bbox });
+    this.directions.setWaypoint(
+      0,
+      randomWaypoint["features"][0].geometry.coordinates
+    );
+  }
+
   #checkRoutesForCollisions() {
     this.directions.on("route", (event) => {
       this.#setLayersVisibility("none")
 
       for (const route of event.route) {
         this.#setLayersVisibility("visible");
-        
+
         // Get GeoJSON LineString feature of route
         const routeLine = polyline.toGeoJSON(route.geometry);
         this.bbox = turf.bbox(routeLine);
@@ -259,6 +268,7 @@ export default class extends Controller {
 
         const clear = turf.booleanDisjoint(this.#getObstacle(), routeLine);
         this.#setRouteLineColor(clear);
+        !clear && this.#findNewRoute();
       }
     });
   }
