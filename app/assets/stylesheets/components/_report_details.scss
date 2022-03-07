@@ -60,11 +60,5 @@
     &.open .fa-angle-up {
       transform: rotate(180deg);
     }
-
-    &.open {
-      .arrow i {
-        transform: rotate(180deg);
-      }
-    }
   }
 }
