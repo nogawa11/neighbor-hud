@@ -31,7 +31,7 @@ class PagesController < ApplicationController
   private
 
   def news_user_filter(filter)
-    @incidents = policy_scope(Incident).where('user_id IS NULL') if filter == "crimenews"
+    @incidents = policy_scope(Incident).where('user_id IS NULL') if filter == "newsreports"
     @incidents = policy_scope(Incident).where('user_id IS NOT NULL') if filter == "userreports"
   end
 
