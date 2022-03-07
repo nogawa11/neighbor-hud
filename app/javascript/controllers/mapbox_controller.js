@@ -172,7 +172,7 @@ export default class extends Controller {
   }
 
   #getObstacle() {
-    const obstacle = turf.buffer(this.#getGsonIncidents(), 0.9, { units: "kilometers" });
+    const obstacle = turf.buffer(this.#getGsonIncidents(), 0.25, { units: "kilometers" });
 
     return obstacle
   }
@@ -212,9 +212,28 @@ export default class extends Controller {
         },
         paint: {
           "line-color": "#cccccc",
-          "line-opacity": 0.9,
+          "line-opacity": 0.5,
           "line-width": 13,
           "line-blur": 0.5,
+        },
+      });
+
+      // Source and layer for the bounding box
+      this.map.addSource("theBox", {
+        type: "geojson",
+        data: {
+          type: "Feature",
+        },
+      });
+      this.map.addLayer({
+        id: "theBox",
+        type: "fill",
+        source: "theBox",
+        layout: {},
+        paint: {
+          "fill-color": "#FFC300",
+          "fill-opacity": 0.5,
+          "fill-outline-color": "#FFC300",
         },
       });
     });
@@ -223,6 +242,7 @@ export default class extends Controller {
   #clearRoutesAndBoxes() {
     this.directions.on('clear', () => {
       this.map.setLayoutProperty('theRoute', 'visibility', 'none');
+      this.map.setLayoutProperty('theBox', 'visibility', 'none');
     });
   }
 
@@ -230,18 +250,23 @@ export default class extends Controller {
     this.directions.on("route", (event) => {
       // Hide the route and box by setting the opacity to zero
       this.map.setLayoutProperty("theRoute", "visibility", "none");
+      this.map.setLayoutProperty("theBox", "visibility", "none");
 
       for (const route of event.route) {
         this.map.setLayoutProperty("theRoute", "visibility", "visible");
+        this.map.setLayoutProperty("theBox", "visibility", "visible");
         // Get GeoJSON LineString feature of route
         const routeLine = polyline.toGeoJSON(route.geometry);
         this.bbox = turf.bbox(routeLine);
         this.polygon = turf.bboxPolygon(this.bbox);
         this.map.getSource("theRoute").setData(routeLine);
+        this.map.getSource("theBox").setData(this.polygon);
         const clear = turf.booleanDisjoint(this.#getObstacle(), routeLine);
 
         if (clear) {
-          this.map.setPaintProperty("theRoute", "line-color", "#74c476");
+            this.map.setPaintProperty("theRoute", "line-color", "#74c476");
+            // Hide the box
+            this.map.setLayoutProperty("theBox", "visibility", "none");
         } else {
           this.bbox = turf.bbox(this.polygon);
           this.map.setPaintProperty("theRoute", "line-color", "#de2d26");
