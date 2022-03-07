@@ -22,7 +22,7 @@ export default class extends Controller {
     this.#addCurrentLocationButton();
 
     this.counter = 0;
-    this.maxAttemps = 50;
+    this.maxAttempts = 50;
 
     this.bbox = [0, 0, 0, 0];
     this.polygon = turf.bboxPolygon(this.bbox);
@@ -51,6 +51,8 @@ export default class extends Controller {
     this.#loadMap();
     this.#clearRoutesAndBoxes();
     this.#checkRoutesForCollisions();
+    this.#preventSuggestionStyle();
+
   }
 
   /* --------------------------------- Private -------------------------------- */
@@ -281,7 +283,7 @@ export default class extends Controller {
     this.directions.on("route", (event) => {
       this.#setLayersVisibility("none");
 
-      if (this.counter <= this.maxAttemps) {
+      if (this.counter <= this.maxAttempts) {
         for (const route of event.route) {
           this.#setLayersVisibility("visible");
 
@@ -302,5 +304,16 @@ export default class extends Controller {
         }
       }
     });
+  }
+
+  #preventSuggestionStyle() {
+    const swapButton = document.querySelector(".directions-reverse")
+    const suggestions = document.querySelectorAll(".suggestions")
+    console.log(suggestions);
+    swapButton.addEventListener("click", () => {
+      suggestions.forEach((element) => {
+        element.style.visibility = "initial";
+      });
+    })
   }
 }
