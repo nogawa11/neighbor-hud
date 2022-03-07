@@ -4,6 +4,7 @@
   "dependencies": {
     "@mapbox/mapbox-gl-directions": "^4.1.0",
     "@mapbox/mapbox-gl-geocoder": "^4.7.4",
+    "@mapbox/polyline": "^1.1.1",
     "@popperjs/core": "^2.11.2",
     "@rails/actioncable": "^6.0.0",
     "@rails/activestorage": "^6.0.0",
