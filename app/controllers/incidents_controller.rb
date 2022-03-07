@@ -3,7 +3,7 @@ class IncidentsController < ApplicationController
   before_action :set_incident, only: [:show, :destroy]
 
   def index
-    @incidents = policy_scope(Incident)
+    @incidents = policy_scope(Incident).includes(:comments)
     @markers = @incidents.geocoded.map do |incident|
       {
         lat: incident.latitude,
