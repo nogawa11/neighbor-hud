@@ -1,38 +1,41 @@
-import { Controller } from "@hotwired/stimulus"
-import mapboxgl from "mapbox-gl"
-import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder"
+import { Controller } from "@hotwired/stimulus";
+import mapboxgl from "mapbox-gl";
+import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 import MapboxDirections from "@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions";
 import "@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions.css";
-import * as turf from "@turf/turf"
-import polyline from "@mapbox/polyline"
+import * as turf from "@turf/turf";
+import polyline from "@mapbox/polyline";
 
 export default class extends Controller {
   static values = {
     apiKey: String,
-    markers: Array
-  }
+    markers: Array,
+  };
 
-  static targets = [ 'noSearch', "latitude", "longitude" ]
+  static targets = ["noSearch", "latitude", "longitude"];
 
   async connect() {
-    await this.#startMapbox()
-    this.#centerMap()
-    this.#addMarkersToMap()
-    this.#addSearchBox()
-    this.#addCurrentLocationButton()
+    await this.#startMapbox();
+    this.#centerMap();
+    this.#addMarkersToMap();
+    this.#addSearchBox();
+    this.#addCurrentLocationButton();
+
+    this.counter = 0;
+    this.maxAttemps = 50;
+
     this.bbox = [0, 0, 0, 0];
     this.polygon = turf.bboxPolygon(this.bbox);
-    const latitude = document.querySelector(".latitude")
-    const longitude = document.querySelector(".longitude")
-    this.map.on('result', e => {
-        latitude.value = e.result.center[0]
-        longitude.value = e.result.center[1]
-        console.log(e.result.center);
+    const latitude = document.querySelector(".latitude");
+    const longitude = document.querySelector(".longitude");
+    this.map.on("result", (e) => {
+      latitude.value = e.result.center[0];
+      longitude.value = e.result.center[1];
     });
 
     navigator.geolocation.getCurrentPosition((position) => {
-      localStorage.setItem('lat', position.coords.latitude);
-      localStorage.setItem('long', position.coords.longitude);
+      localStorage.setItem("lat", position.coords.latitude);
+      localStorage.setItem("long", position.coords.longitude);
     });
 
     this.directions = new MapboxDirections({
@@ -43,138 +46,145 @@ export default class extends Controller {
       controls: { instructions: false },
     });
 
-    this.#isInNewIncidentPage() && this.#addMapInputToForm()
-    this.#addDirections()
-    this.#displayObstacles()
+    this.#isInNewIncidentPage() && this.#addMapInputToForm();
+    this.#addDirections();
+    this.#displayObstacles();
     this.#clearRoutesAndBoxes();
-    this.#checkRoutesForCollisions()
+    this.#checkRoutesForCollisions();
   }
 
-/* --------------------------------- Private -------------------------------- */
+  /* --------------------------------- Private -------------------------------- */
   #getUserLocation() {
-    navigator.geolocation.getCurrentPosition(position => {
-      this.map.setCenter([position.coords.longitude, position.coords.latitude])
+    navigator.geolocation.getCurrentPosition((position) => {
+      this.map.setCenter([position.coords.longitude, position.coords.latitude]);
     });
   }
 
   #getIncidentLocation() {
     const lng = this.markersValue[0].lng;
     const lat = this.markersValue[0].lat;
-    console.log(lng, lat);
-    this.map.setCenter([lng, lat])
-    this.map.setZoom(13)
+    this.map.setCenter([lng, lat]);
+    this.map.setZoom(13);
   }
 
   #centerMap() {
-    this.#isInShowPage() ? this.#getIncidentLocation() : this.#getUserLocation()
+    this.#isInShowPage()
+      ? this.#getIncidentLocation()
+      : this.#getUserLocation();
   }
 
   #startMapbox() {
     // Initialize MapBox.
-    mapboxgl.accessToken = this.apiKeyValue
+    mapboxgl.accessToken = this.apiKeyValue;
     this.map = new mapboxgl.Map({
       container: this.element,
       style: "mapbox://styles/ayanorii/cl05huof2003o15nuivl7b2y7",
-    })
+    });
   }
 
   #addSearchBox() {
     // Adds the search box if the current page is not /incidents/:id.
     if (!this.#isInShowPage()) {
-      this.map.addControl(new MapboxGeocoder({
-        accessToken: mapboxgl.accessToken,
-        mapboxgl: mapboxgl
-      }))
+      this.map.addControl(
+        new MapboxGeocoder({
+          accessToken: mapboxgl.accessToken,
+          mapboxgl: mapboxgl,
+        })
+      );
     }
   }
 
   #addMarkersToMap() {
     this.markersValue.forEach((marker) => {
-      const background = marker.src ? marker.src.toLowerCase() : "https://i.imgur.com/7teZKVh.png"
+      const background = marker.src
+        ? marker.src.toLowerCase()
+        : "https://i.imgur.com/7teZKVh.png";
 
-      const popup = new mapboxgl.Popup(
-        {
-          closeOnClick: false,
-          closeButton: false
-        }).setHTML(
-          `<a href="incidents/${marker.id}?path=map"
+      const popup = new mapboxgl.Popup({
+        closeOnClick: false,
+        closeButton: false,
+      }).setHTML(
+        `<a href="incidents/${marker.id}?path=map"
           class="mapbox-icon"
           style="background-image: url(${background})"></a>`
-        )
-      const emptyMarker = document.createElement('div');
+      );
+      const emptyMarker = document.createElement("div");
 
       new mapboxgl.Marker(emptyMarker)
-      .setLngLat([marker.lng, marker.lat])
-      .addTo(this.map)
-      .setPopup(popup)
-      .togglePopup();
+        .setLngLat([marker.lng, marker.lat])
+        .addTo(this.map)
+        .setPopup(popup)
+        .togglePopup();
     });
   }
 
   #addCurrentLocationButton() {
     // Adds a current location button.
-    this.map.addControl(new mapboxgl.GeolocateControl({
-      positionOptions: {
-        enableHighAccuracy: true
-      },
-      trackUserLocation: true,
-      showUserHeading: true
-    }));
+    this.map.addControl(
+      new mapboxgl.GeolocateControl({
+        positionOptions: {
+          enableHighAccuracy: true,
+        },
+        trackUserLocation: true,
+        showUserHeading: true,
+      })
+    );
   }
 
   #addMapInputToForm() {
     // When adding a new report, gets the the input from MapBox search box and inserts into the simple form.
-    const input = document.querySelector(".mapboxgl-ctrl-geocoder--input")
+    const input = document.querySelector(".mapboxgl-ctrl-geocoder--input");
     input.addEventListener("keyup", (e) => {
-      document.getElementById("incident_location").value = e.currentTarget.value
-    })
+      document.getElementById("incident_location").value =
+        e.currentTarget.value;
+    });
     input.addEventListener("change", (e) => {
-      document.getElementById("incident_location").value = e.currentTarget.value
-    })
+      document.getElementById("incident_location").value =
+        e.currentTarget.value;
+    });
   }
 
   #isInShowPage() {
-    return (/\/incidents\/\d+.*/).test(window.location.pathname);
+    return /\/incidents\/\d+.*/.test(window.location.pathname);
   }
 
   #isInNewIncidentPage() {
-    return (/\/incidents\/new\/?/).test(window.location.pathname)
+    return /\/incidents\/new\/?/.test(window.location.pathname);
   }
 
   #addDirections() {
-    window.location.pathname.includes("/route")
-      && this.map.addControl(
-        this.directions,
-        "top-left"
-      );
+    window.location.pathname.includes("/route") &&
+      this.map.addControl(this.directions, "top-left");
   }
 
   #getGsonFeatures() {
-    const features = []
-    this.markersValue.forEach(marker => {
+    const features = [];
+    this.markersValue.forEach((marker) => {
       features.push({
         type: "Feature",
         geometry: {
           type: "Point",
-          coordinates: [marker.lng, marker.lat]
-        }
-      })
-    })
-    return features
+          coordinates: [marker.lng, marker.lat],
+        },
+      });
+    });
+    return features;
   }
 
   #getGsonIncidents() {
     const incidents = {
       type: "FeatureCollection",
-      features: this.#getGsonFeatures()
-    }
-    return incidents
+      features: this.#getGsonFeatures(),
+    };
+    return incidents;
   }
 
   #getObstacle() {
-    const obstacle = turf.buffer(this.#getGsonIncidents(), 0.25, { units: "kilometers" });
+    const obstacle = turf.buffer(this.#getGsonIncidents(), 0.25, {
+      units: "kilometers",
+    });
 
-    return obstacle
+    return obstacle;
   }
 
   #addRouteLineLayerAndSource() {
@@ -230,8 +240,8 @@ export default class extends Controller {
 
   #clearRoutesAndBoxes() {
     // Hide the route and box by setting the opacity to zero
-    this.directions.on('clear', () => {
-      this.#setLayersVisibility("none")
+    this.directions.on("clear", () => {
+      this.#setLayersVisibility("none");
     });
   }
 
@@ -251,24 +261,32 @@ export default class extends Controller {
       0,
       randomWaypoint["features"][0].geometry.coordinates
     );
+    this.counter += 1;
   }
 
   #checkRoutesForCollisions() {
     this.directions.on("route", (event) => {
-      this.#setLayersVisibility("none")
+      this.#setLayersVisibility("none");
 
-      for (const route of event.route) {
-        this.#setLayersVisibility("visible");
+      if (this.counter <= this.maxAttemps) {
+        for (const route of event.route) {
+          this.#setLayersVisibility("visible");
 
-        // Get GeoJSON LineString feature of route
-        const routeLine = polyline.toGeoJSON(route.geometry);
-        this.bbox = turf.bbox(routeLine);
-        this.polygon = turf.bboxPolygon(this.bbox);
-        this.map.getSource("theRoute").setData(routeLine);
+          // Get GeoJSON LineString feature of route
+          const routeLine = polyline.toGeoJSON(route.geometry);
+          this.bbox = turf.bbox(routeLine);
+          this.polygon = turf.bboxPolygon(this.bbox);
+          this.map.getSource("theRoute").setData(routeLine);
 
-        const clear = turf.booleanDisjoint(this.#getObstacle(), routeLine);
-        this.#setRouteLineColor(clear);
-        !clear && this.#findNewRoute();
+          const clear = turf.booleanDisjoint(this.#getObstacle(), routeLine);
+          if (clear) {
+            this.#setRouteLineColor(clear);
+            this.counter = 0;
+          } else {
+            this.#setRouteLineColor(clear);
+            this.#findNewRoute();
+          }
+        }
       }
     });
   }
