@@ -177,6 +177,32 @@ export default class extends Controller {
     return obstacle
   }
 
+  #addRouteLineLayerAndSource() {
+    // Source and layer for the route
+    this.map.addSource("theRoute", {
+      type: "geojson",
+      data: {
+        type: "Feature",
+      },
+    });
+
+    this.map.addLayer({
+      id: "theRoute",
+      type: "line",
+      source: "theRoute",
+      layout: {
+        "line-join": "round",
+        "line-cap": "round",
+      },
+      paint: {
+        "line-color": "#cccccc",
+        "line-opacity": 0.85,
+        "line-width": 13,
+        "line-blur": 0.8,
+      },
+    });
+  }
+
   #displayObstacles() {
     this.map.on("load", () => {
       this.map.addLayer({
@@ -194,79 +220,36 @@ export default class extends Controller {
         },
       });
 
-      // Source and layer for the route
-      this.map.addSource("theRoute", {
-        type: "geojson",
-        data: {
-          type: "Feature",
-        },
-      });
-
-      this.map.addLayer({
-        id: "theRoute",
-        type: "line",
-        source: "theRoute",
-        layout: {
-          "line-join": "round",
-          "line-cap": "round",
-        },
-        paint: {
-          "line-color": "#cccccc",
-          "line-opacity": 0.5,
-          "line-width": 13,
-          "line-blur": 0.5,
-        },
-      });
-
-      // Source and layer for the bounding box
-      this.map.addSource("theBox", {
-        type: "geojson",
-        data: {
-          type: "Feature",
-        },
-      });
-      this.map.addLayer({
-        id: "theBox",
-        type: "fill",
-        source: "theBox",
-        layout: {},
-        paint: {
-          "fill-color": "#FFC300",
-          "fill-opacity": 0.5,
-          "fill-outline-color": "#FFC300",
-        },
-      });
+      this.#addRouteLineLayerAndSource();
     });
   }
 
+  #setLayersVisibility(visibility) {
+    this.map.setLayoutProperty("theRoute", "visibility", visibility);
+  }
+
   #clearRoutesAndBoxes() {
+    // Hide the route and box by setting the opacity to zero
     this.directions.on('clear', () => {
-      this.map.setLayoutProperty('theRoute', 'visibility', 'none');
-      this.map.setLayoutProperty('theBox', 'visibility', 'none');
+      this.#setLayersVisibility("none")
     });
   }
 
   #checkRoutesForCollisions() {
     this.directions.on("route", (event) => {
-      // Hide the route and box by setting the opacity to zero
-      this.map.setLayoutProperty("theRoute", "visibility", "none");
-      this.map.setLayoutProperty("theBox", "visibility", "none");
+      this.#setLayersVisibility("none")
 
       for (const route of event.route) {
-        this.map.setLayoutProperty("theRoute", "visibility", "visible");
-        this.map.setLayoutProperty("theBox", "visibility", "visible");
+        this.#setLayersVisibility("visible");
         // Get GeoJSON LineString feature of route
         const routeLine = polyline.toGeoJSON(route.geometry);
         this.bbox = turf.bbox(routeLine);
         this.polygon = turf.bboxPolygon(this.bbox);
         this.map.getSource("theRoute").setData(routeLine);
-        this.map.getSource("theBox").setData(this.polygon);
         const clear = turf.booleanDisjoint(this.#getObstacle(), routeLine);
 
         if (clear) {
             this.map.setPaintProperty("theRoute", "line-color", "#74c476");
-            // Hide the box
-            this.map.setLayoutProperty("theBox", "visibility", "none");
         } else {
           this.bbox = turf.bbox(this.polygon);
           this.map.setPaintProperty("theRoute", "line-color", "#de2d26");
