@@ -59,11 +59,19 @@ export default class extends Controller {
   closeCard(event) {
     console.log(event.currentTarget);
     event.preventDefault();
-    this.buttonTarget.classList.toggle("close");
-    this.cardTarget.classList.toggle("close");
-    this.reportButtonTarget.classList.toggle("close");
-    this.detailsCardTarget.classList.toggle("close");
+    this.buttonTarget.classList.toggle("open");
+    this.cardTarget.classList.toggle("open");
+    this.reportButtonTarget.classList.toggle("open");
+    this.detailsCardTarget.classList.toggle("open");
   }
+
+  // closeCard(event) {
+  //   event.preventDefault();
+  //   this.buttonTarget.classList.toggle("close");
+  //   this.cardTarget.classList.toggle("close");
+  //   this.reportButtonTarget.classList.toggle("close");
+  //   this.detailsCardTarget.classList.toggle("close");
+  // }
 
   validateForm() {
     this.disableForm = this.isFormValid ? false : true;

@@ -64,6 +64,8 @@ export default class extends Controller {
   }
 
   #getIncidentLocation() {
+    // This method is for the show page
+    // Get the longitude and the latitude of markersValue[0] below
     const lng = this.markersValue[0].lng;
     const lat = this.markersValue[0].lat;
     this.map.setCenter([lng, lat]);

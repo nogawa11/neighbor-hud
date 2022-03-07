@@ -17,6 +17,15 @@
     }
   }
 
+  .map-container {
+    height: 60vh;
+    width: 100%;
+    .mapbox {
+      height: 66vh;
+      width: inherit;
+    }
+  }
+
   .mapboxgl-ctrl.mapboxgl-ctrl-group {
     top: 4em;
     right: -0.5rem;

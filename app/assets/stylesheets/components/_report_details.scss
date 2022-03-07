@@ -19,6 +19,12 @@
     &.open {
       max-height: 150px;
     }
+
+    // &.close {
+    //   max-height: 0px;
+    //   padding: 0;
+    //   overflow: hidden;
+    // }
   }
 
   input.description, input.title {
