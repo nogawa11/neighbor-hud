@@ -39,6 +39,11 @@
     .mapboxgl-control-container {
       display: none;
     }
+
+    .text--blue {
+      color: $primary;
+      margin-top: 0.1em;
+    }
   }
 
   &__comments {
