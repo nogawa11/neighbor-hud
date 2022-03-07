@@ -14,8 +14,8 @@ export default class extends Controller {
 
   static targets = ["noSearch", "latitude", "longitude"];
 
-  async connect() {
-    await this.#startMapbox();
+  connect() {
+    this.#startMapbox();
     this.#centerMap();
     this.#addMarkersToMap();
     this.#addSearchBox();
@@ -26,6 +26,7 @@ export default class extends Controller {
 
     this.bbox = [0, 0, 0, 0];
     this.polygon = turf.bboxPolygon(this.bbox);
+
     const latitude = document.querySelector(".latitude");
     const longitude = document.querySelector(".longitude");
     this.map.on("result", (e) => {
@@ -48,10 +49,10 @@ export default class extends Controller {
 
     this.#isInNewIncidentPage() && this.#addMapInputToForm();
     this.#addDirections();
-    this.#loadMap();
+    this.#startRouteMap();
     this.#clearRoutesAndBoxes();
     this.#checkRoutesForCollisions();
-    this.#preventSuggestionStyle();
+    this.#isInRoutePage() && this.#preventHiddenSuggestions();
 
   }
 
@@ -154,6 +155,10 @@ export default class extends Controller {
     return /\/incidents\/new\/?/.test(window.location.pathname);
   }
 
+  #isInRoutePage() {
+    return window.location.pathname.includes("/route");
+  }
+
   #addDirections() {
     window.location.pathname.includes("/route") &&
       this.map.addControl(this.directions, "top-left");
@@ -241,7 +246,7 @@ export default class extends Controller {
     });
   }
 
-  #loadMap() {
+  #startRouteMap() {
     this.map.on("load", () => {
       this.#addObstacles();
       this.#addRouteLineLayerAndSource();
@@ -306,10 +311,10 @@ export default class extends Controller {
     });
   }
 
-  #preventSuggestionStyle() {
+  #preventHiddenSuggestions() {
     const swapButton = document.querySelector(".directions-reverse")
     const suggestions = document.querySelectorAll(".suggestions")
-    console.log(suggestions);
+
     swapButton.addEventListener("click", () => {
       suggestions.forEach((element) => {
         element.style.visibility = "initial";
