@@ -51,6 +51,8 @@ export default class extends Controller {
     this.#loadMap();
     this.#clearRoutesAndBoxes();
     this.#checkRoutesForCollisions();
+    this.#preventSuggestionStyle();
+
   }
 
   /* --------------------------------- Private -------------------------------- */
@@ -302,5 +304,16 @@ export default class extends Controller {
         }
       }
     });
+  }
+
+  #preventSuggestionStyle() {
+    const swapButton = document.querySelector(".directions-reverse")
+    const suggestions = document.querySelectorAll(".suggestions")
+    console.log(suggestions);
+    swapButton.addEventListener("click", () => {
+      suggestions.forEach((element) => {
+        element.style.visibility = "initial";
+      });
+    })
   }
 }
