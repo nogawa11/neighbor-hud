@@ -44,6 +44,8 @@ gem 'pundit'
 gem 'sidekiq'
 gem 'sidekiq-failures', '~> 1.0'
 gem "serviceworker-rails"
+gem 'turf-ruby'
+
 
 
 group :development, :test do  gem 'pry-byebug'
