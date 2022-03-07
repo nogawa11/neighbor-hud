@@ -39,13 +39,14 @@ gem 'simple_form'
 #                                 Added Gems                                   /
 # ---------------------------------------------------------------------------  /
 gem 'acts-as-taggable-on'
+gem 'bullet', group: 'development'
 gem 'geocoder'
 gem 'pundit'
+gem 'polylines', '~> 0.3.0'
 gem 'sidekiq'
 gem 'sidekiq-failures', '~> 1.0'
 gem "serviceworker-rails"
 gem 'turf-ruby'
-gem 'polylines', '~> 0.3.0'
 
 
 group :development, :test do  gem 'pry-byebug'

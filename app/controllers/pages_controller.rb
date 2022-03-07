@@ -31,26 +31,26 @@ class PagesController < ApplicationController
   private
 
   def news_user_filter(filter)
-    @incidents = policy_scope(Incident).where('user_id IS NULL') if filter == "crimenews"
-    @incidents = policy_scope(Incident).where('user_id IS NOT NULL') if filter == "userreports"
+    @incidents = policy_scope(Incident).where('user_id IS NULL').includes(:comments) if filter == "newsreports"
+    @incidents = policy_scope(Incident).where('user_id IS NOT NULL').includes(:comments) if filter == "userreports"
   end
 
   def date_filter(start_d, end_d)
     @start_date = Date.parse(start_d)
     @end_date = Date.parse(end_d)
     @all_incidents = policy_scope(Incident)
-    @incidents = @all_incidents.where("incident_date >= ? AND incident_date <= ?", @start_date, @end_date)
+    @incidents = @all_incidents.where("incident_date >= ? AND incident_date <= ?", @start_date, @end_date).includes(:comments)
   end
 
   def category_filter(category)
     if category == "disturb"
-      @incidents = policy_scope(Incident).tagged_with('Disturbing the Peace')
+      @incidents = policy_scope(Incident).tagged_with('Disturbing the Peace').includes(:comments)
     else
-      @incidents = policy_scope(Incident).tagged_with(category.capitalize)
+      @incidents = policy_scope(Incident).tagged_with(category.capitalize).includes(:comments)
     end
   end
 
   def all_incidents
-    @incidents = policy_scope(Incident)
+    @incidents = policy_scope(Incident).includes(:comments)
   end
 end
