@@ -4,6 +4,7 @@ import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder"
 import MapboxDirections from "@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions";
 import "@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions.css";
 import * as turf from "@turf/turf"
+import polyline from "@mapbox/polyline"
 
 export default class extends Controller {
   static values = {
@@ -19,7 +20,8 @@ export default class extends Controller {
     this.#addMarkersToMap()
     this.#addSearchBox()
     this.#addCurrentLocationButton()
-
+    this.bbox = [0, 0, 0, 0];
+    this.polygon = turf.bboxPolygon(this.bbox);
     const latitude = document.querySelector(".latitude")
     const longitude = document.querySelector(".longitude")
     this.map.on('result', e => {
@@ -33,9 +35,19 @@ export default class extends Controller {
       localStorage.setItem('long', position.coords.longitude);
     });
 
+    this.directions = new MapboxDirections({
+      accessToken: mapboxgl.accessToken,
+      profile: "mapbox/walking",
+      alternatives: true,
+      geometries: "geojson",
+      controls: { instructions: false },
+    });
+
     this.#isInNewIncidentPage() && this.#addMapInputToForm()
     this.#addDirections()
     this.#displayObstacles()
+    this.#clearRoutesAndBoxes();
+    this.#checkRoutesForCollisions()
   }
 
 /* --------------------------------- Private -------------------------------- */
@@ -132,14 +144,8 @@ export default class extends Controller {
   #addDirections() {
     window.location.pathname.includes("/route")
       && this.map.addControl(
-      new MapboxDirections({
-        accessToken: mapboxgl.accessToken,
-        profile: 'mapbox/walking',
-        alternatives: true,
-        geometries: 'geojson',
-        controls: { instructions: false },
-      }),
-      "top-left"
+        this.directions,
+        "top-left"
       );
   }
 
@@ -167,15 +173,14 @@ export default class extends Controller {
 
   #getObstacle() {
     const obstacle = turf.buffer(this.#getGsonIncidents(), 0.9, { units: "kilometers" });
-    const bbox = [0, 0, 0, 0];
-    const polygon = turf.bboxPolygon(bbox);
+
     return obstacle
   }
 
   #displayObstacles() {
     this.map.on("load", () => {
       this.map.addLayer({
-        id: "clearances",
+        id: "obstacles",
         type: "fill",
         source: {
           type: "geojson",
@@ -188,6 +193,63 @@ export default class extends Controller {
           "fill-outline-color": "#f03b20",
         },
       });
+
+      // Source and layer for the route
+      this.map.addSource("theRoute", {
+        type: "geojson",
+        data: {
+          type: "Feature",
+        },
+      });
+
+      this.map.addLayer({
+        id: "theRoute",
+        type: "line",
+        source: "theRoute",
+        layout: {
+          "line-join": "round",
+          "line-cap": "round",
+        },
+        paint: {
+          "line-color": "#cccccc",
+          "line-opacity": 0.9,
+          "line-width": 13,
+          "line-blur": 0.5,
+        },
+      });
+    });
+  }
+
+  #clearRoutesAndBoxes() {
+    this.directions.on('clear', () => {
+      this.map.setLayoutProperty('theRoute', 'visibility', 'none');
+    });
+  }
+
+  #checkRoutesForCollisions() {
+    this.directions.on("route", (event) => {
+      // Hide the route and box by setting the opacity to zero
+      this.map.setLayoutProperty("theRoute", "visibility", "none");
+
+      for (const route of event.route) {
+        this.map.setLayoutProperty("theRoute", "visibility", "visible");
+        // Get GeoJSON LineString feature of route
+        const routeLine = polyline.toGeoJSON(route.geometry);
+        this.bbox = turf.bbox(routeLine);
+        this.polygon = turf.bboxPolygon(this.bbox);
+        this.map.getSource("theRoute").setData(routeLine);
+        const clear = turf.booleanDisjoint(this.#getObstacle(), routeLine);
+
+        if (clear) {
+          this.map.setPaintProperty("theRoute", "line-color", "#74c476");
+        } else {
+          this.bbox = turf.bbox(this.polygon);
+          this.map.setPaintProperty("theRoute", "line-color", "#de2d26");
+        }
+      }
+
+      // Update the data for the route
+      // This will update the route line on the map
     });
   }
 }
