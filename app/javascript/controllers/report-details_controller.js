@@ -1,7 +1,7 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = ["card", "button", "location", "title", "reportButton", "detailsCard", "category"]
+  static targets = ["card", "button", "location", "title", "reportButton", "detailsCard", "category", "categoryItem"];
 
   previousLocation = '';
   previousTitle = '';
@@ -43,6 +43,9 @@ export default class extends Controller {
     this.previousLocation = this.location;
     this.previousTitle = this.title;
     this.disableForm = true;
+    this.#removeActiveClass();
+
+    console.log(this.categoryTargets);
   }
 
   closeCard(event) {
@@ -57,14 +60,21 @@ export default class extends Controller {
     this.disableForm = this.isFormValid ? false : true;
   }
 
-  // addCategoryToForm() {
-  //   const input = document.querySelector(".categories__list")
-  //   input.addEventListener("change", (e) => {
-  //     document.querySelector("categories__button").value = e.currentTarget.value
-  //   })
-  // }
+  #removeActiveClass() {
+    this.categoryItemTargets.forEach(item => {
+      item.classList.remove("active");
+    });
+  }
 
-  // create() {
-  //   console.log("Hello");
-  // }
+  setActiveButton(e) {
+    this.#removeActiveClass();
+    e.currentTarget.classList.add("active");
+    this.setCategory(e);
+  }
+
+  setCategory(e) {
+    const category = e.currentTarget.children[1].innerText.toLowerCase();
+    this.categoryTarget.value = category;
+  }
+
 }

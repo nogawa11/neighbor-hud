@@ -46,9 +46,7 @@ export default class extends Controller {
   #fetchIncidentsNew(path, params, options) {
     fetch(`/incidents/new/?${params}=${path}`, options).then((response) =>
       response.text().then((responseText) => {
-        // this.newTarget.outerHTML = responseText;
-        // history.pushState(null, null, `/incidents/new/?${params}=${path}`);
-        window.location.href = `/incidents/new/?${params}=${path}`;
+        history.pushState(null, null, `/incidents/new/?${params}=${path}`);
       })
     );
   }
