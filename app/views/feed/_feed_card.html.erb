@@ -1,6 +1,11 @@
 <div class="card--feed me-1 ms-1 p-3">
   <div class="row d-flex justify-content-between">
     <div class="col-10">
+      <% if incident.user_id.nil? %>
+        <h1 class="card--type"><i>News report</i></h1>
+      <% else %>
+        <h1 class="card--type"><i>User report</i></h1>
+      <% end %>
       <h1><%= incident.title %></h1>
     </div>
     <div class="col-2">
