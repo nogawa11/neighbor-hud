@@ -10,15 +10,14 @@
     padding: 0;
     transition: all 0.3s ease-in-out;
     max-height: 150px;
+    max-height: 0px;
     overflow: hidden;
     border-top: 2px solid transparent;
     background: #1b1b1b;
     width: 100%;
 
-    &.close {
-      max-height: 0px;
-      padding: 0;
-      overflow: hidden;
+    &.open {
+      max-height: 150px;
     }
   }
 
@@ -44,6 +43,16 @@
       font-size: 1.25rem;
       margin-right: 0.3rem;
       position: relative;
+      transition: all 0.5s;
+    }
+
+    .fa-angle-up {
+      font-size: 1.5rem;
+      margin-left: 0.5rem;
+    }
+
+    &.open .fa-angle-up {
+      transform: rotate(180deg);
     }
   }
 }

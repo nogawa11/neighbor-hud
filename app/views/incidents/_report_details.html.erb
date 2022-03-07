@@ -1,8 +1,11 @@
 <div class="card card--gray" data-report-details-target="detailsCard">
   <div class="report-details">
-    <button class="report-details__button" data-action="click->report-details#closeCard" data-report-details-target="button">
+    <button class="report-details__button"
+    type="button"
+    data-action="click->report-details#openCard" data-report-details-target="button">
       <i class="fas fa-info-circle"></i>
-      Add details
+      Add details *
+      <i class="fas fa-angle-up"></i>
     </button>
     <div class="card__body" data-report-details-target="card">
       <%= f.input :title,
