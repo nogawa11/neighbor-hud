@@ -25,9 +25,9 @@
     data-read-more-more-text-value="Read more"
     data-read-more-less-text-value="Read less"
   >
-    <% if @incident.description.chars.count > 250 %>
+    <% if @incident.description.chars.count > 500 %>
       <p data-read-more-target="content">
-        <%= @incident.description.first(250) %>...
+        <%= @incident.description.first(500) %>...
       </p>
       <div class="d-flex justify-content-end">
         <button data-action="read-more#toggle">
