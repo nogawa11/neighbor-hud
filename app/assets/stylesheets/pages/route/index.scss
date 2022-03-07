@@ -1,57 +1,3 @@
-.route {
-
-  &__header {
-    display: flex;
-    justify-content: center;
-    margin-top: 1em;
-
-    h3 {
-      font-size: 32px;
-    }
-
-    .text--blue {
-      color: $primary;
-    }
-  }
-
-  .mapboxgl-ctrl-geocoder--input {
-    display: none;
-  }
-
-  .mapboxgl-ctrl-top-left {
-    width: 100%;
-  }
-
-  .mapbox .mapboxgl-ctrl-geocoder {
-    background: transparent;
-    width: 100%;
-    max-width: 100%;
-    min-width: 100%;
-
-    input[type="text"] {
-      padding: 0 1.6rem;
-      max-width: unset;
-    }
-  }
-
-  /* -------------------- Swap directions and clear buttons ------------------- */
-  .mapbox-directions-inputs button {
-    background-color: $warning;
-    border-radius: 5px;
-    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(234deg)
-      brightness(105%) contrast(102%);
-  }
-  /* -------------------- Swap directions and clear buttons ------------------- */
-  .mapbox-directions-profile {
-    background: $light-gray;
-  }
-  .mapbox-directions-profile input[type="radio"]:checked + label:hover, .mapbox-directions-profile input[type="radio"]:checked + label {
-    transition: all 0.5s;
-    background: $primary;
-    color: $light;
-  }
-}
-
 // .route {
 
 //   &__header {
@@ -72,58 +18,19 @@
 //     display: none;
 //   }
 
-//   .mapboxgl-ctrl-directions {
-//     width: 80%;
+//   .mapboxgl-ctrl-top-left {
+//     width: 100%;
 //   }
 
 //   .mapbox .mapboxgl-ctrl-geocoder {
+//     background: transparent;
+//     width: 100%;
+//     max-width: 100%;
+//     min-width: 100%;
+
 //     input[type="text"] {
 //       padding: 0 1.6rem;
-//     }
-//   }
-
-//   .mapbox-directions-origin {
-//     .mapbox-form-label {
-//       background-color: $primary;
-//     }
-
-//     input[type="text"] {
-//       box-shadow: none;
-//     }
-
-//     .mapboxgl-ctrl-geocoder {
-//       border-bottom: 1px solid #ffffff20;
-//     }
-//   }
-
-//   .mapbox-form-label {
-//     background: $secondary;
-//   }
-
-//   .mapboxgl-ctrl-directions {
-//     width: 84%;
-//     max-width: unset;
-//   }
-
-//   .mapboxgl-ctrl-top-left {
-//     width: 100%;
-//     justify-content: center;
-//     display: flex;
-
-//     .mapboxgl-ctrl {
-//       float: left;
-//       margin-top: 1em;
-//       position: relative;
-//       margin: 1em 0 0 0;
-//     }
-//   }
-
-//   .mapboxgl-ctrl-top-right {
-//     .mapboxgl-ctrl-group {
-//       position: absolute;
-//       z-index: -1;
-//       top: 11em;
-//       right: -1rem;
+//       max-width: unset;
 //     }
 //   }
 
@@ -135,14 +42,107 @@
 //       brightness(105%) contrast(102%);
 //   }
 //   /* -------------------- Swap directions and clear buttons ------------------- */
-
 //   .mapbox-directions-profile {
 //     background: $light-gray;
 //   }
-
 //   .mapbox-directions-profile input[type="radio"]:checked + label:hover, .mapbox-directions-profile input[type="radio"]:checked + label {
 //     transition: all 0.5s;
 //     background: $primary;
 //     color: $light;
 //   }
 // }
+
+.route {
+
+  &__header {
+    display: flex;
+    justify-content: center;
+    margin-top: 1em;
+
+    h3 {
+      font-size: 32px;
+    }
+
+    .text--blue {
+      color: $primary;
+    }
+  }
+
+  .mapboxgl-ctrl-geocoder--input {
+    display: none;
+  }
+
+  .mapboxgl-ctrl-directions {
+    width: 80%;
+  }
+
+  .mapbox .mapboxgl-ctrl-geocoder {
+    input[type="text"] {
+      padding: 0 1.6rem;
+    }
+  }
+
+  .mapbox-directions-origin {
+    .mapbox-form-label {
+      background-color: $primary;
+    }
+
+    input[type="text"] {
+      box-shadow: none;
+    }
+
+    .mapboxgl-ctrl-geocoder {
+      border-bottom: 1px solid #ffffff20;
+    }
+  }
+
+  .mapbox-form-label {
+    background: $secondary;
+  }
+
+  .mapboxgl-ctrl-directions {
+    width: 84%;
+    max-width: unset;
+  }
+
+  .mapboxgl-ctrl-top-left {
+    width: 100%;
+    justify-content: center;
+    display: flex;
+
+    .mapboxgl-ctrl {
+      float: left;
+      margin-top: 1em;
+      position: relative;
+      margin: 1em 0 0 0;
+    }
+  }
+
+  .mapboxgl-ctrl-top-right {
+    .mapboxgl-ctrl-group {
+      position: absolute;
+      z-index: -1;
+      top: 11em;
+      right: -1rem;
+    }
+  }
+
+  /* -------------------- Swap directions and clear buttons ------------------- */
+  .mapbox-directions-inputs button {
+    background-color: $warning;
+    border-radius: 5px;
+    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(234deg)
+      brightness(105%) contrast(102%);
+  }
+  /* -------------------- Swap directions and clear buttons ------------------- */
+
+  .mapbox-directions-profile {
+    background: $light-gray;
+  }
+
+  .mapbox-directions-profile input[type="radio"]:checked + label:hover, .mapbox-directions-profile input[type="radio"]:checked + label {
+    transition: all 0.5s;
+    background: $primary;
+    color: $light;
+  }
+}
