@@ -33,7 +33,7 @@ class CommentsController < ApplicationController
   def destroy
     find_comment(params[:id])
     @comment.destroy
-    redirect_to incident_path(@comment.incident)
+    redirect_to profile_path
   end
 
   private

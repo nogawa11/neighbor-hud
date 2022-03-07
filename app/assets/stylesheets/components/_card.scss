@@ -123,4 +123,19 @@
   .text--blue {
     color: $primary;
   }
+
+  .button--delete a {
+    background-color: #238BEB;
+    color: rgb(241, 241, 241);
+    width: 1.5em;
+    height: 1.5em;
+    border-radius: 50%;
+    position: absolute;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    top: -0.5em;
+    right: -0.5em;
+    z-index: 2;
+  }
 }

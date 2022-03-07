@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_04_020922) do
+ActiveRecord::Schema.define(version: 2022_03_07_103139) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,8 @@ ActiveRecord::Schema.define(version: 2022_03_04_020922) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "image_path"
+    t.string "url"
+    t.string "source"
     t.index ["user_id"], name: "index_incidents_on_user_id"
   end
 
