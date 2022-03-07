@@ -3,6 +3,7 @@ import mapboxgl from "mapbox-gl"
 import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder"
 import MapboxDirections from "@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions";
 import "@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions.css";
+import * as turf from "@turf/turf"
 
 export default class extends Controller {
   static values = {
@@ -34,6 +35,7 @@ export default class extends Controller {
 
     this.#isInNewIncidentPage() && this.#addMapInputToForm()
     this.#addDirections()
+    this.#displayObstacles()
   }
 
 /* --------------------------------- Private -------------------------------- */
@@ -141,9 +143,51 @@ export default class extends Controller {
       );
   }
 
-  #fitMapToMarkers() {
-    const bounds = new mapboxgl.LngLatBounds()
-    this.markersValue.forEach(marker => bounds.extend([ marker.lng, marker.lat ]))
-    this.map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 0 })
+  #getGsonFeatures() {
+    const features = []
+    this.markersValue.forEach(marker => {
+      features.push({
+        type: "Feature",
+        geometry: {
+          type: "Point",
+          coordinates: [marker.lng, marker.lat]
+        }
+      })
+    })
+    return features
+  }
+
+  #getGsonIncidents() {
+    const incidents = {
+      type: "FeatureCollection",
+      features: this.#getGsonFeatures()
+    }
+    return incidents
+  }
+
+  #getObstacle() {
+    const obstacle = turf.buffer(this.#getGsonIncidents(), 0.9, { units: "kilometers" });
+    const bbox = [0, 0, 0, 0];
+    const polygon = turf.bboxPolygon(bbox);
+    return obstacle
+  }
+
+  #displayObstacles() {
+    this.map.on("load", () => {
+      this.map.addLayer({
+        id: "clearances",
+        type: "fill",
+        source: {
+          type: "geojson",
+          data: this.#getObstacle(),
+        },
+        layout: {},
+        paint: {
+          "fill-color": "#f03b20",
+          "fill-opacity": 0.5,
+          "fill-outline-color": "#f03b20",
+        },
+      });
+    });
   }
 }
