@@ -8,6 +8,7 @@
   border: 0;
 
   &.card--dark {
+    transition: all 0.5s;
     background: $dark;
     border-radius: 50px;
 

@@ -42,13 +42,22 @@ export default class extends Controller {
   connect() {
     this.previousLocation = this.location;
     this.previousTitle = this.title;
-    this.disableForm = true;
     this.#removeActiveClass();
 
     console.log(this.categoryTargets);
   }
 
+  openCard(event) {
+    console.log("test");
+    event.preventDefault();
+    this.buttonTarget.classList.toggle("open");
+    this.cardTarget.classList.toggle("open");
+    this.reportButtonTarget.classList.toggle("open");
+    this.detailsCardTarget.classList.toggle("open");
+  }
+
   closeCard(event) {
+    console.log(event.currentTarget);
     event.preventDefault();
     this.buttonTarget.classList.toggle("close");
     this.cardTarget.classList.toggle("close");
