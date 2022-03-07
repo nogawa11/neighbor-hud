@@ -23,7 +23,7 @@ class FeedController < ApplicationController
   private
 
   def news_user_filter(filter)
-    @incidents = policy_scope(Incident).where('user_id IS NULL').order(created_at: :desc).includes(:comments) if filter == "crimenews"
+    @incidents = policy_scope(Incident).where('user_id IS NULL').order(created_at: :desc).includes(:comments) if filter == "newsreports"
     @incidents = policy_scope(Incident).where('user_id IS NOT NULL').order(created_at: :desc).includes(:comments) if filter == "userreports"
   end
 
