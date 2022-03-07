@@ -48,8 +48,6 @@ export default class extends Controller {
   }
 
   openCard(event) {
-<<<<<<< HEAD
-=======
     console.log("test");
     event.preventDefault();
     this.buttonTarget.classList.toggle("open");
@@ -60,7 +58,6 @@ export default class extends Controller {
 
   closeCard(event) {
     console.log(event.currentTarget);
->>>>>>> master
     event.preventDefault();
     this.buttonTarget.classList.toggle("open");
     this.cardTarget.classList.toggle("open");
