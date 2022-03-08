@@ -1,14 +1,10 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
 
-puts "Removing Old Users, Incidents..."
+puts "Removing Old Users, Incidents, Comments..."
 User.destroy_all
 Incident.destroy_all
+Comment.destroy_all
 
 puts "Creating New Users..."
 
@@ -30,12 +26,12 @@ incident_1 = Incident.new(
   longitude: 139.702881,
   can_receive_comments: true,
   user: user,
-  image_path: "Drugs.png"
+  image_path: "Theft.png"
 )
 incident_1.save!
 
 incident_2 = Incident.new(
-  title: "I was attacked by a homeless man.",
+  title: "I was attacked by someone's dog.",
   description: Faker::Lorem.paragraph(sentence_count: 3),
   incident_date: Faker::Date.forward(days: rand(1..30)),
   location: "Kamiyama-cho, Shibuya, Tokyo, Japan",
@@ -43,7 +39,7 @@ incident_2 = Incident.new(
   longitude: "139.69044280054845",
   can_receive_comments: false,
   user: user,
-  image_path: "Drugs.png"
+  image_path: "Violence.png"
 )
 incident_2.save!
 
@@ -56,7 +52,7 @@ incident_3 = Incident.new(
   longitude: 139.791914,
   can_receive_comments: true,
   user: user,
-  image_path: "Drugs.png"
+  image_path: "Theft.png"
 )
 incident_3.save!
 
@@ -69,7 +65,7 @@ incident_4 = Incident.new(
   longitude: Faker::Address.longitude,
   can_receive_comments: true,
   user: user,
-  image_path: "Drugs.png"
+  image_path: "Violence.png"
 )
 incident_4.save!
 
@@ -82,14 +78,10 @@ incident_5 = Incident.new(
   longitude: -83.10033841230707,
   can_receive_comments: false,
   user: user,
-  image_path: "Drugs.png"
+  image_path: "Disturb.png"
 )
 incident_5.save!
 
-puts "#{Incident.count} Incidents created"
-
-puts "Destroying old comments..."
-Comment.destroy_all
 puts "Creating new comments..."
 
 5.times do
@@ -139,4 +131,6 @@ puts "Creating new comments..."
   end
 end
 
+puts "#{User.count} User created"
+puts "#{Incident.count} Incidents created"
 puts "#{Comment.count} comments created"
