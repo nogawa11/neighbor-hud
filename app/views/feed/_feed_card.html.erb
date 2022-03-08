@@ -30,7 +30,7 @@
     <% end %>
     <p>
       <%= render 'incidents/distance_icon.html.erb', distance: distance %>
-      <%= distance %>
+      <%= number_with_delimiter(distance, delimiter: ".") %>
       km away from you
     </p>
     <p class="card--category">
