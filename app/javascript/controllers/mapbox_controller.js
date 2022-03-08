@@ -110,7 +110,7 @@ export default class extends Controller {
         closeOnClick: false,
         closeButton: false,
       }).setHTML(
-        `<a href="incidents/${marker.id}?path=map"
+        `<a href="/incidents/${marker.id}?path=map"
           class="mapbox-icon"
           style="background-image: url(${background})"></a>`
       );
