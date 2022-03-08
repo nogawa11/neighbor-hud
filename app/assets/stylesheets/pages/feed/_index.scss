@@ -4,6 +4,18 @@
   overflow: scroll;
   transition: 1s;
 
+  &__buttons-container {
+    margin-top: 0;
+    padding: 0 0.5em 0 0.5em;
+    margin-bottom: 0.7em;
+    display: flex;
+    gap: 0.4em;
+
+    .top_container__button {
+      width: 100%;
+    }
+  }
+
   &.open {
     display: grid;
     // grid-template-rows: auto calc(100vh - 390px) auto;
@@ -28,12 +40,6 @@
     & > p {
       margin: 0;
     }
-  }
-
-  &__button {
-    width: 100%;
-    display: flex;
-    justify-content: center;
   }
 
   &__incidents {
