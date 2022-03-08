@@ -4,6 +4,12 @@ export default class extends Controller {
   static targets = ["topButton", "categoryButton", "feed"];
 
   connect() {
+    this.filter = {
+      "filter": "",
+      "category": [],
+      "date": []
+    };
+
     this.#handleButtons(this.topButtonTargets, "filter");
     this.#handleButtons(this.categoryButtonTargets, "category");
   }
@@ -11,10 +17,8 @@ export default class extends Controller {
   /* --------------------------------- Private -------------------------------- */
   #getFormattedPath(button, params) {
     if (params === "category") {
-      console.log(button);
       return button.children[1].innerText.toLowerCase();
     } else {
-      console.log(button);
       const path = button.innerText.replace(/\s/g, "");
       return path.toLowerCase();
     }
@@ -43,13 +47,6 @@ export default class extends Controller {
     );
   }
 
-  #fetchIncidentsNew(path, params, options) {
-    fetch(`/incidents/new/?${params}=${path}`, options).then((response) =>
-      response.text().then((responseText) => {
-        history.pushState(null, null, `/incidents/new/?${params}=${path}`);
-      })
-    );
-  }
 
   #fetchData(e, params) {
     const options = {
@@ -61,9 +58,7 @@ export default class extends Controller {
 
     const path = this.#getFormattedPath(e.currentTarget, params);
 
-    if (this.#isInIncidentsNewPage()) {
-      this.#fetchIncidentsNew(path, params, options);
-    } else if (this.#isInFeedPage()) {
+    if (this.#isInFeedPage()) {
       this.#fetchFeed(path, params, options);
     } else {
       this.#fetchHome(path, params, options);
@@ -78,15 +73,37 @@ export default class extends Controller {
     return (/\/incidents\/new.*/).test(window.location.pathname);
   }
 
+  #addCategoryToFilter(button) {
+    // this.filter[params] = [...this.filter[params], this.#getFormattedPath(button, params)];
+    const path = this.#getFormattedPath(button, "category");
+    this.filter["category"] = this.filter["category"].includes(path)
+      ? this.filter["category"].filter((item) => item !== path)
+      : [...this.filter["category"], path];
+    }
+
+    #addTypeToFilter(button) {
+    const type = this.#getFormattedPath(button, "filter")
+    this.filter["filter"] = type;
+  }
+
+  #setActiveClass(targets, button) {
+    targets.forEach((sibling) => {
+      sibling.classList.remove("active");
+    });
+    button.classList.add("active");
+  }
+
   #handleButtons(targets, params) {
     targets.forEach((button) => {
       button.addEventListener("click", (e) => {
         e.preventDefault();
         this.#fetchData(e, params);
-        targets.forEach((sibling) => {
-          sibling.classList.remove("active");
-        });
-        button.classList.add("active");
+        this.#setActiveClass(targets, button);
+        params === "category"
+          ? this.#addCategoryToFilter(button)
+          : this.#addTypeToFilter(button);
+        console.log(this.filter);
+
       });
     });
   }
