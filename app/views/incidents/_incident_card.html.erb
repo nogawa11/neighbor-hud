@@ -1,12 +1,6 @@
 <div class="p-3">
   <div class="row align-items-start">
-    <div class="col-9">
-      <% if incident.user_id.nil? %>
-        <h1 class="text--blue"><i>News Report</i></h1>
-      <% else %>
-        <h1 class="text--blue"><i>User Report</i></h1>
-      <% end %>
-    </div>
+    <%= render "incidents/type", incident: @incident %>
     <div class="col-3">
       <div class="d-flex justify-content-end align-items-center card--category">
         <% if @incident.category_list.first == 'Disturb' %>
