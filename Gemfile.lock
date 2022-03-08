@@ -198,7 +198,7 @@ GEM
     rubyzip (2.3.2)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
-    sassc (2.4.0)
+    sassc (2.3.0)
       ffi (~> 1.9)
     sassc-rails (2.1.2)
       railties (>= 4.0.0)
@@ -291,6 +291,7 @@ DEPENDENCIES
   rails (~> 6.1.4, >= 6.1.4.6)
   redis (~> 4.0)
   sass-rails (>= 6)
+  sassc (= 2.3)
   selenium-webdriver
   serviceworker-rails
   sidekiq
