@@ -4,9 +4,9 @@ class FeedController < ApplicationController
   def index
     @incidents = policy_scope(Incident)
     @incidents = location_filter(@incidents, params[:query]) if params[:query].present?
-    @incidents = date_filter(@incidents, params[:start_date], params[:end_date]) if params[:start_date].present?
-    @incidents = news_user_filter(@incidents, params[:filter]) if params[:filter].present?
     @incidents = category_filter(@incidents, params[:category]) if params[:category].present?
+    @incidents = news_user_filter(@incidents, params[:filter]) if params[:filter].present?
+    @incidents = date_filter(@incidents, params[:start_date], params[:end_date]) if params[:start_date].present?
 
     respond_to do |format|
       format.html
@@ -25,6 +25,8 @@ class FeedController < ApplicationController
       incidents.where('user_id IS NULL').order(incident_date: :desc).includes(:comments)
     elsif filter == "userreports"
       incidents.where('user_id IS NOT NULL').order(incident_date: :desc).includes(:comments)
+    elsif filter == "all"
+      incidents
     end
   end
 
