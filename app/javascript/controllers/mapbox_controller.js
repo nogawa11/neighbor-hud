@@ -310,6 +310,8 @@ export default class extends Controller {
             this.#findNewRoute();
           }
         }
+      } else {
+        this.#noRouteFoundMessage();
       }
     });
   }
@@ -328,5 +330,14 @@ export default class extends Controller {
   #changeInputPlaceholder() {
     const searchBox = document.querySelector(".mapboxgl-ctrl-geocoder--input");
     searchBox.placeholder = "Enter a location"
+  }
+
+  #noRouteFoundMessage() {
+    const alert = document.createElement("div");
+    alert.classList.add("alert-dismissible", "alert", "alert-info", "fade", "fade", "m-1", "route__alert");
+    alert.innerHTML = `No route found`;
+    alert.style.bottom = "5rem";
+    const main = document.querySelector("main");
+    main.appendChild(alert);
   }
 }
