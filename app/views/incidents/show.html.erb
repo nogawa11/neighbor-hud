@@ -4,16 +4,16 @@
       <%= render "incidents/incident_back_button" %>
     </div>
     <div class="pb-1 d-flex justify-content-end">
-      <%= render 'tags', incident: @incident %>
+      <%= render 'incidents/tags', incident: @incident %>
     </div>
     <div class="incident-show__details card--incident-details">
-      <%= render 'incident_card', incident: @incident %>
+      <%= render 'incidents/incident_card', incident: @incident %>
       <%= render 'map' %>
     </div>
   </div>
   <div class="incident-show__comments">
     <% @incident.comments.each do |comment| %>
-      <%= render 'comment_card', comment: comment %>
+      <%= render 'incidents/comment_card', comment: comment %>
     <% end %>
   </div>
 </div>
