@@ -14,10 +14,8 @@
     <link rel="manifest" href="<%= asset_path 'manifest.json' %>">
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   </head>
-  <body>
-    <div data-controller="alert">
-      <%= render 'shared/flashes' %>
-    </div>
+  <body data-controller="alert">
+    <%= render 'shared/flashes' %>
     <main class="main">
       <%= yield %>
     </main>
