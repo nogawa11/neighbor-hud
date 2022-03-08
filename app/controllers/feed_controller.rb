@@ -35,8 +35,8 @@ class FeedController < ApplicationController
   end
 
   def category_filter(category)
-    if category == "disturbing"
-      @incidents = policy_scope(Incident).tagged_with('Disturbing the Peace').order(incident_date: :desc).includes(:comments)
+    if category.downcase.include?("disturb")
+      @incidents = policy_scope(Incident).tagged_with('Disturb').order(incident_date: :desc).includes(:comments)
     else
       @incidents = policy_scope(Incident).tagged_with(category.capitalize).order(incident_date: :desc).includes(:comments)
     end
