@@ -1,35 +1,14 @@
-<div class="ps-2 pe-2">
-  <div class="d-flex justify-content-center gap-2">
-    <% if params[:filter] == "newsreports" %>
-      <a class="btn top_container__button" style="width: 100%;" href="/feed">
-        All
-      </a>
-      <a class="btn top_container__button active" style="width: 100%; "href="/feed?filter=newsreports">
-        News Reports
-      </a>
-      <a class="btn top_container__button" style="width: 100%;" href="/feed?filter=userreports">
-        User Reports
-      </a>
-    <% elsif params[:filter] == "userreports" %>
-      <a class="btn top_container__button" style="width: 100%;" href="/feed">
-        All
-      </a>
-      <a class="btn top_container__button" style="width: 100%;" href="/feed?filter=newsreports">
-        News Reports
-      </a>
-      <a class="btn top_container__button active" style="width: 100%;" href="/feed?filter=userreports">
-        User Reports
-      </a>
-    <% else %>
-      <a class="btn top_container__button active" style="width: 100%;" href="/feed">
-        All
-      </a>
-      <a class="btn top_container__button" style="width: 100%;" href="/feed?filter=newsreports">
-        News Reports
-      </a>
-      <a class="btn top_container__button" style="width: 100%;" href="/feed?filter=userreports">
-        User Reports
-      </a>
-    <% end %>
-  </div>
+<div class="feed__buttons-container">
+  <button class="btn top_container__button active"
+  data-active-button-target="topButton" >
+    All
+  </button>
+  <button class="btn top_container__button"
+  data-active-button-target="topButton" >
+    News Reports
+  </button>
+  <button class="btn top_container__button"
+  data-active-button-target="topButton" >
+    User Reports
+  </button>
 </div>
