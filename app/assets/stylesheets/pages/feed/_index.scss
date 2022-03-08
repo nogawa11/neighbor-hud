@@ -10,6 +10,8 @@
     margin-bottom: 0.7em;
     display: flex;
     gap: 0.4em;
+    justify-content: center;
+    width: 100%;
 
     .top_container__button {
       width: 100%;
@@ -45,12 +47,10 @@
   &__incidents {
     height: calc(100vh - 271px);
     display: flex;
-    padding-top: 0.5rem;
-    letter-spacing: 1px;
-    font-weight: 400;
-    display: flex;
-    justify-content: center;
-    width: 100%;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    overflow: auto;
+    transition: all 0.5s;
 
     &.open {
       height: calc(100vh - 390px)
@@ -63,7 +63,9 @@
     padding-top: 0.5rem;
     letter-spacing: 1px;
     font-weight: 400;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    width: 100%;
 
     i {
       transition: $transition;
