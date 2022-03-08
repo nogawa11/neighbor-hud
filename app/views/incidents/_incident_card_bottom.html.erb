@@ -4,7 +4,7 @@
   <% elsif incident.latitude.nil? %>
     <% distance = "Unknown" %>
   <% else %>
-    <% distance = (Geocoder::Calculations.distance_between([35.0116, 135.7681], [incident.latitude, incident.longitude])).round(0) %>
+    <% distance = (Geocoder::Calculations.distance_between([35.0116, 139.6981], [incident.latitude, incident.longitude])).round(0) %>
   <% end %>
   <%= render "incidents/distance_icon", distance: distance %>
   <%= distance %>
