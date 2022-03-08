@@ -2,17 +2,12 @@ class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:home]
 
   def home
-    if params[:filter] == "all"
-      all_incidents
-    elsif params[:filter].present?
-      news_user_filter(params[:filter])
-    elsif params[:start_date].present?
-      date_filter(params[:start_date], params[:end_date])
-    elsif params[:category].present?
-      category_filter(params[:category])
-    else
-      all_incidents
-    end
+    @incidents = policy_scope(Incident)
+    @incidents = location_filter(@incidents, params[:query]) if params[:query].present?
+    @incidents = category_filter(@incidents, params[:category]) if params[:category].present?
+    @incidents = news_user_filter(@incidents, params[:filter]) if params[:filter].present?
+    @incidents = date_filter(@incidents, params[:start_date], params[:end_date]) if params[:start_date].present?
+
     @markers = @incidents.geocoded.map do |incident|
       {
         lat: incident.latitude,
@@ -30,27 +25,31 @@ class PagesController < ApplicationController
 
   private
 
-  def news_user_filter(filter)
-    @incidents = policy_scope(Incident).where('user_id IS NULL').includes(:comments) if filter == "newsreports"
-    @incidents = policy_scope(Incident).where('user_id IS NOT NULL').includes(:comments) if filter == "userreports"
+  def location_filter(incidents, location)
+    incidents.near(location).order(incident_date: :desc).includes(:comments)
   end
 
-  def date_filter(start_d, end_d)
-    @start_date = Date.parse(start_d)
-    @end_date = Date.parse(end_d)
-    @all_incidents = policy_scope(Incident)
-    @incidents = @all_incidents.where("incident_date >= ? AND incident_date <= ?", @start_date, @end_date).includes(:comments)
-  end
-
-  def category_filter(category)
-    if category.downcase.include?("disturb")
-      @incidents = policy_scope(Incident).tagged_with("Disturb").includes(:comments)
-    else
-      @incidents = policy_scope(Incident).tagged_with(category.capitalize).includes(:comments)
+  def news_user_filter(incidents, filter)
+    if filter == "newsreports"
+      incidents.where('user_id IS NULL').order(incident_date: :desc).includes(:comments)
+    elsif filter == "userreports"
+      incidents.where('user_id IS NOT NULL').order(incident_date: :desc).includes(:comments)
+    elsif filter == "all"
+      incidents
     end
   end
 
-  def all_incidents
-    @incidents = policy_scope(Incident).includes(:comments)
+  def date_filter(incidents, start_d, end_d)
+    @start_date = Date.parse(start_d)
+    @end_date = Date.parse(end_d)
+    incidents.where("incident_date >= ? AND incident_date <= ?", @start_date, @end_date).order(incident_date: :desc).includes(:comments)
+  end
+
+  def category_filter(incidents, category)
+    if category.downcase.include?("disturb")
+      incidents.tagged_with('Disturb').order(incident_date: :desc).includes(:comments)
+    else
+      incidents.tagged_with(category.capitalize).order(incident_date: :desc).includes(:comments)
+    end
   end
 end
