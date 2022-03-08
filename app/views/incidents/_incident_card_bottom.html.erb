@@ -6,7 +6,7 @@
   <% else %>
     <% distance = (Geocoder::Calculations.distance_between([35.0116, 135.7681], [incident.latitude, incident.longitude])).round(0) %>
   <% end %>
-  <%= render "distance_icon", distance: distance %>
+  <%= render "incidents/distance_icon", distance: distance %>
   <%= distance %>
   km away from you
 </p>

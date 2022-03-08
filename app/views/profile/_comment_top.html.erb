@@ -1,5 +1,5 @@
 <p class="comments__header ms-3 me-3">
-  <% if comment.user == current_user && current_page?('/profile') %>
+  <% if comment.user == current_user && current_page?("/profile") %>
     <%= link_to "<i class='fas fa-times me-1'></i>".html_safe, comment_path(comment), method: :delete, data: { confirm: "Would you like to delete this comment?" } %>
   <% end %>
   You commented on

@@ -2,8 +2,8 @@
   <div data-read-more-target="content">
     <% @user.comments.first(3).each do |comment| %>
       <div class="comments__cards mt-2">
-        <%= render 'profile/comment_top', comment: comment %>
-        <%= render 'incidents/comment_card', comment: comment %>
+        <%= render "profile/comment_top", comment: comment %>
+        <%= render "incidents/comment_card", comment: comment %>
       </div>
     <% end %>
     <div class="d-flex justify-content-end m-3">
@@ -16,16 +16,16 @@
   <template data-read-more-target="full">
     <% @user.comments.each do |comment| %>
       <div class="comments__cards mt-2">
-        <%= render 'profile/comment_top', comment: comment %>
-        <%= render 'incidents/comment_card', comment: comment %>
+        <%= render "profile/comment_top", comment: comment %>
+        <%= render "incidents/comment_card", comment: comment %>
       </div>
     <% end %>
   </template>
 <% elsif @user.comments.count <= 3 && @user.comments.count > 0 %>
   <% @user.comments.each do |comment| %>
     <div class="comments__cards mt-2">
-      <%= render 'profile/comment_top', comment: comment %>
-      <%= render 'incidents/comment_card', comment: comment %>
+      <%= render "profile/comment_top", comment: comment %>
+      <%= render "incidents/comment_card", comment: comment %>
     </div>
   <% end %>
 <% elsif @user.comments.count == 0 %>

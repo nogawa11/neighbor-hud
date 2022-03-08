@@ -1,5 +1,5 @@
 <div class="card--feed me-1 ms-1 p-3">
-  <% if incident.user == current_user && current_page?('/profile') %>
+  <% if incident.user == current_user && current_page?("/profile") %>
     <div class="button--delete">
       <%= link_to "<i class='fas fa-times'></i>".html_safe, incident_path(incident), method: :delete, data: { confirm: "Would you like to delete this incident?" } %>
     </div>
@@ -14,10 +14,10 @@
       <h1><%= incident.title %></h1>
     </div>
     <div class="col-2">
-      <%= render 'feed/icon', category: incident.category_list.first %>
+      <%= render "feed/icon", category: incident.category_list.first %>
     </div>
   </div>
   <p class="card--description"><%= incident.description.first(100)... %></p>
-  <%= render 'feed/distance', incident: incident %>
-  <%= link_to "", incident_path(incident, path: 'feed'), class: "card--link" %>
+  <%= render "feed/distance", incident: incident %>
+  <%= link_to "", incident_path(incident, path: "feed"), class: "card--link" %>
 </div>
