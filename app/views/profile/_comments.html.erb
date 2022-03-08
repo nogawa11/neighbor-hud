@@ -2,15 +2,7 @@
   <div data-read-more-target="content">
     <% @user.comments.first(3).each do |comment| %>
       <div class="comments__cards mt-2">
-        <p class="comments__header ms-3 me-3">
-          <% if comment.user == current_user && current_page?('/profile') %>
-            <%= link_to "<i class='fas fa-times me-1'></i>".html_safe, comment_path(comment), method: :delete, data: { confirm: "Would you like to delete this comment?" } %>
-          <% end %>
-          You commented on
-          <%= link_to comment.incident.title, incident_path(comment.incident) %>
-          on
-          <%= comment.created_at.strftime("%Y-%m-%d") %>
-        </p>
+        <%= render 'incidents/comment_top', comment: comment %>
         <%= render 'incidents/comment_card', comment: comment %>
       </div>
     <% end %>
@@ -24,15 +16,7 @@
   <template data-read-more-target="full">
     <% @user.comments.each do |comment| %>
       <div class="comments__cards mt-2">
-        <p class="comments__header ms-3 me-3">
-          <% if comment.user == current_user && current_page?('/profile') %>
-            <%= link_to "<i class='fas fa-times me-1'></i>".html_safe, comment_path(comment), method: :delete, data: { confirm: "Would you like to delete this comment?" } %>
-          <% end %>
-          You commented on
-          <%= link_to comment.incident.title, incident_path(comment.incident) %>
-          on
-          <%= comment.created_at.strftime("%Y-%m-%d") %>
-        </p>
+        <%= render 'incidents/comment_top', comment: comment %>
         <%= render 'incidents/comment_card', comment: comment %>
       </div>
     <% end %>
@@ -40,15 +24,7 @@
 <% elsif @user.comments.count <= 3 && @user.comments.count > 0 %>
   <% @user.comments.each do |comment| %>
     <div class="comments__cards mt-2">
-      <p class="comments__header ms-3 me-3">
-        <% if comment.user == current_user && current_page?('/profile') %>
-          <%= link_to "<i class='fas fa-times me-1'></i>".html_safe, comment_path(comment), method: :delete, data: { confirm: "Would you like to delete this comment?" } %>
-        <% end %>
-        You commented on
-        <%= link_to comment.incident.title, incident_path(comment.incident) %>
-        on
-        <%= comment.created_at.strftime("%Y-%m-%d") %>
-      </p>
+      <%= render 'incidents/comment_top', comment: comment %>
       <%= render 'incidents/comment_card', comment: comment %>
     </div>
   <% end %>
