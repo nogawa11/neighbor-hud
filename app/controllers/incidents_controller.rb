@@ -14,7 +14,7 @@ class IncidentsController < ApplicationController
     end
 
     respond_to do |format|
-      format.html
+      format.html { redirect_to feed_path }
       format.text { render partial: "/shared/map.html.erb", locals: { markers: @markers } }
     end
   end
