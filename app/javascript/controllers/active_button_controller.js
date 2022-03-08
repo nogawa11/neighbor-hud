@@ -5,9 +5,9 @@ export default class extends Controller {
 
   connect() {
     this.filter = {
-      "filter": "",
-      "category": [],
-      "date": []
+      filter: "",
+      category: "",
+      date: [],
     };
 
     this.#handleButtons(this.topButtonTargets, "filter");
@@ -33,7 +33,7 @@ export default class extends Controller {
     fetch(`/?${params}=${path}`, options).then((response) =>
       response.text().then((responseText) => {
         this.#updateMap(responseText);
-        history.pushState(null, null, `/?${params}=${path}`);
+        // history.pushState(null, null, `/?${params}=${path}`);
       })
     );
   }
@@ -42,11 +42,10 @@ export default class extends Controller {
     fetch(`/feed/?${params}=${path}`, options).then((response) =>
       response.text().then((responseText) => {
         this.feedTarget.outerHTML = responseText;
-        history.pushState(null, null, `/feed/?${params}=${path}`);
+        // history.pushState(null, null, `/feed/?${params}=${path}`);
       })
     );
   }
-
 
   #fetchData(e, params) {
     const options = {
@@ -66,24 +65,16 @@ export default class extends Controller {
   }
 
   #isInFeedPage() {
-    return (/\/feed.*/).test(window.location.pathname);
+    return /\/feed.*/.test(window.location.pathname);
   }
 
   #isInIncidentsNewPage() {
-    return (/\/incidents\/new.*/).test(window.location.pathname);
+    return /\/incidents\/new.*/.test(window.location.pathname);
   }
 
-  #addCategoryToFilter(button) {
-    // this.filter[params] = [...this.filter[params], this.#getFormattedPath(button, params)];
-    const path = this.#getFormattedPath(button, "category");
-    this.filter["category"] = this.filter["category"].includes(path)
-      ? this.filter["category"].filter((item) => item !== path)
-      : [...this.filter["category"], path];
-    }
-
-    #addTypeToFilter(button) {
-    const type = this.#getFormattedPath(button, "filter")
-    this.filter["filter"] = type;
+  #addToFilter(button, params) {
+    const element = this.#getFormattedPath(button, params);
+    this.filter[params] = element;
   }
 
   #setActiveClass(targets, button) {
@@ -93,17 +84,35 @@ export default class extends Controller {
     button.classList.add("active");
   }
 
+  #isFilterEmpty(type) {
+    return this.filter[type] === "" ? "" : "&";
+  }
+
+  #getNewUrl() {
+    const category =
+      this.filter.category.length > 0 ? `category=${this.filter.category}` : "";
+    const filter =
+      this.filter.filter.length > 0
+        ? `${this.#isFilterEmpty("category")}filter=${this.filter.filter}`
+        : "";
+    const dates =
+      this.filter.date.length > 0
+        ? `${
+            this.#isFilterEmpty("category") || this.#isFilterEmpty("filter")
+          }dates=${this.filter.date}`
+        : "";
+
+    return `/?${category}${filter}${dates}`;
+  }
+
   #handleButtons(targets, params) {
     targets.forEach((button) => {
       button.addEventListener("click", (e) => {
         e.preventDefault();
         this.#fetchData(e, params);
         this.#setActiveClass(targets, button);
-        params === "category"
-          ? this.#addCategoryToFilter(button)
-          : this.#addTypeToFilter(button);
-        console.log(this.filter);
-
+        this.#addToFilter(button, params);
+        history.pushState(null, null, this.#getNewUrl());
       });
     });
   }
