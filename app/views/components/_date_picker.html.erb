@@ -4,6 +4,7 @@
     <%= text_field_tag :start_date, params[:start_date],
       class: "date-picker__input",
       data: {
+        active_button_target: "startDate",
         controller: "flatpickr",
         flatpickr_alt_input: "true",
         flatpickr_date_format: "Y-m-d",
@@ -15,6 +16,7 @@
     <%= text_field_tag :end_date, params[:end_date],
       class: "date-picker__input",
       data: {
+        active_button_target: "endDate",
         controller: "flatpickr",
         flatpickr_alt_input: "true",
         flatpickr_date_format: "Y-m-d",
