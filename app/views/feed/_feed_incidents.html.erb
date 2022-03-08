@@ -1,5 +1,5 @@
 <div class="feed__incidents" data-active-button-target="feed" data-filter-target="list">
   <% @incidents.each do |incident| %>
-    <%= render 'feed_card', incident: incident %>
+    <%= render 'feed_card.html.erb', incident: incident %>
   <% end %>
 </div>
