@@ -3,4 +3,21 @@
   bottom: 16px;
   right: 16px;
   z-index: 1000;
+  animation: fade 3s;
+  opacity: 0;
+}
+
+@keyframes fade {
+  0% {
+    opacity: 1;
+  }
+
+  80% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    display: none;
+  }
 }
