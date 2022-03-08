@@ -14,4 +14,4 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
 
 # TO-DO: Add back in once we have PWA working
-# Rails.configuration.assets.precompile += %w[serviceworker.js manifest.json]
+Rails.configuration.assets.precompile += %w[serviceworker.js manifest.json]
