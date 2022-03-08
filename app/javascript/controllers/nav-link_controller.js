@@ -14,9 +14,9 @@ export default class extends Controller {
     const path = window.location.pathname;
 
     switch (true) {
-      case path === "/" || (/\/incidents\/\d+\?path=map/).test(path):
+      case path === "/":
         return this.homeTarget.classList.add("active");
-      case path === "/feed" || (/\/incidents\/\d+\?path=feed/).test(path):
+      case path === "/feed" || (/\/incidents\/\d+/).test(path):
         return this.incidentsTarget.classList.add("active");
       case path === "/incidents/new":
         return this.newTarget.classList.add("active");
