@@ -12,12 +12,9 @@ export default class extends Controller {
 
   connect() {
     const date = new Date();
-    this.today = date.toISOString().replace(/T.*/, "").split("-").join("-");
+    this.today = date.toLocaleDateString("en-GB").split("/").reverse().join("-");
     this.oneWeekAgo = new Date(date.setDate(date.getDate() - 7))
-      .toISOString()
-      .replace(/T.*/, "")
-      .split("-")
-      .join("-");
+      .toLocaleDateString("en-GB").split("/").reverse().join("-")
 
     this.dateInputs = [this.startDateTarget, this.endDateTarget];
     this.filter = {
@@ -26,6 +23,8 @@ export default class extends Controller {
       startDate: this.oneWeekAgo,
       endDate: this.today
     };
+
+    console.log(this.filter.startDate, this.filter.endDate);
 
     this.#addToUrl();
     this.#handleButtons(this.topButtonTargets, "filter");
@@ -137,14 +136,12 @@ export default class extends Controller {
   }
 
   #handleDateChange() {
-    this.startDateInput.addEventListener("change", () => {
-      this.filter.startDate = startDate.value;
-      this.#addToUrl();
-    });
-    this.endDateInput.addEventListener("change", () => {
-        this.filter.endDate = endDate.value;
+    this.dateInputs.forEach((input, index) => {
+      input.addEventListener("change", (e) => {
+        this.#getDate();
         this.#addToUrl();
-    });
+      });
+    })
   }
 
   #handleButtons(targets, params) {
