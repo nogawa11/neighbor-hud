@@ -21,8 +21,11 @@ class FeedController < ApplicationController
   end
 
   def news_user_filter(incidents, filter)
-    incidents.where('user_id IS NULL').order(incident_date: :desc).includes(:comments) if filter == "newsreports"
-    incidents.where('user_id IS NOT NULL').order(incident_date: :desc).includes(:comments) if filter == "userreports"
+    if filter == "newsreports"
+      incidents.where('user_id IS NULL').order(incident_date: :desc).includes(:comments)
+    elsif filter == "userreports"
+      incidents.where('user_id IS NOT NULL').order(incident_date: :desc).includes(:comments)
+    end
   end
 
   def date_filter(incidents, start_d, end_d)
