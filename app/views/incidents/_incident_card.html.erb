@@ -1,12 +1,12 @@
 <div class="p-3">
   <div class="row align-items-start">
-    <%= render "incidents/type", incident: @incident %>
+    <%= render "type", incident: @incident %>
     <div class="col-3">
-      <%= render "incidents/category", incident: @incident %>
+      <%= render "category", incident: @incident %>
     </div>
     <h1><%= @incident.title %></h1>
   </div>
-  <%= render "incidents/description", incident: @incident %>
+  <%= render "description", incident: @incident %>
   <% if @incident.source.present? %>
     <%= link_to "Taken from #{@incident.source} <i class='fas fa-external-link-alt ms-1'></i>".html_safe, @incident.url, target: '_blank' %>
   <% end %>
