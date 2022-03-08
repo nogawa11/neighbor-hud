@@ -4,7 +4,8 @@
     <div class="categories__item <%= formatted_file.include?("disturb") ? "last" : "" %>">
       <button class="categories__button active" data-active-button-target="categoryButton"
       data-report-details-target="categoryItem"
-      data-action="click->report-details#setActiveButton">
+      data-action="click->report-details#setActiveButton click->filter#closeFilter"
+      data-action="click->filter#closeFilter">
         <%= image_tag "#{file}" %>
         <% if formatted_file == 'disturb' %>
           <p>Disturbing the Peace</p>
