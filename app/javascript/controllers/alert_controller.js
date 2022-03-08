@@ -5,7 +5,7 @@ export default class extends Controller {
 
   connect() {
     const alert = document.querySelector(".alert-dismissible")
-    setTimeout(() => {
+    alert && setTimeout(() => {
       alert.style.display = "none"
     }, 3000);
   }
