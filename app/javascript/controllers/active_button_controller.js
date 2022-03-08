@@ -23,8 +23,7 @@ export default class extends Controller {
     this.filter = {
       filter: "",
       category: "",
-      startDate: this.oneWeekAgo,
-      endDate: this.today
+      date: [this.oneWeekAgo, this.today],
     };
 
     this.#addToUrl();
@@ -116,13 +115,9 @@ export default class extends Controller {
         : "";
     const dates = `${
       this.#isFilterEmpty("category") || this.#isFilterEmpty("filter")
-    }start_date=${this.filter.startDate}&end_date=${this.filter.endDate}`;
+    }date=${this.filter.date.join("-")}`;
 
-    if (this.#isInFeedPage()) {
-      return `/feed?${category}${filter}${dates}`;
-    } else {
-      return `/${category}${filter}${dates}`;
-    }
+    return `/?${category}${filter}${dates}`;
   }
 
   #addToUrl() {
@@ -132,19 +127,17 @@ export default class extends Controller {
   #getDate() {
     const startDate = this.startDateTarget.value;
     const endDate = this.endDateTarget.value;
-    this.filter.startDate = startDate;
-    this.filter.endDate = endDate;
+    const date = [startDate, endDate];
+    this.filter.date = date;
   }
 
   #handleDateChange() {
-    this.startDateInput.addEventListener("change", () => {
-        this.filter.startDate = startDate.value;
+    this.dateInputs.forEach((input, index) => {
+      input.addEventListener("change", () => {
+        this.filter.date[index] = input.value;
         this.#addToUrl();
+      });
     });
-    this.endDateInput.addEventListener("change", () => {
-      this.filter.endDate = endDate.value;
-      this.#addToUrl();
-  });
   }
 
   #handleButtons(targets, params) {
