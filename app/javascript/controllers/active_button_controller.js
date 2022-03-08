@@ -121,7 +121,7 @@ export default class extends Controller {
     if (this.#isInFeedPage()) {
       return `/feed?${category}${filter}${dates}`;
     } else {
-      return `/${category}${filter}${dates}`;
+      return `/?${category}${filter}${dates}`;
     }
   }
 
@@ -138,13 +138,13 @@ export default class extends Controller {
 
   #handleDateChange() {
     this.startDateInput.addEventListener("change", () => {
-        this.filter.startDate = startDate.value;
-        this.#addToUrl();
+      this.filter.startDate = startDate.value;
+      this.#addToUrl();
     });
     this.endDateInput.addEventListener("change", () => {
-      this.filter.endDate = endDate.value;
-      this.#addToUrl();
-  });
+        this.filter.endDate = endDate.value;
+        this.#addToUrl();
+    });
   }
 
   #handleButtons(targets, params) {

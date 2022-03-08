@@ -10,6 +10,8 @@
     margin-bottom: 0.7em;
     display: flex;
     gap: 0.4em;
+    justify-content: center;
+    width: 100%;
 
     .top_container__button {
       width: 100%;
@@ -40,6 +42,12 @@
     & > p {
       margin: 0;
     }
+  }
+
+  .text--gray {
+    color: rgb(107, 107, 107);
+    font-size: 18px;
+    margin: 1em;
   }
 
   &__incidents {
