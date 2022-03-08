@@ -1,0 +1,22 @@
+<div
+  class="mt-1"
+  data-controller="read-more"
+  data-read-more-more-text-value="Read more"
+  data-read-more-less-text-value="Read less"
+>
+  <% if @incident.description.chars.count > 400 %>
+    <p data-read-more-target="content">
+      <%= incident.description.first(400) %>...
+    </p>
+    <div class="d-flex justify-content-end">
+      <button data-action="read-more#toggle">
+        See more
+      </button>
+    </div>
+    <template data-read-more-target="full">
+      <p><%= incident.description %></p>
+    </template>
+  <% else %>
+    <p><%= incident.description %></p>
+  <% end %>
+</div>

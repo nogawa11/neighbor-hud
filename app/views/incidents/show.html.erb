@@ -1,22 +1,22 @@
 <div class="incident-show">
   <div class="incident-show__top">
     <div class="link--incident-details">
-      <%= render "incidents/incident_back_button" %>
+      <%= render "incident_back_button" %>
     </div>
     <div class="pb-1 d-flex justify-content-end">
-      <%= render 'tags', incident: @incident %>
+      <%= render "incidents/tags", incident: @incident %>
     </div>
     <div class="incident-show__details card--incident-details">
-      <%= render 'incident_card', incident: @incident %>
-      <%= render 'map' %>
+      <%= render "incident_card", incident: @incident %>
+      <%= render "incidents/map" %>
     </div>
   </div>
   <div class="incident-show__comments">
     <% @incident.comments.each do |comment| %>
-      <%= render 'comment_card', comment: comment %>
+      <%= render "incidents/comment_card", comment: comment %>
     <% end %>
   </div>
 </div>
 <% if @incident.can_receive_comments? || !@incident.user.present?%>
-  <%= render 'comments/form', incident: @incident, original_comment: @original_comment, comment: @comment %>
+  <%= render "comments/form", incident: @incident, original_comment: @original_comment, comment: @comment %>
 <% end %>

@@ -17,17 +17,9 @@
     </div>
   </div>
   <% @original_comment.comments.each do |comment| %>
-  <div class="card--comment ps-1 pe-1 ms-4 me-4 mt-3 pb-3">
-    <div class="d-flex justify-content-between card--info">
-      <p style="margin: 0; padding: 0;">
-        <strong><%= comment.user.name %></strong>
-      </p>
-      <p style="margin: 0; padding: 0;"><%= comment.created_at.to_date %></p>
-    </div>
-    <p style="margin: 0; padding: 0;"><%= comment.content %></p>
-  </div>
-<% end %>
+    <%= render "comments/reply_card", comment: comment %>
+  <% end %>
 </div>
 <div class="form--comments d-flex justify-content-center">
-    <%= render 'form', incident: @original_comment.incident, original_comment: @original_comment, comment: @comment %>
+    <%= render "comments/form", incident: @original_comment.incident, original_comment: @original_comment, comment: @comment %>
 </div>

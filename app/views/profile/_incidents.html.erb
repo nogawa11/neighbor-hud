@@ -1,9 +1,7 @@
 <% if user.incidents.count > 2 %>
   <div data-read-more-target="content">
     <% user.incidents.first(2).each do |incident| %>
-      <% if incident.title.present? %>
-        <%= render 'feed/feed_card', incident: incident %>
-      <% end %>
+        <%= render "profile/incident_card", incident: incident %>
     <% end %>
     <div class="d-flex justify-content-end m-3">
       <button
@@ -13,17 +11,13 @@
     </div>
     <template data-read-more-target="full">
       <% user.incidents.each do |incident| %>
-        <% if incident.title.present? %>
-          <%= render 'feed/feed_card', incident: incident %>
-        <% end %>
+          <%= render "profile/incident_card", incident: incident %>
       <% end %>
     </template>
   </div>
 <% elsif user.incidents.count <= 2  && @user.incidents.count > 0 %>
   <% user.incidents.each do |incident| %>
-    <% if incident.title.present? %>
-      <%= render 'feed/feed_card', incident: incident %>
-    <% end %>
+      <%= render "profile/incident_card", incident: incident %>
   <% end %>
 <% elsif user.incidents.count == 0 %>
   <p class="m-3"><em>You have no incidents</em></p>
