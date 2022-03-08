@@ -44,6 +44,12 @@
     }
   }
 
+  .text--gray {
+    color: rgb(107, 107, 107);
+    font-size: 18px;
+    margin: 1em;
+  }
+
   &__incidents {
     height: calc(100vh - 271px);
     display: flex;
