@@ -36,7 +36,7 @@ class IncidentsController < ApplicationController
     add_icon_image(@incident.category_list.first)
     @incident.image_path = @image_path
     if @incident.save
-      redirect_to incident_path(@incident)
+      redirect_to incident_path(@incident), notice: "Your report has been submitted"
     else
       render :new
     end
