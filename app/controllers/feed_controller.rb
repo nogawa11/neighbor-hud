@@ -2,11 +2,17 @@ class FeedController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index]
 
   def index
-    @incidents = policy_scope(Incident)
-    @incidents = location_filter(@incidents, params[:query]) if params[:query].present?
-    @incidents = category_filter(@incidents, params[:category]) if params[:category].present?
-    @incidents = news_user_filter(@incidents, params[:filter]) if params[:filter].present?
-    @incidents = date_filter(@incidents, params[:start_date], params[:end_date]) if params[:start_date].present?
+    if params[:query].present? || params[:filter] == "all"
+      @incidents = policy_scope(Incident).near(params[:query]).order(incident_date: :desc).includes(:comments)
+    elsif params[:start_date].present?
+      date_filter(params[:start_date], params[:end_date])
+    elsif params[:filter].present?
+      news_user_filter(params[:filter])
+    elsif params[:category].present?
+      category_filter(params[:category])
+    else
+      all_incidents
+    end
 
     respond_to do |format|
       format.html
@@ -21,26 +27,27 @@ class FeedController < ApplicationController
   end
 
   def news_user_filter(incidents, filter)
-    if filter == "newsreports"
-      incidents.where('user_id IS NULL').order(incident_date: :desc).includes(:comments)
-    elsif filter == "userreports"
-      incidents.where('user_id IS NOT NULL').order(incident_date: :desc).includes(:comments)
-    elsif filter == "all"
-      incidents
-    end
+    incidents.where('user_id IS NULL').order(incident_date: :desc).includes(:comments) if filter == "newsreports"
+    incidents.where('user_id IS NOT NULL').order(incident_date: :desc).includes(:comments) if filter == "userreports"
+    raise
   end
 
-  def date_filter(incidents, start_d, end_d)
+  def date_filter(start_d, end_d)
     @start_date = Date.parse(start_d)
     @end_date = Date.parse(end_d)
-    incidents.where("incident_date >= ? AND incident_date <= ?", @start_date, @end_date).order(incident_date: :desc).includes(:comments)
+    @all_incidents = policy_scope(Incident)
+    @incidents = @all_incidents.where("incident_date >= ? AND incident_date <= ?", @start_date, @end_date).order(incident_date: :desc).includes(:comments)
   end
 
-  def category_filter(incidents, category)
+  def category_filter(category)
     if category.downcase.include?("disturb")
-      incidents.tagged_with('Disturb').order(incident_date: :desc).includes(:comments)
+      @incidents = policy_scope(Incident).tagged_with('Disturb').order(incident_date: :desc).includes(:comments)
     else
-      incidents.tagged_with(category.capitalize).order(incident_date: :desc).includes(:comments)
+      @incidents = policy_scope(Incident).tagged_with(category.capitalize).order(incident_date: :desc).includes(:comments)
     end
+  end
+
+  def all_incidents
+    @incidents = policy_scope(Incident).order(incident_date: :desc).includes(:comments)
   end
 end
