@@ -1,17 +1,35 @@
 import { Controller } from "stimulus";
 
 export default class extends Controller {
-  static targets = ["topButton", "categoryButton", "feed"];
+  static targets = [
+    "topButton",
+    "categoryButton",
+    "feed",
+    "startDate",
+    "endDate",
+    "test",
+  ];
 
   connect() {
+    const date = new Date();
+    this.today = date.toISOString().replace(/T.*/, "").split("-").join("-");
+    this.oneWeekAgo = new Date(date.setDate(date.getDate() - 7))
+      .toISOString()
+      .replace(/T.*/, "")
+      .split("-")
+      .join("-");
+
+    this.dateInputs = [this.startDateTarget, this.endDateTarget];
     this.filter = {
       filter: "",
       category: "",
-      date: [],
+      date: [this.oneWeekAgo, this.today],
     };
 
+    this.#addToUrl();
     this.#handleButtons(this.topButtonTargets, "filter");
     this.#handleButtons(this.categoryButtonTargets, "category");
+    this.#handleDateChange();
   }
 
   /* --------------------------------- Private -------------------------------- */
@@ -95,14 +113,31 @@ export default class extends Controller {
       this.filter.filter.length > 0
         ? `${this.#isFilterEmpty("category")}filter=${this.filter.filter}`
         : "";
-    const dates =
-      this.filter.date.length > 0
-        ? `${
-            this.#isFilterEmpty("category") || this.#isFilterEmpty("filter")
-          }dates=${this.filter.date}`
-        : "";
+    const dates = `${
+      this.#isFilterEmpty("category") || this.#isFilterEmpty("filter")
+    }date=${this.filter.date.join("-")}`;
 
     return `/?${category}${filter}${dates}`;
+  }
+
+  #addToUrl() {
+    history.pushState(null, null, this.#getNewUrl());
+  }
+
+  #getDate() {
+    const startDate = this.startDateTarget.value;
+    const endDate = this.endDateTarget.value;
+    const date = [startDate, endDate];
+    this.filter.date = date;
+  }
+
+  #handleDateChange() {
+    this.dateInputs.forEach((input, index) => {
+      input.addEventListener("change", () => {
+        this.filter.date[index] = input.value;
+        this.#addToUrl();
+      });
+    });
   }
 
   #handleButtons(targets, params) {
@@ -112,7 +147,8 @@ export default class extends Controller {
         this.#fetchData(e, params);
         this.#setActiveClass(targets, button);
         this.#addToFilter(button, params);
-        history.pushState(null, null, this.#getNewUrl());
+        this.#getDate();
+        this.#addToUrl()
       });
     });
   }
