@@ -1,21 +1,18 @@
 .feed {
   display: grid;
-  grid-template-rows: auto calc(100vh - 271px) auto;
+  // grid-template-rows: auto calc(100vh - 271px) auto;
   overflow: scroll;
   transition: 1s;
 
   &.open {
     display: grid;
-    grid-template-rows: auto calc(100vh - 390px) auto;
+    // grid-template-rows: auto calc(100vh - 390px) auto;
     overflow: scroll;
   }
 
   .categories {
-    display: none;
+    display: grid;
 
-    &.open {
-      display: grid;
-    }
   }
 
   .date {
@@ -44,11 +41,16 @@
   }
 
   &__incidents {
-    max-height: 100%;
+    max-height: calc(100vh - 271px);
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
     overflow: auto;
+    transition: all 0.5s;
+
+    &.open {
+      max-height:calc(100vh - 390px)
+    }
   }
 
   &__paragraph {
