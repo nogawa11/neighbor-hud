@@ -43,6 +43,9 @@ export default class extends Controller {
     this.previousLocation = this.location;
     this.previousTitle = this.title;
     this.#removeActiveClass();
+    this.categoryItemTargets.forEach((button) => {
+      button.addEventListener("click", e => e.preventDefault());
+    })
   }
 
   openCard(event) {

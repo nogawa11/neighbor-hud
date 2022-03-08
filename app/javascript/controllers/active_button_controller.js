@@ -12,11 +12,15 @@ export default class extends Controller {
 
   connect() {
     const date = new Date();
-    this.today = date.toISOString().replace(/T.*/, "").split("-").join("-");
+    this.today = date
+      .toLocaleDateString("en-GB")
+      .split("/")
+      .reverse()
+      .join("-");
     this.oneWeekAgo = new Date(date.setDate(date.getDate() - 7))
-      .toISOString()
-      .replace(/T.*/, "")
-      .split("-")
+      .toLocaleDateString("en-GB")
+      .split("/")
+      .reverse()
       .join("-");
 
     this.dateInputs = [this.startDateTarget, this.endDateTarget];
@@ -24,7 +28,14 @@ export default class extends Controller {
       filter: "",
       category: "",
       startDate: this.oneWeekAgo,
-      endDate: this.today
+      endDate: this.today,
+    };
+
+    this.requestOptions = {
+      method: "GET",
+      headers: {
+        Accept: "text/plain",
+      },
     };
 
     this.#addToUrl();
@@ -48,38 +59,28 @@ export default class extends Controller {
     map.outerHTML = res;
   }
 
-  #fetchHome(path, params, options) {
-    fetch(`/?${params}=${path}`, options).then((response) =>
+  #fetchHome() {
+    fetch(window.location.search, this.requestOptions).then((response) => {
       response.text().then((responseText) => {
         this.#updateMap(responseText);
-        // history.pushState(null, null, `/?${params}=${path}`);
-      })
+      });
+    });
+  }
+
+  #fetchFeed() {
+    fetch(`/feed/?${window.location.search}`, this.requestOptions).then(
+      (response) =>
+        response.text().then((responseText) => {
+          this.feedTarget.outerHTML = responseText;
+        })
     );
   }
 
-  #fetchFeed(path, params, options) {
-    fetch(`/feed/?${params}=${path}`, options).then((response) =>
-      response.text().then((responseText) => {
-        this.feedTarget.outerHTML = responseText;
-        // history.pushState(null, null, `/feed/?${params}=${path}`);
-      })
-    );
-  }
-
-  #fetchData(e, params) {
-    const options = {
-      method: "GET",
-      headers: {
-        Accept: "text/plain",
-      },
-    };
-
-    const path = this.#getFormattedPath(e.currentTarget, params);
-
+  #fetchData() {
     if (this.#isInFeedPage()) {
-      this.#fetchFeed(path, params, options);
+      this.#fetchFeed();
     } else {
-      this.#fetchHome(path, params, options);
+      this.#fetchHome();
     }
   }
 
@@ -137,13 +138,11 @@ export default class extends Controller {
   }
 
   #handleDateChange() {
-    this.startDateInput.addEventListener("change", () => {
-      this.filter.startDate = startDate.value;
-      this.#addToUrl();
-    });
-    this.endDateInput.addEventListener("change", () => {
-        this.filter.endDate = endDate.value;
+    this.dateInputs.forEach((input, index) => {
+      input.addEventListener("change", (e) => {
+        this.#getDate();
         this.#addToUrl();
+      });
     });
   }
 
@@ -151,11 +150,11 @@ export default class extends Controller {
     targets.forEach((button) => {
       button.addEventListener("click", (e) => {
         e.preventDefault();
-        this.#fetchData(e, params);
         this.#setActiveClass(targets, button);
         this.#addToFilter(button, params);
         this.#getDate();
-        this.#addToUrl()
+        this.#addToUrl();
+        this.#fetchData();
       });
     });
   }

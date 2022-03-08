@@ -62,7 +62,7 @@
 
   .mapboxgl-ctrl-geocoder--icon {
     z-index: 1;
-    top: 10px;
+    top: 15px;
   }
 
 /* ------------------------------ Search input ------------------------------ */
@@ -75,6 +75,7 @@
       font-size: 1rem;
       border-radius: 5px;
       padding: 0.375rem 2.8125rem;
+      height: 50px;
 
       &::placeholder {
         font-style: italic;

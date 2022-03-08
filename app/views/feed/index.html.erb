@@ -6,11 +6,7 @@
     </div>
     <%= render "feed/buttons" %>
     <div class="feed__mid">
-      <% if @incidents.empty? %>
-        <p class="text--gray"><em>No incidents matching your search</em></p>
-      <% else %>
-        <%= render "feed/feed_incidents", incidents: @incidents %>
-      <% end %>
+      <%= render "feed/feed_incidents", incidents: @incidents %>
     </div>
     <div class="feed__bottom">
       <div class="feed__filter">
