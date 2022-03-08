@@ -22,9 +22,14 @@ class FeedController < ApplicationController
 
   private
 
-  def news_user_filter(filter)
-    @incidents = policy_scope(Incident).where('user_id IS NULL').order(incident_date: :desc).includes(:comments) if filter == "newsreports"
-    @incidents = policy_scope(Incident).where('user_id IS NOT NULL').order(incident_date: :desc).includes(:comments) if filter == "userreports"
+  def location_filter(incidents, location)
+    incidents.near(location).order(incident_date: :desc).includes(:comments)
+  end
+
+  def news_user_filter(incidents, filter)
+    incidents.where('user_id IS NULL').order(incident_date: :desc).includes(:comments) if filter == "newsreports"
+    incidents.where('user_id IS NOT NULL').order(incident_date: :desc).includes(:comments) if filter == "userreports"
+    raise
   end
 
   def date_filter(start_d, end_d)
