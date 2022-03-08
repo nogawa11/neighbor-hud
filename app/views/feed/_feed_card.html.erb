@@ -5,12 +5,19 @@
     </div>
   <% end %>
   <div class="row d-flex justify-content-between">
-    <%= render 'type', incident: incident %>
+    <div class="col-10">
+      <% if incident.user_id.nil? %>
+        <h1 class="text--blue"><i>News Report</i></h1>
+      <% else %>
+        <h1 class="text--blue"><i>User Report</i></h1>
+      <% end %>
+      <h1><%= incident.title %></h1>
+    </div>
     <div class="col-2">
-      <%= render 'icon', category: incident.category_list.first %>
+      <%= render 'feed/icon', category: incident.category_list.first %>
     </div>
   </div>
   <p class="card--description"><%= incident.description.first(100)... %></p>
-  <%= render 'distance', incident: incident %>
+  <%= render 'feed/distance', incident: incident %>
   <%= link_to "", incident_path(incident, path: 'feed'), class: "card--link" %>
 </div>
