@@ -32,12 +32,7 @@ class IncidentsController < ApplicationController
     authorize @incident
     @incident.user = current_user
     @incident.incident_date = params[:incident_date]
-    if @incident.category_list.empty?
-      @incident.category_list.add("Disturb")
-    elsif @incident.category_list.first.include?("disturbing")
-      @incident.category_list.remove("disturbing the peace")
-      @incident.category_list.add("Disturb")
-    end
+    check_category(@incident)
     add_icon_image(@incident.category_list.first)
     @incident.image_path = @image_path
     if @incident.save
@@ -85,6 +80,17 @@ class IncidentsController < ApplicationController
       @category = "Disturb"
     else
       @category = category
+    end
+  end
+
+  def check_category(incident)
+    if incident.category_list.empty?
+      incident.category_list.add("Disturb")
+      incident
+    elsif incident.category_list.first.include?("disturbing")
+      incident.category_list.remove("disturbing the peace")
+      incident.category_list.add("Disturb")
+      incident
     end
   end
 end

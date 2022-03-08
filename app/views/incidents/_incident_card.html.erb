@@ -1,50 +1,16 @@
 <div class="p-3">
   <div class="row align-items-start">
-    <div class="col-9">
-      <% if incident.user_id.nil? %>
-        <h1 class="text--blue"><i>News Report</i></h1>
-      <% else %>
-        <h1 class="text--blue"><i>User Report</i></h1>
-      <% end %>
-    </div>
+    <%= render "incidents/type", incident: @incident %>
     <div class="col-3">
-      <div class="d-flex justify-content-end align-items-center card--category">
-        <% if @incident.category_list.first == 'Disturb' %>
-          Disturbing the peace
-        <% else %>
-          <%= @incident.category_list.first %>
-        <% end %>
-        <%= render 'icon', category: @incident.category_list.first %>
-      </div>
+      <%= render "incidents/category", incident: @incident %>
     </div>
     <h1><%= @incident.title %></h1>
   </div>
-  <div
-    class="mt-1"
-    data-controller="read-more"
-    data-read-more-more-text-value="Read more"
-    data-read-more-less-text-value="Read less"
-  >
-    <% if @incident.description.chars.count > 400 %>
-      <p data-read-more-target="content">
-        <%= @incident.description.first(400) %>...
-      </p>
-      <div class="d-flex justify-content-end">
-        <button data-action="read-more#toggle">
-          See more
-        </button>
-      </div>
-      <template data-read-more-target="full">
-        <p><%= @incident.description %></p>
-      </template>
-    <% else %>
-      <p><%= @incident.description %></p>
-    <% end %>
-  </div>
+  <%= render "description", incident: @incident %>
   <% if @incident.source.present? %>
     <%= link_to "Taken from #{@incident.source} <i class='fas fa-external-link-alt ms-1'></i>".html_safe, @incident.url, target: '_blank' %>
   <% end %>
   <div class="d-flex justify-content-between align-items-end mt-2">
-    <%= render 'incident_card_bottom', incident: @incident  %>
+    <%= render "incidents/incident_card_bottom", incident: @incident  %>
   </div>
 </div>

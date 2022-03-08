@@ -2,11 +2,11 @@
   <div class="container feed" data-controller="active-button" data-filter-target="feed">
     <div class="feed__top">
       <p>Here are the recent incidents in your area</p>
-      <%= render 'search' %>
-      <%= render 'buttons' %>
+      <%= render "feed/search" %>
+      <%= render "feed/buttons" %>
     </div>
     <div class="feed__mid">
-      <%= render 'feed_incidents' %>
+      <%= render "feed/feed_incidents", incidents: @incidents %>
     </div>
     <div class="feed__bottom">
       <div class="feed__filter">
@@ -17,10 +17,10 @@
           </button>
         </div>
         <div class="categories" data-filter-target="categories">
-          <%= render "/components/categories_list.html.erb" %>
+          <%= render "components/categories_list.html.erb" %>
         </div>
         <div data-filter-target="date" class="date">
-          <%= render 'components/date_picker', path: feed_path %>
+          <%= render "components/date_picker", path: feed_path %>
         </div>
       </div>
     </div>

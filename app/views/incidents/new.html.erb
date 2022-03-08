@@ -10,7 +10,7 @@
         <%= render "hidden_location_input", f: f %>
         <%= render "report_location_input", f: f %>
         <div class="date-and-comments">
-          <%= render "date_picker_for_report" %>
+          <%= render "report_date_picker" %>
           <%= render "report_comments_switcher", f: f %>
         </div>
       </div>
@@ -24,6 +24,6 @@
     </div>
   <% end %>
   <div class="map-container">
-    <%= render 'shared/map' %>
+    <%= render "shared/map" %>
   </div>
 </div>
