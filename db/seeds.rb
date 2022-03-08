@@ -31,7 +31,7 @@ incident_1 = Incident.new(
 incident_1.save!
 
 incident_2 = Incident.new(
-  title: "I was attacked by a homeless man.",
+  title: "I was attacked by someone's dog.",
   description: Faker::Lorem.paragraph(sentence_count: 3),
   incident_date: Faker::Date.forward(days: rand(1..30)),
   location: "Kamiyama-cho, Shibuya, Tokyo, Japan",
