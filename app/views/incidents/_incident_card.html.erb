@@ -2,14 +2,7 @@
   <div class="row align-items-start">
     <%= render "incidents/type", incident: @incident %>
     <div class="col-3">
-      <div class="d-flex justify-content-end align-items-center card--category">
-        <% if @incident.category_list.first == 'Disturb' %>
-          Disturbing the peace
-        <% else %>
-          <%= @incident.category_list.first %>
-        <% end %>
-        <%= render 'icon', category: @incident.category_list.first %>
-      </div>
+      <%= render "incidents/category", incident: @incident %>
     </div>
     <h1><%= @incident.title %></h1>
   </div>
