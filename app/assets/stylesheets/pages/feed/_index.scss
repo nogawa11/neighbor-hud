@@ -16,11 +16,7 @@
   }
 
   .date {
-    display: none;
-
-    &.open {
-      display: grid;
-    }
+    display: grid;
   }
 
   &__top {
