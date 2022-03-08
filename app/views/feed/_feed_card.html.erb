@@ -14,7 +14,7 @@
       <h1><%= incident.title %></h1>
     </div>
     <div class="col-2">
-      <%= render 'feed/icon.html.erb', category: incident.category_list.first %>
+      <%= render 'icon', category: incident.category_list.first %>
     </div>
   </div>
   <p class="card--description"><%= incident.description.first(100)... %></p>
