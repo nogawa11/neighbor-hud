@@ -14,7 +14,7 @@ class IncidentsController < ApplicationController
     end
 
     respond_to do |format|
-      format.html
+      format.html { redirect_to feed_path }
       format.text { render partial: "/shared/map.html.erb", locals: { markers: @markers } }
     end
   end
@@ -22,9 +22,7 @@ class IncidentsController < ApplicationController
   def new
     @incident = Incident.new
     authorize @incident
-    @markers = [
-      { lat: 0, lng: 0 }
-    ]
+    @markers = [] # Needs to be an empty array so the controller can properly handle the map
   end
 
   def create

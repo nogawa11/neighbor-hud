@@ -7,7 +7,7 @@
     <% distance = (Geocoder::Calculations.distance_between([35.0116, 139.6981], [incident.latitude, incident.longitude])).round(0) %>
   <% end %>
   <%= render "incidents/distance_icon", distance: distance %>
-  <%= distance %>
+  <%= number_with_delimiter(distance, delimiter: ".") %>
   km away from you
 </p>
 <p class="card--category">

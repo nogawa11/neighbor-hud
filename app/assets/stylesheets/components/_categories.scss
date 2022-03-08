@@ -9,10 +9,6 @@
   position: relative;
   overflow: hidden;
 
-  &.open {
-    display: none;
-  }
-
 /* ----------------------------- Categories List ---------------------------- */
   &__list {
     display: flex;

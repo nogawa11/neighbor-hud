@@ -15,7 +15,9 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
   </head>
   <body>
-    <%= render "shared/flashes" %>
+    <div data-controller="alert">
+      <%= render 'shared/flashes' %>
+    </div>
     <main class="main">
       <%= yield %>
     </main>

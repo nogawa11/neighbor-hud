@@ -95,7 +95,8 @@ export default class extends Controller {
           accessToken: mapboxgl.accessToken,
           mapboxgl: mapboxgl,
         })
-      );
+        );
+      this.#changeInputPlaceholder()
     }
   }
 
@@ -322,5 +323,10 @@ export default class extends Controller {
         element.style.visibility = "initial";
       });
     })
+  }
+
+  #changeInputPlaceholder() {
+    const searchBox = document.querySelector(".mapboxgl-ctrl-geocoder--input");
+    searchBox.placeholder = "Enter a location"
   }
 }

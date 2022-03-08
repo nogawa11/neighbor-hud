@@ -20,6 +20,7 @@
   left: 0;
   background-color: #EAEAEA;
   border-radius: 50rem;
+  transition: all 0.2s ease;
 }
 
 .toggle:checked + label::before {

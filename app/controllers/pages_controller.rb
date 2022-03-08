@@ -43,8 +43,8 @@ class PagesController < ApplicationController
   end
 
   def category_filter(category)
-    if category == "disturb"
-      @incidents = policy_scope(Incident).tagged_with('Disturbing the Peace').includes(:comments)
+    if category.downcase.include?("disturb")
+      @incidents = policy_scope(Incident).tagged_with("Disturb").includes(:comments)
     else
       @incidents = policy_scope(Incident).tagged_with(category.capitalize).includes(:comments)
     end
