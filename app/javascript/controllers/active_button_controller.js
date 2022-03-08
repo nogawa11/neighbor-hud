@@ -117,7 +117,11 @@ export default class extends Controller {
       this.#isFilterEmpty("category") || this.#isFilterEmpty("filter")
     }date=${this.filter.date.join("-")}`;
 
-    return `/?${category}${filter}${dates}`;
+    if (this.#isInFeedPage()) {
+      return `/feed?${category}${filter}${dates}`;
+    } else {
+      return `/${category}${filter}${dates}`;
+    }
   }
 
   #addToUrl() {
