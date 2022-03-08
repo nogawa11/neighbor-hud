@@ -37,7 +37,7 @@
   }
 
   &__incidents {
-    max-height: calc(100vh - 271px);
+    height: calc(100vh - 271px);
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
@@ -45,7 +45,7 @@
     transition: all 0.5s;
 
     &.open {
-      max-height:calc(100vh - 390px)
+      height: calc(100vh - 390px)
     }
   }
 
