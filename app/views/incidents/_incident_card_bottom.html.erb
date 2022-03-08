@@ -1,10 +1,10 @@
 <p class="card--category">
   <% if request.location.latitude.present? %>
-    <% distance = (Geocoder::Calculations.distance_between([request.location.latitude, request.location.longitude], [@incident.latitude, @incident.longitude])).round(0) %>
-  <% elsif @incident.latitude.nil? %>
+    <% distance = (Geocoder::Calculations.distance_between([request.location.latitude, request.location.longitude], [incident.latitude, incident.longitude])).round(0) %>
+  <% elsif incident.latitude.nil? %>
     <% distance = "Unknown" %>
   <% else %>
-    <% distance = (Geocoder::Calculations.distance_between([35.0116, 135.7681], [@incident.latitude, @incident.longitude])).round(0) %>
+    <% distance = (Geocoder::Calculations.distance_between([35.0116, 135.7681], [incident.latitude, incident.longitude])).round(0) %>
   <% end %>
   <%= render "distance_icon", distance: distance %>
   <%= distance %>
@@ -13,5 +13,5 @@
 <p class="card--category">
   <i class="fas fa-comment me-1" style="font-size: 16px;"></i>
   comments
-  (<%= @incident.comments.count %>)
+  (<%= incident.comments.count %>)
 </p>
