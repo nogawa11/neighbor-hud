@@ -291,7 +291,6 @@ DEPENDENCIES
   rails (~> 6.1.4, >= 6.1.4.6)
   redis (~> 4.0)
   sass-rails (>= 6)
-  sassc (= 2.3)
   selenium-webdriver
   serviceworker-rails
   sidekiq
@@ -306,7 +305,7 @@ DEPENDENCIES
   webpacker (~> 5.0)
 
 RUBY VERSION
-   ruby 3.0.3p157
+   ruby 2.7.5p203
 
 BUNDLED WITH
-   2.3.5
+   2.3.8
