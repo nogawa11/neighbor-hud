@@ -3,8 +3,8 @@
     <div class="feed__top">
       <p>Here are the recent incidents in your area</p>
       <%= render "feed/search" %>
-      <%= render "feed/buttons" %>
     </div>
+    <%= render "feed/buttons" %>
     <div class="feed__mid">
       <%= render "feed/feed_incidents", incidents: @incidents %>
     </div>
