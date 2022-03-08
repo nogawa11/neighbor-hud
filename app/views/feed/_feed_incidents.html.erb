@@ -1,5 +1,9 @@
 <div class="feed__incidents" data-active-button-target="feed" data-filter-target="list">
-  <% incidents.each do |incident| %>
-    <%= render 'feed_card.html.erb', incident: incident %>
+  <% if @incidents.empty? %>
+    <p class="text--gray"><em>No incidents matching your search</em></p>
+  <% else %>
+    <% incidents.each do |incident| %>
+      <%= render 'feed_card.html.erb', incident: incident %>
+    <% end %>
   <% end %>
 </div>
