@@ -8,7 +8,8 @@ class RouteController < ApplicationController
         lat: incident.latitude,
         lng: incident.longitude,
         id: incident.id,
-        src: ActionController::Base.helpers.asset_path(incident.image_path.downcase.to_s)
+        src: ActionController::Base.helpers.asset_path(incident.image_path.downcase.to_s),
+        user: incident.user
       }
     end
   end

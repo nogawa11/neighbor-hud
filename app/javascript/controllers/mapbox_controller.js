@@ -53,7 +53,6 @@ export default class extends Controller {
     this.#clearRoutesAndBoxes();
     this.#checkRoutesForCollisions();
     this.#isInRoutePage() && this.#preventHiddenSuggestions();
-
   }
 
   /* --------------------------------- Private -------------------------------- */
@@ -95,9 +94,20 @@ export default class extends Controller {
           accessToken: mapboxgl.accessToken,
           mapboxgl: mapboxgl,
         })
-        );
-      this.#changeInputPlaceholder()
+      );
+      this.#changeInputPlaceholder();
     }
+  }
+
+  #addPopup(marker, background) {
+    return new mapboxgl.Popup({
+      closeOnClick: false,
+      closeButton: false,
+    }).setHTML(
+      `<a href="/incidents/${marker.id}?path=map"
+          class="mapbox-icon"
+          style="background-image: url(${background})"></a>`
+    );
   }
 
   #addMarkersToMap() {
@@ -106,22 +116,27 @@ export default class extends Controller {
         ? marker.src.toLowerCase()
         : "https://i.imgur.com/7teZKVh.png";
 
-      const popup = new mapboxgl.Popup({
-        closeOnClick: false,
-        closeButton: false,
-      }).setHTML(
-        `<a href="/incidents/${marker.id}?path=map"
-          class="mapbox-icon"
-          style="background-image: url(${background})"></a>`
-      );
-      const emptyMarker = document.createElement("div");
+      const popup = this.#addPopup(marker, background);
+      console.log(marker);
+      if (marker.user !== null) {
+        this.#changeMarkerColor(popup);
+      }
 
+      const emptyMarker = document.createElement("div");
       new mapboxgl.Marker(emptyMarker)
         .setLngLat([marker.lng, marker.lat])
         .addTo(this.map)
         .setPopup(popup)
         .togglePopup();
     });
+  }
+
+  #changeMarkerColor(popup) {
+    const parent = popup._content;
+    parent.style.backgroundColor = "#2360eb";
+    setTimeout(() => {
+      parent.previousElementSibling.classList.add("news-icon");
+    }, 100);
   }
 
   #addCurrentLocationButton() {
@@ -312,29 +327,38 @@ export default class extends Controller {
         }
       } else {
         this.#noRouteFoundMessage();
+        this.counter = 0;
       }
     });
   }
 
   #preventHiddenSuggestions() {
-    const swapButton = document.querySelector(".directions-reverse")
-    const suggestions = document.querySelectorAll(".suggestions")
+    const swapButton = document.querySelector(".directions-reverse");
+    const suggestions = document.querySelectorAll(".suggestions");
 
     swapButton.addEventListener("click", () => {
       suggestions.forEach((element) => {
         element.style.visibility = "initial";
       });
-    })
+    });
   }
 
   #changeInputPlaceholder() {
     const searchBox = document.querySelector(".mapboxgl-ctrl-geocoder--input");
-    searchBox.placeholder = "Enter a location"
+    searchBox.placeholder = "Enter a location";
   }
 
   #noRouteFoundMessage() {
     const alert = document.createElement("div");
-    alert.classList.add("alert-dismissible", "alert", "alert-info", "fade", "fade", "m-1", "route__alert");
+    alert.classList.add(
+      "alert-dismissible",
+      "alert",
+      "alert-info",
+      "fade",
+      "fade",
+      "m-1",
+      "route__alert"
+    );
     alert.innerHTML = `No route found`;
     alert.style.bottom = "5rem";
     const main = document.querySelector("main");

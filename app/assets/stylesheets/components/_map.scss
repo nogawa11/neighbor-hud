@@ -13,15 +13,31 @@
   /* ------------------------------- Marker Icon ------------------------------ */
   &gl-popup-anchor-bottom .mapboxgl-popup-tip {
     border-top-color: $primary;
+
+    &.news-icon {
+      border-top-color: #2360eb;
+    }
   }
   &gl-popup-anchor-top .mapboxgl-popup-tip {
     border-bottom-color: $primary;
+
+    &.news-icon {
+      border-bottom-color: #2360eb;
+    }
   }
   &gl-popup-anchor-left .mapboxgl-popup-tip {
     border-right-color: $primary;
+
+    &.news-icon {
+      border-right-color: #2360eb;
+    }
   }
   &gl-popup-anchor-right .mapboxgl-popup-tip {
     border-left-color: $primary;
+
+    &.news-icon {
+      border-left-color: #2360eb;
+    }
   }
 
   &gl-popup-content {
