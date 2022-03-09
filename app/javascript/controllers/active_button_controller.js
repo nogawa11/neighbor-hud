@@ -110,16 +110,16 @@ export default class extends Controller {
   #getNewUrl() {
     const category =
       this.filter.category.length > 0 ? `category=${this.filter.category}` : "";
-    const location =
-      this.filter.location.length > 0
-        ? `${this.#isFilterEmpty("category") || this.#isFilterEmpty("filter") || this.#isFilterEmpty("location")
-      }location=${this.filter.location}` : "";
     const filter =
       this.filter.filter.length > 0
         ? `${this.#isFilterEmpty("category")}filter=${this.filter.filter}`
         : "";
+    const location =
+      this.filter.location.length > 0
+        ? `${this.#isFilterEmpty("category") || this.#isFilterEmpty("filter")
+      }location=${this.filter.location}` : "";
     const dates = `${
-      this.#isFilterEmpty("category") || this.#isFilterEmpty("filter")
+      this.#isFilterEmpty("category") || this.#isFilterEmpty("filter") || this.#isFilterEmpty("location")
     }start_date=${this.filter.startDate}&end_date=${this.filter.endDate}`;
 
     if (this.#isInFeedPage()) {
