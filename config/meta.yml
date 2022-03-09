@@ -1,6 +1,6 @@
 meta_product_name: "NeighborHUD"
 meta_title: "NeighborHUD - Keep your neighborhood safe with NeighborHUD"
-meta_description: "A service that aggregates the latest crime news and detects recent trends based on your GPS location. Users can self-report their incidents or find a safe route to avoid dangerous areas."
+meta_description: "A service that aggregates the latest crime news based on your GPS location. Users can self-report their incidents or find a safe route to avoid dangerous areas."
 meta_image: "map.png" # should exist in `app/assets/images/`
 # twitter_account: "@product_twitter_account"   # required for Twitter Cards
 
