@@ -33,10 +33,13 @@ class IncidentsController < ApplicationController
     check_category(@incident)
     add_icon_image(@incident.category_list.first)
     @incident.image_path = @image_path
-    if @incident.save && @incident.latitude.present?
-      redirect_to incident_path(@incident), notice: "Your report has been submitted"
-    else
-      render :new
+    if @incident.save
+      if @incident.latitude.present?
+        redirect_to incident_path(@incident), notice: "Your report has been submitted"
+      elsif @incident.latitude.nil?
+        @incident.destroy
+        redirect_to new_incident_path, notice: "Invaid location"
+      end
     end
   end
 
