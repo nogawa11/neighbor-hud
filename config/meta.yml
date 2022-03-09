@@ -1,0 +1,7 @@
+meta_product_name: "NeighborHUD"
+meta_title: "NeighborHUD - Keep your neighborhood safe with NeighborHUD"
+meta_description: "A service that aggregates the latest crime news and detects recent trends based on your GPS location. Users can self-report their incidents or find a safe route to avoid dangerous areas."
+meta_image: "favicon/android-icon-192x192.png" # should exist in `app/assets/images/`
+# twitter_account: "@product_twitter_account"   # required for Twitter Cards
+# TODO: We need to set a bigger meta_image (facebook recommendation: 1200x630 pixels).
+# TODO: Feel free to change the title, tagline and description (for the title, the text needs to exceed 20 characters).
