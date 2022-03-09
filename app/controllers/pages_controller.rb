@@ -4,6 +4,7 @@ class PagesController < ApplicationController
   def home
     @incidents = policy_scope(Incident)
     @incidents = location_filter(@incidents, params[:query]) if params[:query].present?
+    @incidents = location_filter(@incidents, params[:location]) if params[:location].present?
     @incidents = category_filter(@incidents, params[:category]) if params[:category].present?
     @incidents = news_user_filter(@incidents, params[:filter]) if params[:filter].present?
     @incidents = date_filter(@incidents, params[:start_date], params[:end_date]) if params[:start_date].present?
