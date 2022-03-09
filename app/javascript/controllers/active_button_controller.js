@@ -7,7 +7,6 @@ export default class extends Controller {
     "feed",
     "startDate",
     "endDate",
-    "test",
     "search",
   ];
 
@@ -141,8 +140,10 @@ export default class extends Controller {
   }
 
   #getLocation() {
-    const location = this.searchTarget.value;
-    this.filter.location = location;
+    if (this.#isInFeedPage()) {
+      const location = this.searchTarget.value;
+      this.filter.location = location;
+    }
   }
 
   #handleDateChange() {
@@ -158,6 +159,7 @@ export default class extends Controller {
   #handleButtons(targets, params) {
     targets.forEach((button) => {
       button.addEventListener("click", (e) => {
+        console.log("clicked");
         e.preventDefault();
         this.#setActiveClass(targets, button);
         this.#addToFilter(button, params);
