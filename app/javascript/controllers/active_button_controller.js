@@ -8,6 +8,7 @@ export default class extends Controller {
     "startDate",
     "endDate",
     "test",
+    "search",
   ];
 
   connect() {
@@ -29,6 +30,7 @@ export default class extends Controller {
       category: "",
       startDate: this.oneWeekAgo,
       endDate: this.today,
+      location: "",
     };
 
     this.requestOptions = {
@@ -38,6 +40,7 @@ export default class extends Controller {
       },
     };
 
+    this.#getLocation();
     this.#addToUrl();
     this.#handleButtons(this.topButtonTargets, "filter");
     this.#handleButtons(this.categoryButtonTargets, "category");
@@ -107,6 +110,10 @@ export default class extends Controller {
   #getNewUrl() {
     const category =
       this.filter.category.length > 0 ? `category=${this.filter.category}` : "";
+    const location =
+      this.filter.location.length > 0
+        ? `${this.#isFilterEmpty("category") || this.#isFilterEmpty("filter") || this.#isFilterEmpty("location")
+      }location=${this.filter.location}` : "";
     const filter =
       this.filter.filter.length > 0
         ? `${this.#isFilterEmpty("category")}filter=${this.filter.filter}`
@@ -116,9 +123,9 @@ export default class extends Controller {
     }start_date=${this.filter.startDate}&end_date=${this.filter.endDate}`;
 
     if (this.#isInFeedPage()) {
-      return `/feed?${category}${filter}${dates}`;
+      return `/feed?${category}${filter}${location}${dates}`;
     } else {
-      return `/?${category}${filter}${dates}`;
+      return `/?${category}${filter}${location}${dates}`;
     }
   }
 
@@ -131,6 +138,11 @@ export default class extends Controller {
     const endDate = this.endDateTarget.value;
     this.filter.startDate = startDate;
     this.filter.endDate = endDate;
+  }
+
+  #getLocation() {
+    const location = this.searchTarget.value;
+    this.filter.location = location;
   }
 
   #handleDateChange() {
