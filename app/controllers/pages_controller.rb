@@ -14,7 +14,8 @@ class PagesController < ApplicationController
         lat: incident.latitude,
         lng: incident.longitude,
         id: incident.id,
-        src: ActionController::Base.helpers.asset_path("#{incident.image_path.downcase}")
+        src: ActionController::Base.helpers.asset_path("#{incident.image_path.downcase}"),
+        user: incident.user
       }
     end
 
