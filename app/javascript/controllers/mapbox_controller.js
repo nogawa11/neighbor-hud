@@ -327,6 +327,7 @@ export default class extends Controller {
         }
       } else {
         this.#noRouteFoundMessage();
+        this.counter = 0;
       }
     });
   }
