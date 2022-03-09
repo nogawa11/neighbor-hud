@@ -2,7 +2,7 @@ class FeedController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index]
 
   def index
-    @incidents = policy_scope(Incident)
+    @incidents = policy_scope(Incident).order(incident_date: :desc)
     @incidents = location_filter(@incidents, params[:query]) if params[:query].present?
     @incidents = location_filter(@incidents, params[:location]) if params[:location].present?
     @incidents = category_filter(@incidents, params[:category]) if params[:category].present?
