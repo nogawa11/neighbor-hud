@@ -68,7 +68,7 @@ export default class extends Controller {
   }
 
   #fetchFeed() {
-    fetch(`/feed/?${window.location.search}`, this.requestOptions).then(
+    fetch(`/feed/${window.location.search}`, this.requestOptions).then(
       (response) =>
         response.text().then((responseText) => {
           this.feedTarget.outerHTML = responseText;
@@ -86,10 +86,6 @@ export default class extends Controller {
 
   #isInFeedPage() {
     return /\/feed.*/.test(window.location.pathname);
-  }
-
-  #isInIncidentsNewPage() {
-    return /\/incidents\/new.*/.test(window.location.pathname);
   }
 
   #addToFilter(button, params) {
@@ -142,6 +138,7 @@ export default class extends Controller {
       input.addEventListener("change", (e) => {
         this.#getDate();
         this.#addToUrl();
+        this.#fetchData();
       });
     });
   }
