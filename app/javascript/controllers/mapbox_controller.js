@@ -117,7 +117,7 @@ export default class extends Controller {
         : "https://i.imgur.com/7teZKVh.png";
 
       const popup = this.#addPopup(marker, background);
-
+      console.log(marker);
       if (marker.user !== null) {
         this.#changeMarkerColor(popup);
       }
