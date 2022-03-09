@@ -62,7 +62,7 @@ export default class extends Controller {
   }
 
   #fetchHome() {
-    fetch(window.location.search, this.requestOptions).then((response) => {
+    fetch(`${window.location.search}&start_date=${this.filter.startDate}&end_date=${this.filter.endDate}`, this.requestOptions).then((response) => {
       response.text().then((responseText) => {
         this.#updateMap(responseText);
       });
@@ -70,7 +70,7 @@ export default class extends Controller {
   }
 
   #fetchFeed() {
-    fetch(`/feed/${window.location.search}`, this.requestOptions).then(
+    fetch(`/feed/${window.location.search}&start_date=${this.filter.startDate}&end_date=${this.filter.endDate}`, this.requestOptions).then(
       (response) =>
         response.text().then((responseText) => {
           this.feedTarget.outerHTML = responseText;
@@ -117,14 +117,11 @@ export default class extends Controller {
       this.filter.location.length > 0
         ? `${this.#isFilterEmpty("category") || this.#isFilterEmpty("filter")
       }location=${this.filter.location}` : "";
-    const dates = `${
-      this.#isFilterEmpty("category") || this.#isFilterEmpty("filter") || this.#isFilterEmpty("location")
-    }start_date=${this.filter.startDate}&end_date=${this.filter.endDate}`;
 
     if (this.#isInFeedPage()) {
-      return `/feed?${category}${filter}${location}${dates}`;
+      return `/feed?${category}${filter}${location}`;
     } else {
-      return `/?${category}${filter}${location}${dates}`;
+      return `/?${category}${filter}${location}`;
     }
   }
 
