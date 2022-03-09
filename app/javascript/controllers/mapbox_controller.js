@@ -51,7 +51,7 @@ export default class extends Controller {
     this.#addDirections();
     this.#startRouteMap();
     this.#clearRoutesAndBoxes();
-    this.#checkRoutesForCollisions();
+    this.#isInRoutePage() && this.#checkRoutesForCollisions();
     this.#isInRoutePage() && this.#preventHiddenSuggestions();
   }
 
