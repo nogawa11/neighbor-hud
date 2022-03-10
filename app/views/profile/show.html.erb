@@ -1,31 +1,33 @@
 <% content_for :meta_title, "#{@user.name} is on #{DEFAULT_META["meta_product_name"]}" %>
 <%# <% content_for :meta_description, @incident.description %>
 <%# <% content_for :meta_image, cl_image_path(@offer.photo.path) %>
-<div class="profile-show p-3">
-  <div class="d-flex justify-content-center border-bottom">
-    <h1>My <span class="text--blue">Activity</span></h1>
-  </div>
-  <div
-    class="profile__incidents mt-2"
-    data-controller="read-more"
-    data-read-more-more-text-value="See more"
-    data-read-more-less-text-value="See less"
-  >
-    <h5 class="text--gray text--roboto"><em>My Reports:</em></h5>
-    <%= render "profile/incidents", user: @user %>
-  </div>
-  <div
-    class="profile__comments"
-    data-controller="read-more"
-    data-read-more-more-text-value="See more"
-    data-read-more-less-text-value="See less"
-  >
-    <h5 class="text--gray text--roboto"><em>My Comments:</em></h5>
-    <%= render "profile/comments", user: @user %>
-  </div>
-  <%= link_to destroy_user_session_path, method: :delete do%>
-    <div class="button--logout">
-      Log Out
+<div class="profile__container">
+  <div class="profile-show p-3">
+    <div class="d-flex justify-content-center border-bottom">
+      <h1>My <span class="text--blue">Activity</span></h1>
     </div>
-  <% end %>
+    <div
+      class="profile__incidents mt-2"
+      data-controller="read-more"
+      data-read-more-more-text-value="See more"
+      data-read-more-less-text-value="See less"
+    >
+      <h5 class="text--gray text--roboto"><em>My Reports:</em></h5>
+      <%= render "profile/incidents", user: @user %>
+    </div>
+    <div
+      class="profile__comments"
+      data-controller="read-more"
+      data-read-more-more-text-value="See more"
+      data-read-more-less-text-value="See less"
+    >
+      <h5 class="text--gray text--roboto"><em>My Comments:</em></h5>
+      <%= render "profile/comments", user: @user %>
+    </div>
+    <%= link_to destroy_user_session_path, method: :delete do%>
+      <div class="button--logout">
+        Log Out
+      </div>
+    <% end %>
+  </div>
 </div>

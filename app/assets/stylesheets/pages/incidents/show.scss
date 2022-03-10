@@ -59,3 +59,14 @@
     padding-bottom: 11.875rem;
   }
 }
+
+@media only screen and (min-width: 1200px) {
+  .incident-show__container {
+    display: flex;
+    justify-content: center;
+
+    .incident-show {
+      max-width: 840px;
+    }
+  }
+}

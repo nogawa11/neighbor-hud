@@ -1,23 +1,25 @@
 <% content_for :meta_title, "#{@incident.title} is on #{DEFAULT_META["meta_product_name"]}" %>
 <%# <% content_for :meta_description, @incident.description %>
 <%# <% content_for :meta_image, cl_image_path(@offer.photo.path) %>
-<div class="incident-show">
-  <div class="incident-show__top">
-    <div class="link--incident-details">
-      <%= render "incident_back_button" %>
+<div class="incident-show__container">
+  <div class="incident-show">
+    <div class="incident-show__top">
+      <div class="link--incident-details">
+        <%= render "incident_back_button" %>
+      </div>
+      <div class="pb-1 d-flex justify-content-end">
+        <%= render "incidents/tags", incident: @incident %>
+      </div>
+      <div class="incident-show__details card--incident-details">
+        <%= render "incident_card", incident: @incident %>
+        <%= render "incidents/map" %>
+      </div>
     </div>
-    <div class="pb-1 d-flex justify-content-end">
-      <%= render "incidents/tags", incident: @incident %>
+    <div class="incident-show__comments">
+      <% @incident.comments.each do |comment| %>
+        <%= render "incidents/comment_card", comment: comment %>
+      <% end %>
     </div>
-    <div class="incident-show__details card--incident-details">
-      <%= render "incident_card", incident: @incident %>
-      <%= render "incidents/map" %>
-    </div>
-  </div>
-  <div class="incident-show__comments">
-    <% @incident.comments.each do |comment| %>
-      <%= render "incidents/comment_card", comment: comment %>
-    <% end %>
   </div>
 </div>
 <% if @incident.can_receive_comments? || !@incident.user.present?%>
