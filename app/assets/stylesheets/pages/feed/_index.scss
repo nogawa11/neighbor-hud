@@ -1,7 +1,7 @@
 .feed {
   display: grid;
   // grid-template-rows: auto calc(100vh - 271px) auto;
-  overflow: scroll;
+  // overflow: scroll;
   transition: 1s;
 
   &__buttons-container {
@@ -52,9 +52,9 @@
 
   &__incidents {
     height: calc(100vh - 271px);
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
+    // display: flex;
+    // flex-direction: column;
+    // flex-wrap: nowrap;
     overflow: auto;
     transition: all 0.25s;
 
