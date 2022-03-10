@@ -1,29 +1,27 @@
-<div class="date open">
-  <%= form_tag path, method: :get, class:"date-picker" do |f| %>
-    <%= label :start_date, "Incidents from: " %>
-    <%= text_field_tag :start_date, params[:start_date],
-      class: "date-picker__input",
-      data: {
-        active_button_target: "startDate",
-        controller: "flatpickr",
-        flatpickr_alt_input: "true",
-        flatpickr_date_format: "Y-m-d",
-        flatpickr_alt_format: "M J",
-        flatpickr_disable_mobile: "true", # Prevents native picker on mobile
-        flatpickr_default_date: params[:start_date].present? ? params[:start_date] : (Date.today - 28),
-      }%>
-    <%= label :end_date, "to: " %>
-    <%= text_field_tag :end_date, params[:end_date],
-      class: "date-picker__input",
-      data: {
-        active_button_target: "endDate",
-        controller: "flatpickr",
-        flatpickr_alt_input: "true",
-        flatpickr_date_format: "Y-m-d",
-        flatpickr_alt_format: "M J",
-        flatpickr_disable_mobile: "true", # Prevents native picker on mobile
-        flatpickr_default_date: params[:end_date].present? ? params[:start_date] : "today",
-      }%>
-    <%= submit_tag "Search", style: "display: none;"%>
-  <% end %>
-</div>
+<%= form_tag path, method: :get, class:"date-picker" do |f| %>
+  <%= label :start_date, "Incidents from: " %>
+  <%= text_field_tag :start_date, params[:start_date],
+    class: "date-picker__input",
+    data: {
+      active_button_target: "startDate",
+      controller: "flatpickr",
+      flatpickr_alt_input: "true",
+      flatpickr_date_format: "Y-m-d",
+      flatpickr_alt_format: "M J",
+      flatpickr_disable_mobile: "true", # Prevents native picker on mobile
+      flatpickr_default_date: params[:start_date].present? ? params[:start_date] : (Date.today - 28),
+    }%>
+  <%= label :end_date, "to: " %>
+  <%= text_field_tag :end_date, params[:end_date],
+    class: "date-picker__input",
+    data: {
+      active_button_target: "endDate",
+      controller: "flatpickr",
+      flatpickr_alt_input: "true",
+      flatpickr_date_format: "Y-m-d",
+      flatpickr_alt_format: "M J",
+      flatpickr_disable_mobile: "true", # Prevents native picker on mobile
+      flatpickr_default_date: params[:end_date].present? ? params[:start_date] : "today",
+    }%>
+  <%= submit_tag "Search", style: "display: none;"%>
+<% end %>
