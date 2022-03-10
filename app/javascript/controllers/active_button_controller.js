@@ -17,7 +17,7 @@ export default class extends Controller {
       .split("/")
       .reverse()
       .join("-");
-    this.oneWeekAgo = new Date(date.setDate(date.getDate() - 7))
+    this.oneWeekAgo = new Date(date.setDate(date.getDate() - 28))
       .toLocaleDateString("en-GB")
       .split("/")
       .reverse()
@@ -62,20 +62,38 @@ export default class extends Controller {
   }
 
   #fetchHome() {
-    fetch(`${window.location.search}&start_date=${this.filter.startDate}&end_date=${this.filter.endDate}`, this.requestOptions).then((response) => {
-      response.text().then((responseText) => {
-        this.#updateMap(responseText);
+    if (this.filter.category.length === 0 && this.filter.location.length === 0 && this.filter.filter.length === 0) {
+      fetch(`/${window.location.search}?start_date=${this.filter.startDate}&end_date=${this.filter.endDate}`, this.requestOptions).then(
+        (response) =>
+          response.text().then((responseText) => {
+            this.feedTarget.outerHTML = responseText;
+          })
+      );
+    } else {
+      fetch(`${window.location.search}&start_date=${this.filter.startDate}&end_date=${this.filter.endDate}`, this.requestOptions).then((response) => {
+        response.text().then((responseText) => {
+          this.#updateMap(responseText);
+        });
       });
-    });
+    }
   }
 
   #fetchFeed() {
-    fetch(`/feed/${window.location.search}&start_date=${this.filter.startDate}&end_date=${this.filter.endDate}`, this.requestOptions).then(
-      (response) =>
-        response.text().then((responseText) => {
-          this.feedTarget.outerHTML = responseText;
-        })
-    );
+    if (this.filter.category.length === 0 && this.filter.location.length === 0 && this.filter.filter.length === 0) {
+      fetch(`/feed/${window.location.search}?start_date=${this.filter.startDate}&end_date=${this.filter.endDate}`, this.requestOptions).then(
+        (response) =>
+          response.text().then((responseText) => {
+            this.feedTarget.outerHTML = responseText;
+          })
+      );
+    } else {
+      fetch(`/feed/${window.location.search}&start_date=${this.filter.startDate}&end_date=${this.filter.endDate}`, this.requestOptions).then(
+        (response) =>
+          response.text().then((responseText) => {
+            this.feedTarget.outerHTML = responseText;
+          })
+      );
+    }
   }
 
   #fetchData() {

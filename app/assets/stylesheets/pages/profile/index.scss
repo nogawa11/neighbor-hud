@@ -34,3 +34,14 @@
   justify-content: center;
   margin-top: 1em;
 }
+
+@media only screen and (min-width: 1200px) {
+  .profile__container {
+    display: flex;
+    justify-content: center;
+
+    .profile-show {
+      max-width: 840px;
+    }
+  }
+}
