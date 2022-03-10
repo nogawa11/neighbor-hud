@@ -17,7 +17,7 @@ export default class extends Controller {
       .split("/")
       .reverse()
       .join("-");
-    this.oneWeekAgo = new Date(date.setDate(date.getDate() - 7))
+    this.oneWeekAgo = new Date(date.setDate(date.getDate() - 28))
       .toLocaleDateString("en-GB")
       .split("/")
       .reverse()
