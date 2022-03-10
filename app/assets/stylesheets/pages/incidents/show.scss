@@ -15,6 +15,11 @@
     border-radius: 16px;
     font-family: $roboto;
     overflow: hidden;
+    // For Safari
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
 
     h1 {
       color: rgb(247, 247, 247);
