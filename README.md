@@ -1,4 +1,4 @@
-# 📚 NeighborHUD
+# NeighborHUD
 
 A crime tracking and mapping app where users can see what incidents are happening in their area. Users can read crime news from well-known English news sources in Japan and self-report their own incidents. The app also has a directions feature that allows users to find the safest route to a given destination, avoiding any reported incidents along the way.
 
