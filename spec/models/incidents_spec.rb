@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe User, type: :model do
+RSpec.describe Incident, type: :model do
   let(:user) { User.new(name: 'name', email: 'email@gmail.com', password: 'password') }
   let(:incident) {Incident.new(
     title: "Title",
