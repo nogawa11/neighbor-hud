@@ -13,7 +13,7 @@
       <% end %>
       <h1><%= incident.title %></h1>
     </div>
-    <div class="col-2">
+    <div class="col-2 d-flex justify-content-end">
       <%= render "feed/feed_icon.html.erb", category: incident.category_list.first %>
     </div>
   </div>

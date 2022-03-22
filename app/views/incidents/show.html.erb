@@ -17,7 +17,9 @@
     </div>
     <div class="incident-show__comments">
       <% @incident.comments.each do |comment| %>
-        <%= render "incidents/comment_card", comment: comment %>
+        <% if comment.comment.nil? %>
+          <%= render "incidents/comment_card", comment: comment %>
+        <% end %>
       <% end %>
     </div>
   </div>
